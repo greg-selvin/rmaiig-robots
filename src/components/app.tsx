@@ -41,7 +41,8 @@ export default function App() {
     const tables=Object.keys(emptyData) as (keyof Data)[];
     const names:Record<keyof Data,string>={workspaces:"workspaces",vendors:"vendors",robots:"robots",opportunities:"opportunities",meetups:"meetups",stages:"pipeline_stages",contacts:"contacts",interactions:"interactions",criteria:"scoring_criteria",models:"scoring_models",ratings:"ratings",sources:"research_sources",jobs:"research_jobs",templates:"email_templates",locations:"vendor_locations",members:"workspace_members",batches:"import_batches",audit:"audit_events"};
     const results=await Promise.all(tables.map(async (table)=> {
-      const query=db.from(names[table] as "vendors").select("*").eq("workspace_id",workspaceId).limit(table==="robots"||table==="opportunities"?1000:500);
+      const workspaceQuery=db.from(names[table] as "vendors").select("*");
+      const query=(table==="workspaces"?workspaceQuery.eq("id",workspaceId):workspaceQuery.eq("workspace_id",workspaceId)).limit(table==="robots"||table==="opportunities"?1000:500);
       const {data,error}=await query;
       if(error)throw new Error(`${table}: ${error.message}`);
       return [table,data||[]] as const;
