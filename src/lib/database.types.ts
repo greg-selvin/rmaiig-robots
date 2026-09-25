@@ -14,6 +14,59 @@ export type Database = {
   }
   public: {
     Tables: {
+      access_requests: {
+        Row: {
+          email: string
+          first_name: string | null
+          id: string
+          last_name: string | null
+          notification_error: string | null
+          notification_sent_at: string | null
+          requested_at: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          status: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          email: string
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+          notification_error?: string | null
+          notification_sent_at?: string | null
+          requested_at?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          email?: string
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+          notification_error?: string | null
+          notification_sent_at?: string | null
+          requested_at?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          status?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "access_requests_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       audit_events: {
         Row: {
           action: string
@@ -1247,6 +1300,10 @@ export type Database = {
       replace_scoring_model: {
         Args: { p_kind: string; p_weights: Json }
         Returns: string
+      }
+      review_access_request: {
+        Args: { p_decision: string; p_request_id: string; p_reviewer: string }
+        Returns: undefined
       }
     }
     Enums: {

@@ -47,14 +47,14 @@ pnpm dev
 
 The migrations in `supabase/migrations/` create the schema, RLS policies, scoring models, Boulder Meetup, stages, and email templates. Link the Supabase CLI to the intended project, then run `supabase db push`. Regenerate database types after schema changes with `supabase gen types typescript --linked --schema public > src/lib/database.types.ts`. Never use `db reset` against production.
 
-An authenticated user needs a `workspace_members` row before they can see data. Users sign in with an email magic link or a passkey. First and last names are collected during account setup and saved to `profiles`; a user who signs in with a passkey before setting a name is prompted to complete the profile. Supabase Auth must have Passkeys enabled and configured for the production domain under Authentication → Passkeys. The first user can follow the magic link, then be provisioned by a database administrator using that user's `auth.users.id`:
+An authenticated user needs a `workspace_members` row before they can see data. Users sign in with an email magic link or a passkey. A signed-in account with no profile name is prompted for first and last name, then can wait for workspace approval. New nonmember requests appear in Administration, where an admin can approve them as members or deny them. Admins receive a notification email through the `notify-access-request` Supabase Edge Function when a request is first recorded. Configure `RESEND_API_KEY` and a verified `RESEND_FROM_EMAIL` sender as Supabase Edge Function secrets; email credentials do not belong in Vercel. Supabase Auth must have Passkeys enabled and configured for the production domain under Authentication → Passkeys. The first user can follow the magic link, then be provisioned by a database administrator using that user's `auth.users.id`:
 
 ```sql
 insert into public.workspace_members (workspace_id, user_id, role)
 values ('c02ee290-4f87-4d1f-98c1-24c502126086', '<auth-user-uuid>', 'admin');
 ```
 
-Membership rows, rather than editable user metadata, determine access. After the first admin is provisioned, that admin can add already registered users by email and name, change roles, and remove members in Administration. Owner and collaborator assignments display profile names. The database prevents removal of the last admin. Members edit operational records, and viewers read. RLS was transaction-tested for admin, member, viewer, and nonmember.
+Membership rows, rather than editable user metadata, determine access. After the first admin is provisioned, that admin can approve access requests, add already registered users by email and name, change roles, and remove members in Administration. Owner and collaborator assignments display profile names. The database prevents removal of the last admin. Members edit operational records, and viewers read. RLS was transaction-tested for admin, member, viewer, and nonmember.
 
 ## Source import
 
@@ -88,7 +88,7 @@ pnpm build
 git diff --check
 ```
 
-The connected Vercel project is `rmaiig-robots`; its intended production URL is [rmaiig-robots.vercel.app](https://rmaiig-robots.vercel.app/). Configure the variables from `.env.example` for production, especially the Supabase browser URL/key and server-only secret key. Research additionally needs `OPENAI_API_KEY` and `CRON_SECRET`. GitHub `main` is connected to the existing Vercel project. Push a verified commit to deploy; inspect build logs and load the production URL before considering it live. Add the production URL to Supabase Auth's redirect allow list.
+The connected Vercel project is `rmaiig-robots`; its intended production URL is [rmaiig-robots.vercel.app](https://rmaiig-robots.vercel.app/). Configure the variables from `.env.example` for production, especially the Supabase browser URL/key and server-only secret key. Research additionally needs `OPENAI_API_KEY` and `CRON_SECRET`. Configure `RESEND_API_KEY` and `RESEND_FROM_EMAIL` as Supabase Edge Function secrets for access notifications. GitHub `main` is connected to the existing Vercel project. Push a verified commit to deploy; inspect build logs and load the production URL before considering it live. Add the production URL to Supabase Auth's redirect allow list. Apply pending database migrations before deploying code that depends on their schema.
 
 ## Current limits
 
