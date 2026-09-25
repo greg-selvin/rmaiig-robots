@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.vercel/
+supabase/.temp/
+.env
+.env.local
+.env.production
+.pnpm-store/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo

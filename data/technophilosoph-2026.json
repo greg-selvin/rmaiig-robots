@@ -1,0 +1,1937 @@
+{
+  "source": "https://docs.google.com/spreadsheets/d/1O_XGuLpRxLJMRVMqZaH0PeMhXXtPDSAb7uRMZnYA-30/edit",
+  "sheet": "Sheet1",
+  "headers": [
+    "# on TECHNOPHILoSOPH List",
+    "Company",
+    "Robot Name(s)",
+    "Country"
+  ],
+  "rows": [
+    {
+      "source_row": 2,
+      "source_rank": 1,
+      "company": "1X Technologies",
+      "robots": "NEO Gamma",
+      "country": "USA"
+    },
+    {
+      "source_row": 3,
+      "source_rank": 2,
+      "company": "Addverb",
+      "robots": "Elixis, Elixis-W",
+      "country": "IND"
+    },
+    {
+      "source_row": 4,
+      "source_rank": 3,
+      "company": "AeiROBOT",
+      "robots": "Alice M1, 4, 3, Aimy",
+      "country": "KOR"
+    },
+    {
+      "source_row": 5,
+      "source_rank": 4,
+      "company": "aeolus",
+      "robots": "aeo",
+      "country": "TWN"
+    },
+    {
+      "source_row": 6,
+      "source_rank": 5,
+      "company": "Agibot",
+      "robots": "Yuanzheng A2, Lingxi X2, X2-N, Raise A1, Genie G2, LinkCraft, QUESTER1, A3",
+      "country": "CHN"
+    },
+    {
+      "source_row": 7,
+      "source_rank": 6,
+      "company": "Agile Robots",
+      "robots": "AgileONE",
+      "country": "GER"
+    },
+    {
+      "source_row": 8,
+      "source_rank": 7,
+      "company": "Agility Robotics",
+      "robots": "Digit",
+      "country": "USA"
+    },
+    {
+      "source_row": 9,
+      "source_rank": 8,
+      "company": "AheadForm",
+      "robots": "Elf Xuan",
+      "country": "CHN"
+    },
+    {
+      "source_row": 10,
+      "source_rank": 9,
+      "company": "AI² Robotics",
+      "robots": "AlphaBot",
+      "country": "CHN"
+    },
+    {
+      "source_row": 11,
+      "source_rank": 10,
+      "company": "Aimbo Robotics",
+      "robots": "Anigon",
+      "country": "CHE"
+    },
+    {
+      "source_row": 12,
+      "source_rank": 11,
+      "company": "AIREC Waseda",
+      "robots": "Dry-AIREC",
+      "country": "JPN"
+    },
+    {
+      "source_row": 13,
+      "source_rank": 12,
+      "company": "AKIN Robotics",
+      "robots": "ADA-7, AKINCI-5",
+      "country": "TUR"
+    },
+    {
+      "source_row": 14,
+      "source_rank": 13,
+      "company": "Alpha Robotics",
+      "robots": "Amy",
+      "country": "JPN"
+    },
+    {
+      "source_row": 15,
+      "source_rank": 14,
+      "company": "Andromeda Robotics",
+      "robots": "Abi",
+      "country": "AUS"
+    },
+    {
+      "source_row": 16,
+      "source_rank": 15,
+      "company": "Anna One",
+      "robots": "Anna",
+      "country": "DNK"
+    },
+    {
+      "source_row": 17,
+      "source_rank": 16,
+      "company": "AoBo Robot",
+      "robots": "Dajin, LanDou, XiaoAo",
+      "country": "CHN"
+    },
+    {
+      "source_row": 18,
+      "source_rank": 17,
+      "company": "Apptronik",
+      "robots": "Apollo, QDH, Apollo 2",
+      "country": "USA"
+    },
+    {
+      "source_row": 19,
+      "source_rank": 18,
+      "company": "Artificial Intelligence Dynamic Organism Lab",
+      "robots": "AIDOL",
+      "country": "RUS"
+    },
+    {
+      "source_row": 20,
+      "source_rank": 19,
+      "company": "ARTROBOT",
+      "robots": "",
+      "country": "CHN"
+    },
+    {
+      "source_row": 21,
+      "source_rank": 20,
+      "company": "ARX Mechanica Robotics",
+      "robots": "Binny B01, Binny B02",
+      "country": "FRA"
+    },
+    {
+      "source_row": 22,
+      "source_rank": 21,
+      "company": "ARX Robotics",
+      "robots": "X7",
+      "country": "CHN"
+    },
+    {
+      "source_row": 23,
+      "source_rank": 22,
+      "company": "Assured Robot Intelligence / Meta",
+      "robots": "",
+      "country": "USA"
+    },
+    {
+      "source_row": 24,
+      "source_rank": 23,
+      "company": "Astribot",
+      "robots": "Astribot S1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 25,
+      "source_rank": 24,
+      "company": "Ati Motors",
+      "robots": "Sherpa Mecha",
+      "country": "IND"
+    },
+    {
+      "source_row": 26,
+      "source_rank": 25,
+      "company": "Axl Imperial",
+      "robots": "MARK One",
+      "country": "GR"
+    },
+    {
+      "source_row": 27,
+      "source_rank": 26,
+      "company": "Bear/Kinisi Robotics",
+      "robots": "KR1",
+      "country": "UK"
+    },
+    {
+      "source_row": 28,
+      "source_rank": 27,
+      "company": "Beijing HRIC",
+      "robots": "Tiangong/Tien Kung",
+      "country": "CHN"
+    },
+    {
+      "source_row": 29,
+      "source_rank": 28,
+      "company": "Beyond Imagination",
+      "robots": "Beonmi",
+      "country": "USA"
+    },
+    {
+      "source_row": 30,
+      "source_rank": 29,
+      "company": "Blue Robin",
+      "robots": "P-73",
+      "country": "KOR"
+    },
+    {
+      "source_row": 31,
+      "source_rank": 30,
+      "company": "Boardwalk Robotics",
+      "robots": "Alex",
+      "country": "USA"
+    },
+    {
+      "source_row": 32,
+      "source_rank": 31,
+      "company": "Booster Robotics",
+      "robots": "T1, K1, T2",
+      "country": "CHN"
+    },
+    {
+      "source_row": 33,
+      "source_rank": 32,
+      "company": "Borg Robotics",
+      "robots": "Borg 01",
+      "country": "USA"
+    },
+    {
+      "source_row": 34,
+      "source_rank": 33,
+      "company": "Boston Dynamics",
+      "robots": "Atlas (Electric)",
+      "country": "USA"
+    },
+    {
+      "source_row": 35,
+      "source_rank": 34,
+      "company": "Bracket Bot",
+      "robots": "Hero",
+      "country": "USA"
+    },
+    {
+      "source_row": 36,
+      "source_rank": 35,
+      "company": "BRR Robots",
+      "robots": "Genesis",
+      "country": "USA"
+    },
+    {
+      "source_row": 37,
+      "source_rank": 36,
+      "company": "BXI Robotics",
+      "robots": "Elf 3",
+      "country": "CHN"
+    },
+    {
+      "source_row": 38,
+      "source_rank": 37,
+      "company": "BYD",
+      "robots": "BoYoboD, Xiao Di",
+      "country": "CHN"
+    },
+    {
+      "source_row": 39,
+      "source_rank": 38,
+      "company": "Cartwheel Robotics",
+      "robots": "Yogi",
+      "country": "USA"
+    },
+    {
+      "source_row": 40,
+      "source_rank": 39,
+      "company": "Casbot",
+      "robots": "CBot-1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 41,
+      "source_rank": 40,
+      "company": "CATL",
+      "robots": "Moz",
+      "country": "CHN"
+    },
+    {
+      "source_row": 42,
+      "source_rank": 41,
+      "company": "CETC",
+      "robots": "CETC No. 1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 43,
+      "source_rank": 42,
+      "company": "Chery",
+      "robots": "AiMOGA",
+      "country": "CHN"
+    },
+    {
+      "source_row": 44,
+      "source_rank": 43,
+      "company": "Clone Robotics",
+      "robots": "Clone Alpha",
+      "country": "POL"
+    },
+    {
+      "source_row": 45,
+      "source_rank": 44,
+      "company": "CloudMinds",
+      "robots": "Cloud Ginger",
+      "country": "CHN"
+    },
+    {
+      "source_row": 46,
+      "source_rank": 45,
+      "company": "Corenetic",
+      "robots": "Monte01, Monte02",
+      "country": "CHN"
+    },
+    {
+      "source_row": 47,
+      "source_rank": 46,
+      "company": "Cyan Robotics",
+      "robots": "Orca 1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 48,
+      "source_rank": 47,
+      "company": "Cyborg Robotics",
+      "robots": "Cyborg-W01, Cyborg-R01",
+      "country": "CHN"
+    },
+    {
+      "source_row": 49,
+      "source_rank": 48,
+      "company": "Daimon Robotics",
+      "robots": "Daimon One",
+      "country": "CHN"
+    },
+    {
+      "source_row": 50,
+      "source_rank": 49,
+      "company": "DEEP Robotics",
+      "robots": "DR01, DR02",
+      "country": "CHN"
+    },
+    {
+      "source_row": 51,
+      "source_rank": 50,
+      "company": "Devanthro",
+      "robots": "Robody",
+      "country": "GER"
+    },
+    {
+      "source_row": 52,
+      "source_rank": 51,
+      "company": "Dexforce",
+      "robots": "W1 Pro",
+      "country": "CHN"
+    },
+    {
+      "source_row": 53,
+      "source_rank": 52,
+      "company": "Dexmate",
+      "robots": "Vega",
+      "country": "USA"
+    },
+    {
+      "source_row": 54,
+      "source_rank": 53,
+      "company": "Dobot Robotics",
+      "robots": "Atom, Lumo",
+      "country": "CHN"
+    },
+    {
+      "source_row": 55,
+      "source_rank": 54,
+      "company": "donut Robotics",
+      "robots": "cinnamon 1",
+      "country": "JPN"
+    },
+    {
+      "source_row": 56,
+      "source_rank": 55,
+      "company": "Dreame",
+      "robots": "",
+      "country": "CHN"
+    },
+    {
+      "source_row": 57,
+      "source_rank": 56,
+      "company": "Droidup",
+      "robots": "Walker 02, Moya",
+      "country": "CHN"
+    },
+    {
+      "source_row": 58,
+      "source_rank": 57,
+      "company": "Duatic",
+      "robots": "Alpha",
+      "country": "CHE"
+    },
+    {
+      "source_row": 59,
+      "source_rank": 58,
+      "company": "Dyna Robotics",
+      "robots": "",
+      "country": "USA"
+    },
+    {
+      "source_row": 60,
+      "source_rank": 59,
+      "company": "Eden Robotic",
+      "robots": "AIRA, AIRT, Eden-1",
+      "country": "USA"
+    },
+    {
+      "source_row": 61,
+      "source_rank": 60,
+      "company": "Elephant Robotics",
+      "robots": "Mercury X1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 62,
+      "source_rank": 61,
+      "company": "Enchanted Tools",
+      "robots": "Mirokaï",
+      "country": "FRA"
+    },
+    {
+      "source_row": 63,
+      "source_rank": 62,
+      "company": "EngineAI",
+      "robots": "PM01, SE01, Phoenix Gen 7, T800",
+      "country": "CHN"
+    },
+    {
+      "source_row": 64,
+      "source_rank": 63,
+      "company": "Engineered Arts",
+      "robots": "Ameca",
+      "country": "UK"
+    },
+    {
+      "source_row": 65,
+      "source_rank": 64,
+      "company": "Estun Codroid",
+      "robots": "",
+      "country": "CHN"
+    },
+    {
+      "source_row": 66,
+      "source_rank": 65,
+      "company": "Faraday Future",
+      "robots": "FF Futurist, FF Master, FX Aegis",
+      "country": "USA"
+    },
+    {
+      "source_row": 67,
+      "source_rank": 66,
+      "company": "Fauna Robotics",
+      "robots": "Sprout",
+      "country": "USA"
+    },
+    {
+      "source_row": 68,
+      "source_rank": 67,
+      "company": "Feather Robotics",
+      "robots": "Feather",
+      "country": "USA"
+    },
+    {
+      "source_row": 69,
+      "source_rank": 68,
+      "company": "Figure AI",
+      "robots": "Figure 02",
+      "country": "USA"
+    },
+    {
+      "source_row": 70,
+      "source_rank": 69,
+      "company": "Formic",
+      "robots": "",
+      "country": "USA"
+    },
+    {
+      "source_row": 71,
+      "source_rank": 70,
+      "company": "Foundation",
+      "robots": "Phantom",
+      "country": "USA"
+    },
+    {
+      "source_row": 72,
+      "source_rank": 71,
+      "company": "Fourier Intelligence",
+      "robots": "GR-1, GR-2, GR-3, GRW",
+      "country": "CHN"
+    },
+    {
+      "source_row": 73,
+      "source_rank": 72,
+      "company": "fruitcore robotics",
+      "robots": "PLEXA One",
+      "country": "GER"
+    },
+    {
+      "source_row": 74,
+      "source_rank": 73,
+      "company": "Future Robotics",
+      "robots": "Futuring2",
+      "country": "CHN"
+    },
+    {
+      "source_row": 75,
+      "source_rank": 74,
+      "company": "G3N",
+      "robots": "",
+      "country": "USA"
+    },
+    {
+      "source_row": 76,
+      "source_rank": 75,
+      "company": "GAC",
+      "robots": "GoMate",
+      "country": "CHN"
+    },
+    {
+      "source_row": 77,
+      "source_rank": 76,
+      "company": "Galaxea Dynamics",
+      "robots": "R1 Pro, Kengo",
+      "country": "CHN"
+    },
+    {
+      "source_row": 78,
+      "source_rank": 77,
+      "company": "Galbot",
+      "robots": "Galbot G1, ET1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 79,
+      "source_rank": 78,
+      "company": "General Autonomy",
+      "robots": "",
+      "country": "IND"
+    },
+    {
+      "source_row": 80,
+      "source_rank": 79,
+      "company": "Generative Bionics",
+      "robots": "Gene.01",
+      "country": "ITA"
+    },
+    {
+      "source_row": 81,
+      "source_rank": 80,
+      "company": "Genesis AI",
+      "robots": "Eno",
+      "country": "FRA"
+    },
+    {
+      "source_row": 82,
+      "source_rank": 81,
+      "company": "Genisom AI",
+      "robots": "Yinyi NE01",
+      "country": "CHN"
+    },
+    {
+      "source_row": 83,
+      "source_rank": 82,
+      "company": "George",
+      "robots": "G1, G2, G3",
+      "country": "CZE"
+    },
+    {
+      "source_row": 84,
+      "source_rank": 83,
+      "company": "GigaAI",
+      "robots": "Maker H01, SeeLight S1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 85,
+      "source_rank": 84,
+      "company": "Gradient Robotics",
+      "robots": "",
+      "country": "USA"
+    },
+    {
+      "source_row": 86,
+      "source_rank": 85,
+      "company": "Haier Robotics",
+      "robots": "HIVA Haiwa",
+      "country": "CHN"
+    },
+    {
+      "source_row": 87,
+      "source_rank": 86,
+      "company": "Hanson Robotics",
+      "robots": "Sophia",
+      "country": "CHN"
+    },
+    {
+      "source_row": 88,
+      "source_rank": 87,
+      "company": "Haribit",
+      "robots": "",
+      "country": "CHN"
+    },
+    {
+      "source_row": 89,
+      "source_rank": 88,
+      "company": "Hebbian Robotics",
+      "robots": "",
+      "country": "USA"
+    },
+    {
+      "source_row": 90,
+      "source_rank": 89,
+      "company": "Hestinova",
+      "robots": "Hestina",
+      "country": "CHN"
+    },
+    {
+      "source_row": 91,
+      "source_rank": 90,
+      "company": "Hexagon",
+      "robots": "AEON",
+      "country": "CHE"
+    },
+    {
+      "source_row": 92,
+      "source_rank": 91,
+      "company": "High Torque Robotics",
+      "robots": "Mini Hi",
+      "country": "CHN"
+    },
+    {
+      "source_row": 93,
+      "source_rank": 92,
+      "company": "Highlanders Inc.",
+      "robots": "Ninja",
+      "country": "JPN"
+    },
+    {
+      "source_row": 94,
+      "source_rank": 93,
+      "company": "Holiday Robotics",
+      "robots": "Friday",
+      "country": "KOR"
+    },
+    {
+      "source_row": 95,
+      "source_rank": 94,
+      "company": "Honor",
+      "robots": "Honor, Lightning",
+      "country": "CHN"
+    },
+    {
+      "source_row": 96,
+      "source_rank": 95,
+      "company": "Huaxia Robotics / Digital Huaxia",
+      "robots": "Xialan R03",
+      "country": "CHN"
+    },
+    {
+      "source_row": 97,
+      "source_rank": 96,
+      "company": "Hugging Face",
+      "robots": "HopeJr",
+      "country": "USA"
+    },
+    {
+      "source_row": 98,
+      "source_rank": 97,
+      "company": "Humanoid",
+      "robots": "HMND 01",
+      "country": "UK"
+    },
+    {
+      "source_row": 99,
+      "source_rank": 98,
+      "company": "Humanoid Robot",
+      "robots": "Qinglong",
+      "country": "CHN"
+    },
+    {
+      "source_row": 100,
+      "source_rank": 99,
+      "company": "I HUB Robotics",
+      "robots": "Tara Gen 1, Tara Gen 2, Tara Gen 3, Daksha",
+      "country": "IND"
+    },
+    {
+      "source_row": 101,
+      "source_rank": 100,
+      "company": "iBen Robot",
+      "robots": "iBen-A03",
+      "country": "CHN"
+    },
+    {
+      "source_row": 102,
+      "source_rank": 101,
+      "company": "iCub Consortium",
+      "robots": "iCub , R1",
+      "country": "ITA"
+    },
+    {
+      "source_row": 103,
+      "source_rank": 102,
+      "company": "iFLYTEK",
+      "robots": "",
+      "country": "CHN"
+    },
+    {
+      "source_row": 104,
+      "source_rank": 103,
+      "company": "igus",
+      "robots": "Iggy Rob",
+      "country": "GER"
+    },
+    {
+      "source_row": 105,
+      "source_rank": 104,
+      "company": "ihmc Robotics",
+      "robots": "Nadia",
+      "country": "USA"
+    },
+    {
+      "source_row": 106,
+      "source_rank": 105,
+      "company": "IntBot",
+      "robots": "Nylo",
+      "country": "USA"
+    },
+    {
+      "source_row": 107,
+      "source_rank": 106,
+      "company": "Iono Robotics",
+      "robots": "Ionobot",
+      "country": "AUT"
+    },
+    {
+      "source_row": 108,
+      "source_rank": 107,
+      "company": "iRobotX",
+      "robots": "",
+      "country": "CAN"
+    },
+    {
+      "source_row": 109,
+      "source_rank": 108,
+      "company": "iSAGEBOT",
+      "robots": "",
+      "country": "CHN"
+    },
+    {
+      "source_row": 110,
+      "source_rank": 109,
+      "company": "JAKA",
+      "robots": "K-1, JAKA π, K1-25",
+      "country": "CHN"
+    },
+    {
+      "source_row": 111,
+      "source_rank": 110,
+      "company": "JoyIn",
+      "robots": "Z-Bot",
+      "country": "CHN"
+    },
+    {
+      "source_row": 112,
+      "source_rank": 111,
+      "company": "K-Scale Labs",
+      "robots": "K-Bot",
+      "country": "USA"
+    },
+    {
+      "source_row": 113,
+      "source_rank": 112,
+      "company": "Kawada Robotics",
+      "robots": "NEXTAGE, HRP-2/-3/-4",
+      "country": "JPN"
+    },
+    {
+      "source_row": 114,
+      "source_rank": 113,
+      "company": "Kawasaki Robotics",
+      "robots": "Kaleido",
+      "country": "JPN"
+    },
+    {
+      "source_row": 115,
+      "source_rank": 114,
+      "company": "Keenon Robotics",
+      "robots": "XMAN-R1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 116,
+      "source_rank": 115,
+      "company": "Kepler",
+      "robots": "Forerunner K2",
+      "country": "CHN"
+    },
+    {
+      "source_row": 117,
+      "source_rank": 116,
+      "company": "KinetixAI",
+      "robots": "KAI",
+      "country": "CHN"
+    },
+    {
+      "source_row": 118,
+      "source_rank": 117,
+      "company": "Knowin",
+      "robots": "Knowin-X1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 119,
+      "source_rank": 118,
+      "company": "Lanxin Robotics",
+      "robots": "VB1, VB1-I, VB2",
+      "country": "CHN"
+    },
+    {
+      "source_row": 120,
+      "source_rank": 119,
+      "company": "Leju Robot",
+      "robots": "Kuavo-My, Kuavo 3.0",
+      "country": "CHN"
+    },
+    {
+      "source_row": 121,
+      "source_rank": 120,
+      "company": "LG Electronics",
+      "robots": "KAPEX, CloiD",
+      "country": "KOR"
+    },
+    {
+      "source_row": 122,
+      "source_rank": 121,
+      "company": "Li-Gong",
+      "robots": "Ligong D1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 123,
+      "source_rank": 122,
+      "company": "Light Origins",
+      "robots": "LightNav-0",
+      "country": "CHN"
+    },
+    {
+      "source_row": 124,
+      "source_rank": 123,
+      "company": "Lightberry",
+      "robots": "Lumi",
+      "country": "USA"
+    },
+    {
+      "source_row": 125,
+      "source_rank": 124,
+      "company": "LimX Dynamics",
+      "robots": "Luna, Oli, Tron 2",
+      "country": "CHN"
+    },
+    {
+      "source_row": 126,
+      "source_rank": 125,
+      "company": "Lingbao CASBOT",
+      "robots": "CASBOT 01",
+      "country": "CHN"
+    },
+    {
+      "source_row": 127,
+      "source_rank": 126,
+      "company": "Lingxinqiaoshou",
+      "robots": "",
+      "country": "CHN"
+    },
+    {
+      "source_row": 128,
+      "source_rank": 127,
+      "company": "Lumos Robotics",
+      "robots": "LUS2",
+      "country": "CHN"
+    },
+    {
+      "source_row": 129,
+      "source_rank": 128,
+      "company": "LY iTech",
+      "robots": "Panshi, Linlong, Lingyue, Xingzhe",
+      "country": "CHN"
+    },
+    {
+      "source_row": 130,
+      "source_rank": 129,
+      "company": "Macco Robotics",
+      "robots": "Kime",
+      "country": "ESP"
+    },
+    {
+      "source_row": 131,
+      "source_rank": 130,
+      "company": "MagicLab",
+      "robots": "MagicBot Z1, MagicBot Gen1, MagicBot X1, MagicBot D1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 132,
+      "source_rank": 131,
+      "company": "Manifest",
+      "robots": "",
+      "country": "FRA"
+    },
+    {
+      "source_row": 133,
+      "source_rank": 132,
+      "company": "Matrix Robotics",
+      "robots": "Matrix-1, Matrix-3",
+      "country": "CHN"
+    },
+    {
+      "source_row": 134,
+      "source_rank": 133,
+      "company": "Maximuz",
+      "robots": "MAXimuz",
+      "country": "UAE"
+    },
+    {
+      "source_row": 135,
+      "source_rank": 134,
+      "company": "Menlo Research",
+      "robots": "Asimov",
+      "country": "SGP"
+    },
+    {
+      "source_row": 136,
+      "source_rank": 135,
+      "company": "Mentee Robotics",
+      "robots": "MenteeBot",
+      "country": "ISR"
+    },
+    {
+      "source_row": 137,
+      "source_rank": 136,
+      "company": "Midea",
+      "robots": "MIRO",
+      "country": "CHN"
+    },
+    {
+      "source_row": 138,
+      "source_rank": 137,
+      "company": "Mind Children",
+      "robots": "MC1",
+      "country": "USA"
+    },
+    {
+      "source_row": 139,
+      "source_rank": 138,
+      "company": "MirrorMe Technology",
+      "robots": "Bolt",
+      "country": "CHN"
+    },
+    {
+      "source_row": 140,
+      "source_rank": 139,
+      "company": "Mirsee Robotics",
+      "robots": "MH3",
+      "country": "CAN"
+    },
+    {
+      "source_row": 141,
+      "source_rank": 140,
+      "company": "Mitsubishi Highlanders",
+      "robots": "N",
+      "country": "JPN"
+    },
+    {
+      "source_row": 142,
+      "source_rank": 141,
+      "company": "Model Inc.",
+      "robots": "",
+      "country": "USA"
+    },
+    {
+      "source_row": 143,
+      "source_rank": 142,
+      "company": "Moon Dynamics",
+      "robots": "L1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 144,
+      "source_rank": 143,
+      "company": "mundane",
+      "robots": "",
+      "country": "USA"
+    },
+    {
+      "source_row": 145,
+      "source_rank": 144,
+      "company": "Navel Robotics",
+      "robots": "Navel",
+      "country": "GER"
+    },
+    {
+      "source_row": 146,
+      "source_rank": 145,
+      "company": "Naver Labs",
+      "robots": "Ambidex",
+      "country": "KOR"
+    },
+    {
+      "source_row": 147,
+      "source_rank": 146,
+      "company": "NeodraDynamics",
+      "robots": "",
+      "country": "CHN"
+    },
+    {
+      "source_row": 148,
+      "source_rank": 147,
+      "company": "NEURA Robotics",
+      "robots": "4NE-1, MIPA, Mini",
+      "country": "GER"
+    },
+    {
+      "source_row": 149,
+      "source_rank": 148,
+      "company": "Neuromeka",
+      "robots": "ZEN, NAMI, RAXIS, EIR",
+      "country": "KOR"
+    },
+    {
+      "source_row": 150,
+      "source_rank": 149,
+      "company": "NewCoreBot",
+      "robots": "Newton N1, Newton W1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 151,
+      "source_rank": 150,
+      "company": "NEXFORM Robotic",
+      "robots": "NW-1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 152,
+      "source_rank": 151,
+      "company": "Noble Machines",
+      "robots": "",
+      "country": "USA"
+    },
+    {
+      "source_row": 153,
+      "source_rank": 152,
+      "company": "Noetix Robotics",
+      "robots": "N1, N2, Dora, Bumi",
+      "country": "CHN"
+    },
+    {
+      "source_row": 154,
+      "source_rank": 153,
+      "company": "Nori Robotics",
+      "robots": "Nori L2, Nori L2 Grande, Nori L3",
+      "country": "USA"
+    },
+    {
+      "source_row": 155,
+      "source_rank": 154,
+      "company": "NORINCO",
+      "robots": "Fuxi",
+      "country": "CHN"
+    },
+    {
+      "source_row": 156,
+      "source_rank": 155,
+      "company": "ObotX",
+      "robots": "",
+      "country": "UK"
+    },
+    {
+      "source_row": 157,
+      "source_rank": 156,
+      "company": "OpenAI",
+      "robots": "",
+      "country": "USA"
+    },
+    {
+      "source_row": 158,
+      "source_rank": 157,
+      "company": "Openloong",
+      "robots": "Qinglong V3.0",
+      "country": "CHN"
+    },
+    {
+      "source_row": 159,
+      "source_rank": 158,
+      "company": "Ory Lab",
+      "robots": "OriHime-D",
+      "country": "JPN"
+    },
+    {
+      "source_row": 160,
+      "source_rank": 159,
+      "company": "OS3",
+      "robots": "H.A.L.E. 1.0",
+      "country": "USA"
+    },
+    {
+      "source_row": 161,
+      "source_rank": 160,
+      "company": "Oversonic",
+      "robots": "RoBee M",
+      "country": "ITA"
+    },
+    {
+      "source_row": 162,
+      "source_rank": 161,
+      "company": "PAL Robotics",
+      "robots": "TALOS, Kangaroo, Tiago",
+      "country": "ESP"
+    },
+    {
+      "source_row": 163,
+      "source_rank": 162,
+      "company": "PaXini Tech",
+      "robots": "Tora One",
+      "country": "CHN"
+    },
+    {
+      "source_row": 164,
+      "source_rank": 163,
+      "company": "Perceptyne",
+      "robots": "PR-34D",
+      "country": "IND"
+    },
+    {
+      "source_row": 165,
+      "source_rank": 164,
+      "company": "Persona.AI",
+      "robots": "Miner, Welder, etc.",
+      "country": "USA"
+    },
+    {
+      "source_row": 166,
+      "source_rank": 165,
+      "company": "Philon",
+      "robots": "",
+      "country": "GR"
+    },
+    {
+      "source_row": 167,
+      "source_rank": 166,
+      "company": "PHYBOT",
+      "robots": "C1, M1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 168,
+      "source_rank": 167,
+      "company": "Physical Robotics",
+      "robots": "Pi",
+      "country": "NOR"
+    },
+    {
+      "source_row": 169,
+      "source_rank": 168,
+      "company": "pi4 Robotics",
+      "robots": "workerbot",
+      "country": "GER"
+    },
+    {
+      "source_row": 170,
+      "source_rank": 169,
+      "company": "PNDbotics",
+      "robots": "Adam",
+      "country": "CHN"
+    },
+    {
+      "source_row": 171,
+      "source_rank": 170,
+      "company": "Polcero",
+      "robots": "",
+      "country": "POL"
+    },
+    {
+      "source_row": 172,
+      "source_rank": 171,
+      "company": "Pollen Robotics",
+      "robots": "Reachy 2",
+      "country": "FRA"
+    },
+    {
+      "source_row": 173,
+      "source_rank": 172,
+      "company": "PrimeBOT",
+      "robots": "Q1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 174,
+      "source_rank": 173,
+      "company": "Prometheus Robotics",
+      "robots": "",
+      "country": "HUN"
+    },
+    {
+      "source_row": 175,
+      "source_rank": 174,
+      "company": "Promobot",
+      "robots": "V.4, Robo-C",
+      "country": "RUS"
+    },
+    {
+      "source_row": 176,
+      "source_rank": 175,
+      "company": "Prosper",
+      "robots": "Alfie",
+      "country": "UK"
+    },
+    {
+      "source_row": 177,
+      "source_rank": 176,
+      "company": "PsiBot",
+      "robots": "ψ-SynRobot",
+      "country": "CHN"
+    },
+    {
+      "source_row": 178,
+      "source_rank": 177,
+      "company": "Pudu Robotics",
+      "robots": "Pudu D9, FlashBot, D7",
+      "country": "CHN"
+    },
+    {
+      "source_row": 179,
+      "source_rank": 178,
+      "company": "Qianxun Intelligence",
+      "robots": "",
+      "country": "CHN"
+    },
+    {
+      "source_row": 180,
+      "source_rank": 179,
+      "company": "QSS AI & Robotics",
+      "robots": "Sara, Mohammad, Mosaed",
+      "country": "SAU"
+    },
+    {
+      "source_row": 181,
+      "source_rank": 180,
+      "company": "Quingbao Robot",
+      "robots": "",
+      "country": "CHN"
+    },
+    {
+      "source_row": 182,
+      "source_rank": 181,
+      "company": "Rainbow Robotics",
+      "robots": "HUBO2, RB-Y1",
+      "country": "KOR"
+    },
+    {
+      "source_row": 183,
+      "source_rank": 182,
+      "company": "Rapid Robotics",
+      "robots": "MoveIt Pro",
+      "country": "USA"
+    },
+    {
+      "source_row": 184,
+      "source_rank": 183,
+      "company": "Raybot",
+      "robots": "G4",
+      "country": "CHN"
+    },
+    {
+      "source_row": 185,
+      "source_rank": 184,
+      "company": "realbotix",
+      "robots": "F-Series",
+      "country": "USA"
+    },
+    {
+      "source_row": 186,
+      "source_rank": 185,
+      "company": "RealMan Robotics",
+      "robots": "",
+      "country": "CHN"
+    },
+    {
+      "source_row": 187,
+      "source_rank": 186,
+      "company": "Reflex Robotics",
+      "robots": "Reflex Robot",
+      "country": "USA"
+    },
+    {
+      "source_row": 188,
+      "source_rank": 187,
+      "company": "Rethink Robotics",
+      "robots": "Baxter",
+      "country": "GER"
+    },
+    {
+      "source_row": 189,
+      "source_rank": 188,
+      "company": "Revobots",
+      "robots": "",
+      "country": "USA"
+    },
+    {
+      "source_row": 190,
+      "source_rank": 189,
+      "company": "Richtech",
+      "robots": "ADAM",
+      "country": "USA"
+    },
+    {
+      "source_row": 191,
+      "source_rank": 190,
+      "company": "RobCo",
+      "robots": "Alfie",
+      "country": "GER"
+    },
+    {
+      "source_row": 192,
+      "source_rank": 191,
+      "company": "Robify Robotics",
+      "robots": "Mini Pi+, Mini Hi, RobiDuo-L",
+      "country": "USA"
+    },
+    {
+      "source_row": 193,
+      "source_rank": 192,
+      "company": "RoboForce",
+      "robots": "TITAN-T, TITAN-W",
+      "country": "USA"
+    },
+    {
+      "source_row": 194,
+      "source_rank": 193,
+      "company": "Roboligent",
+      "robots": "ROBIN",
+      "country": "USA"
+    },
+    {
+      "source_row": 195,
+      "source_rank": 194,
+      "company": "Robonova.i",
+      "robots": "Eva.i",
+      "country": "CHN"
+    },
+    {
+      "source_row": 196,
+      "source_rank": 195,
+      "company": "RoboParty",
+      "robots": "ROBOTO ORIGIN",
+      "country": "CHN"
+    },
+    {
+      "source_row": 197,
+      "source_rank": 196,
+      "company": "Robot.com",
+      "robots": "R Noid",
+      "country": "USA"
+    },
+    {
+      "source_row": 198,
+      "source_rank": 197,
+      "company": "ROBOTERA",
+      "robots": "STAR 1, L7, Q5",
+      "country": "CHN"
+    },
+    {
+      "source_row": 199,
+      "source_rank": 198,
+      "company": "RobotGym",
+      "robots": "QiJia Q1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 200,
+      "source_rank": 199,
+      "company": "Robotics Center",
+      "robots": "RC M1",
+      "country": "USA"
+    },
+    {
+      "source_row": 201,
+      "source_rank": 200,
+      "company": "Robotis",
+      "robots": "AIWorker, AI Sapiens",
+      "country": "KOR"
+    },
+    {
+      "source_row": 202,
+      "source_rank": 201,
+      "company": "Robros",
+      "robots": "Igris-C, Igris-A",
+      "country": "KOR"
+    },
+    {
+      "source_row": 203,
+      "source_rank": 202,
+      "company": "Rotaku",
+      "robots": "Domo, Zen Samurai",
+      "country": "JPN"
+    },
+    {
+      "source_row": 204,
+      "source_rank": 203,
+      "company": "RT Corporation",
+      "robots": "Bonobo",
+      "country": "JPN"
+    },
+    {
+      "source_row": 205,
+      "source_rank": 204,
+      "company": "Samsung Electronics",
+      "robots": "",
+      "country": "KOR"
+    },
+    {
+      "source_row": 206,
+      "source_rank": 205,
+      "company": "Sanctuary AI",
+      "robots": "Phoenix",
+      "country": "CAN"
+    },
+    {
+      "source_row": 207,
+      "source_rank": 206,
+      "company": "Sberbank",
+      "robots": "Green",
+      "country": "RUS"
+    },
+    {
+      "source_row": 208,
+      "source_rank": 207,
+      "company": "SENAD Robot",
+      "robots": "iloabot-X, iLoabot-X2.0",
+      "country": "CHN"
+    },
+    {
+      "source_row": 209,
+      "source_rank": 208,
+      "company": "Seres",
+      "robots": "Xiaosai",
+      "country": "CHN"
+    },
+    {
+      "source_row": 210,
+      "source_rank": 209,
+      "company": "Shanghai Electric",
+      "robots": "Suyuan",
+      "country": "CHN"
+    },
+    {
+      "source_row": 211,
+      "source_rank": 210,
+      "company": "Sharpa",
+      "robots": "North",
+      "country": "CHN"
+    },
+    {
+      "source_row": 212,
+      "source_rank": 211,
+      "company": "Siasun",
+      "robots": "Duco",
+      "country": "CHN"
+    },
+    {
+      "source_row": 213,
+      "source_rank": 212,
+      "company": "Spirit AI",
+      "robots": "Moz",
+      "country": "CHN"
+    },
+    {
+      "source_row": 214,
+      "source_rank": 213,
+      "company": "Standard Robots",
+      "robots": "Darwin-01",
+      "country": "CHN"
+    },
+    {
+      "source_row": 215,
+      "source_rank": 214,
+      "company": "Star Chart AI Technologies",
+      "robots": "R1 Pro",
+      "country": "CHN"
+    },
+    {
+      "source_row": 216,
+      "source_rank": 215,
+      "company": "Starforge Robotics",
+      "robots": "Buildo",
+      "country": "USA"
+    },
+    {
+      "source_row": 217,
+      "source_rank": 216,
+      "company": "Sunday",
+      "robots": "Memo",
+      "country": "USA"
+    },
+    {
+      "source_row": 218,
+      "source_rank": 217,
+      "company": "Sunrising AI",
+      "robots": "PhiBot X1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 219,
+      "source_rank": 218,
+      "company": "Swancor",
+      "robots": "Qiyuan T1",
+      "country": "TWN"
+    },
+    {
+      "source_row": 220,
+      "source_rank": 219,
+      "company": "Tangible",
+      "robots": "Eggie",
+      "country": "USA"
+    },
+    {
+      "source_row": 221,
+      "source_rank": 220,
+      "company": "TARS Robotics",
+      "robots": "TARS",
+      "country": "CHN"
+    },
+    {
+      "source_row": 222,
+      "source_rank": 221,
+      "company": "Techman Robot",
+      "robots": "TM Xplore I",
+      "country": "KOR"
+    },
+    {
+      "source_row": 223,
+      "source_rank": 222,
+      "company": "TeknTrash Robotics",
+      "robots": "ALPHA",
+      "country": "UK"
+    },
+    {
+      "source_row": 224,
+      "source_rank": 223,
+      "company": "Telexistence",
+      "robots": "Model-T",
+      "country": "JPN"
+    },
+    {
+      "source_row": 225,
+      "source_rank": 224,
+      "company": "Tencent Robot X",
+      "robots": "Xiao Liu",
+      "country": "CHN"
+    },
+    {
+      "source_row": 226,
+      "source_rank": 225,
+      "company": "Tesla",
+      "robots": "Optimus Gen 2",
+      "country": "USA"
+    },
+    {
+      "source_row": 227,
+      "source_rank": 226,
+      "company": "TetraBOT",
+      "robots": "T4-C",
+      "country": "CHN"
+    },
+    {
+      "source_row": 228,
+      "source_rank": 227,
+      "company": "The Bot Company",
+      "robots": "",
+      "country": "USA"
+    },
+    {
+      "source_row": 229,
+      "source_rank": 228,
+      "company": "Ti5 Robot",
+      "robots": "Yaoguang. T170D, T170C, T140, T170 V2.1, T230A, T230C",
+      "country": "CHN"
+    },
+    {
+      "source_row": 230,
+      "source_rank": 229,
+      "company": "TienKung Robotics",
+      "robots": "Omni",
+      "country": "CHN"
+    },
+    {
+      "source_row": 231,
+      "source_rank": 230,
+      "company": "TLIBOT",
+      "robots": "T1 Pro, Tianzhen Z1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 232,
+      "source_rank": 231,
+      "company": "Tokyo Robotics",
+      "robots": "Torobo",
+      "country": "JPN"
+    },
+    {
+      "source_row": 233,
+      "source_rank": 232,
+      "company": "Toyota",
+      "robots": "T-HR3",
+      "country": "JPN"
+    },
+    {
+      "source_row": 234,
+      "source_rank": 233,
+      "company": "TwoLabs",
+      "robots": "Tobi",
+      "country": "USA"
+    },
+    {
+      "source_row": 235,
+      "source_rank": 234,
+      "company": "UBTECH Robotics",
+      "robots": "Walker S2, Alpha Mini , Cruzr Y1, UWORLD U1, Walkr C1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 236,
+      "source_rank": 235,
+      "company": "UC Berkeley",
+      "robots": "Berkeley Humanoid Lite",
+      "country": "USA"
+    },
+    {
+      "source_row": 237,
+      "source_rank": 236,
+      "company": "ugo",
+      "robots": "ugo Nova",
+      "country": "FRA"
+    },
+    {
+      "source_row": 238,
+      "source_rank": 237,
+      "company": "UMA",
+      "robots": "Northstar",
+      "country": "FRA"
+    },
+    {
+      "source_row": 239,
+      "source_rank": 238,
+      "company": "Under Control Robotics",
+      "robots": "",
+      "country": "USA"
+    },
+    {
+      "source_row": 240,
+      "source_rank": 239,
+      "company": "United Robotics Group",
+      "robots": "uME",
+      "country": "GER"
+    },
+    {
+      "source_row": 241,
+      "source_rank": 240,
+      "company": "Unitree Robotics",
+      "robots": "G1, H1, H2, R1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 242,
+      "source_rank": 241,
+      "company": "UniX AI",
+      "robots": "Martian, Wanda, Panther",
+      "country": "CHN"
+    },
+    {
+      "source_row": 243,
+      "source_rank": 242,
+      "company": "Unlimited Robotics",
+      "robots": "Gary",
+      "country": "USA"
+    },
+    {
+      "source_row": 244,
+      "source_rank": 243,
+      "company": "Vanar Robots",
+      "robots": "Vanar Generation 1",
+      "country": "IND"
+    },
+    {
+      "source_row": 245,
+      "source_rank": 244,
+      "company": "Vesoma",
+      "robots": "",
+      "country": "GER"
+    },
+    {
+      "source_row": 246,
+      "source_rank": 245,
+      "company": "Vibe Robotics",
+      "robots": "Vibe A1",
+      "country": "USA"
+    },
+    {
+      "source_row": 247,
+      "source_rank": 246,
+      "company": "VinDynamics",
+      "robots": "Dyno",
+      "country": "USA"
+    },
+    {
+      "source_row": 248,
+      "source_rank": 247,
+      "company": "Vinmotion",
+      "robots": "Motion 1, Motion 2",
+      "country": "VNM"
+    },
+    {
+      "source_row": 249,
+      "source_rank": 248,
+      "company": "VinRobotics",
+      "robots": "VR-H1, VR-H3, VR M2",
+      "country": "VNM"
+    },
+    {
+      "source_row": 250,
+      "source_rank": 249,
+      "company": "Vizum",
+      "robots": "Xiao Wei",
+      "country": "CHN"
+    },
+    {
+      "source_row": 251,
+      "source_rank": 250,
+      "company": "Vulcan Robotics",
+      "robots": "Sourccey",
+      "country": "USA"
+    },
+    {
+      "source_row": 252,
+      "source_rank": 251,
+      "company": "Walden Robotics",
+      "robots": "",
+      "country": "USA"
+    },
+    {
+      "source_row": 253,
+      "source_rank": 252,
+      "company": "Wandercraft",
+      "robots": "Calvin-40",
+      "country": "FRA"
+    },
+    {
+      "source_row": 254,
+      "source_rank": 253,
+      "company": "Watney Robotics",
+      "robots": "",
+      "country": "USA"
+    },
+    {
+      "source_row": 255,
+      "source_rank": 254,
+      "company": "Weave Robotics",
+      "robots": "Isaac, Isaac 1",
+      "country": "USA"
+    },
+    {
+      "source_row": 256,
+      "source_rank": 255,
+      "company": "Westlake Robotics",
+      "robots": "Titan 01",
+      "country": "CHN"
+    },
+    {
+      "source_row": 257,
+      "source_rank": 256,
+      "company": "Westwood Robotics",
+      "robots": "THEMIS",
+      "country": "USA"
+    },
+    {
+      "source_row": 258,
+      "source_rank": 257,
+      "company": "WIRobotics",
+      "robots": "ALLEX",
+      "country": "KOR"
+    },
+    {
+      "source_row": 259,
+      "source_rank": 258,
+      "company": "X Square Robot",
+      "robots": "Quanta x2",
+      "country": "CHN"
+    },
+    {
+      "source_row": 260,
+      "source_rank": 259,
+      "company": "X-Humanoid",
+      "robots": "Tien Kung 2.0",
+      "country": "CHN"
+    },
+    {
+      "source_row": 261,
+      "source_rank": 260,
+      "company": "XGSynBot",
+      "robots": "Z1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 262,
+      "source_rank": 261,
+      "company": "Xiaomi",
+      "robots": "CyberOne",
+      "country": "CHN"
+    },
+    {
+      "source_row": 263,
+      "source_rank": 262,
+      "company": "Xinghaitu",
+      "robots": "",
+      "country": "CHN"
+    },
+    {
+      "source_row": 264,
+      "source_rank": 263,
+      "company": "Xpeng",
+      "robots": "Iron",
+      "country": "CHN"
+    },
+    {
+      "source_row": 265,
+      "source_rank": 264,
+      "company": "XYZ Robotics",
+      "robots": "DEUX",
+      "country": "KOR"
+    },
+    {
+      "source_row": 266,
+      "source_rank": 265,
+      "company": "YMBOT",
+      "robots": "YMBOT Type D",
+      "country": "CHN"
+    },
+    {
+      "source_row": 267,
+      "source_rank": 266,
+      "company": "Yondu",
+      "robots": "",
+      "country": "USA"
+    },
+    {
+      "source_row": 268,
+      "source_rank": 267,
+      "company": "YOUIBOT",
+      "robots": "Edge",
+      "country": "CHN"
+    },
+    {
+      "source_row": 269,
+      "source_rank": 268,
+      "company": "Zerith Robotics",
+      "robots": "Zerith H1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 270,
+      "source_rank": 269,
+      "company": "Zeroth",
+      "robots": "Jupiter, Sean, Bridge",
+      "country": "CHN"
+    },
+    {
+      "source_row": 271,
+      "source_rank": 270,
+      "company": "Zhejiang Lab",
+      "robots": "NAVIAI-I2, NAVIAI-I3",
+      "country": "CHN"
+    },
+    {
+      "source_row": 272,
+      "source_rank": 271,
+      "company": "Zhicheng AI",
+      "robots": "TR4, TR5, TR6, XR1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 273,
+      "source_rank": 272,
+      "company": "Zhipingfang",
+      "robots": "",
+      "country": "CHN"
+    },
+    {
+      "source_row": 274,
+      "source_rank": 273,
+      "company": "Zibianliang Robot",
+      "robots": "",
+      "country": "CHN"
+    },
+    {
+      "source_row": 275,
+      "source_rank": 274,
+      "company": "ZIONEER",
+      "robots": "Z-1",
+      "country": "CHN"
+    },
+    {
+      "source_row": 276,
+      "source_rank": 275,
+      "company": "ZTE",
+      "robots": "ZTE Xingzai, ZTE Xingwang, ZTE Xingqing",
+      "country": "CHN"
+    }
+  ]
+}
