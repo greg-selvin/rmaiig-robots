@@ -1234,6 +1234,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      move_pipeline_stage: {
+        Args: { p_stage_id: string; p_direction: number }
+        Returns: undefined
+      }
       replace_scoring_model: {
         Args: { p_kind: string; p_weights: Json }
         Returns: string
@@ -1370,4 +1374,3 @@ export const Constants = {
     Enums: {},
   },
 } as const
-

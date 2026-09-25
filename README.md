@@ -54,7 +54,7 @@ insert into public.workspace_members (workspace_id, user_id, role)
 values ('c02ee290-4f87-4d1f-98c1-24c502126086', '<auth-user-uuid>', 'admin');
 ```
 
-Membership rows, rather than editable user metadata, determine access. Admins manage settings, members edit operational records, and viewers read. RLS was transaction-tested for admin, member, viewer, and nonmember.
+Membership rows, rather than editable user metadata, determine access. After the first admin is provisioned, that admin can add already registered users by email, change roles, and remove members in Administration. The database prevents removal of the last admin. Members edit operational records, and viewers read. RLS was transaction-tested for admin, member, viewer, and nonmember.
 
 ## Source import
 
@@ -92,4 +92,4 @@ The connected Vercel project is `rmaiig-robots`; its intended production URL is 
 
 ## Current limits
 
-The initial import is complete, but most research is queued. No real user has been provisioned, so the authenticated workflow needs a first admin account and a browser acceptance pass. Administration displays members, stages, and Meetups but has limited editing controls for those records; admins can manage them directly under RLS until controls are expanded. Global search and long-list pagination are incomplete. The worker preserves returned web-search sources and inline citation metadata, but has not run with an OpenAI key. These limits need resolution before relying on the app as a fully operated production system.
+The initial import is complete, but most research is queued. No real user has been provisioned, so the authenticated workflow needs a first admin account and a browser acceptance pass. Global search and long-list pagination are incomplete. The worker preserves returned web-search sources and inline citation metadata, but has not run with an OpenAI key. These limits need resolution before relying on the app as a fully operated production system.
