@@ -92,4 +92,4 @@ The connected Vercel project is `rmaiig-robots`; its intended production URL is 
 
 ## Current limits
 
-The initial import is complete, but most research is queued. No real user has been provisioned, so the authenticated workflow needs a first admin account and a browser acceptance pass. Global search and long-list pagination are incomplete. The worker preserves returned web-search sources and inline citation metadata, but has not run with an OpenAI key. These limits need resolution before relying on the app as a fully operated production system.
+The initial import is complete, but most research is queued. No real user has been provisioned, so the authenticated workflow needs a first admin account and a browser acceptance pass. List views load 100 records at a time; global search shows the first 50 matches per category and asks users to narrow broad searches. The worker preserves returned web-search sources and inline citation metadata, but has not run with an OpenAI key. These limits need resolution before relying on the app as a fully operated production system.
