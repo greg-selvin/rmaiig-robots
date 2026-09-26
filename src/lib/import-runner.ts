@@ -4,6 +4,7 @@ import { adminClient } from "./server";
 import { countryCode, normalizeName, parseRobotNames, previewImport, sourceRowSchema, type SourceRow } from "./import";
 import type { JsonImport, JsonVendorImport } from "./json-import";
 import { previewJsonImport } from "./json-import-plan";
+import { ratingImportFields } from "./rating-import";
 
 const workspaceId="c02ee290-4f87-4d1f-98c1-24c502126086";
 const headers=["# on TECHNOPHILoSOPH List","Company","Robot Name(s)","Country"];
@@ -180,7 +181,7 @@ export async function runJsonImport(input:JsonImport,sourceName:string,dryRun:bo
       query=query.eq(keyColumn,keyValue!);
       const {data:found,error}=await query.maybeSingle();
       if(error)throw new Error(`Rating lookup: ${error.message}`);
-      const {source_urls,...ratingFields}=rating;
+      const {source_urls,...ratingFields}=ratingImportFields(rating);
       const source_ids=(source_urls||[]).map(url=>robotSourceIds.get(url)||vendorSourceIds.get(url)).filter((value):value is string=>Boolean(value));
       if((source_urls||[]).length!==source_ids.length)throw new Error(`Rating references undeclared source URL for ${rating.criterion_key}`);
       const payload={...defined(ratingFields as Record<string,unknown>),...(source_urls===undefined?{}:{source_ids}),workspace_id:workspace,kind,robot_id:robotId,opportunity_id:opportunityId,criterion_key:rating.criterion_key};
