@@ -1,5 +1,5 @@
 insert into public.meetups(workspace_id,name,city,state,country,description,status)
-values ('c02ee290-4f87-4d1f-98c1-24c502126086','Boulder Humanoid Robotics Meetup','Boulder','CO','US','In-person Meetup for humanoid robotics demonstrations and conversation.','planning');
+values ('c02ee290-4f87-4d1f-98c1-24c502126086','Boulder Humanoid Robotics Meetup','Boulder','CO','USA','In-person Meetup for humanoid robotics demonstrations and conversation.','planning');
 insert into public.pipeline_stages(workspace_id,name,position,color) values
 ('c02ee290-4f87-4d1f-98c1-24c502126086','Researching',1,'#64748b'),
 ('c02ee290-4f87-4d1f-98c1-24c502126086','Contact identified',2,'#06b6d4'),

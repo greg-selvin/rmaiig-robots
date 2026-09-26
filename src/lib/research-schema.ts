@@ -1,11 +1,13 @@
 import { z } from "zod";
+import { countryCode } from "./geo-codes";
 
+const countryCodeSchema=z.string().regex(/^[A-Z]{2,3}$/i).nullable().transform(value=>value?countryCode(value):null);
 export const researchSchema = z.object({
   vendor_name: z.string().nullable(),
   website_url: z.url().nullable(),
-  country_code: z.string().length(2).nullable(),
+  country_code: countryCodeSchema,
   locations: z.array(z.object({
-    type: z.string(), country_code: z.string().length(2).nullable(),
+    type: z.string(), country_code: countryCodeSchema,
     state_code: z.string().length(2).nullable(), city: z.string().nullable(),
     source_url: z.url(),
   })),

@@ -1,0 +1,104 @@
+{
+  "format": "rmaiig-robots-import/v1",
+  "vendors": [
+    {
+      "name": "Example Robotics Ltd.",
+      "country": "United States",
+      "iso_country_code": "USA",
+      "headquarters_city": "Boulder",
+      "headquarters_region": "Colorado",
+      "us_state_code": "CO",
+      "website_url": "https://example.com",
+      "contact_url": "https://example.com/contact",
+      "description": "Fictional example vendor used to demonstrate the import shape.",
+      "public_event_history": "Demonstrated its platform at a fictional robotics event in 2025.",
+      "strategic_fit": "Potential fit for a hands-on public demonstration.",
+      "manual_notes": "Confirm event availability before outreach.",
+      "contacts": [
+        {
+          "name": "Jordan Lee",
+          "job_title": "Partnerships Lead",
+          "department": "Partnerships",
+          "business_email": "jordan.lee@example.com",
+          "email_status": "unverified",
+          "business_phone": null,
+          "contact_form_url": "https://example.com/contact",
+          "profile_url": "https://example.com/team/jordan-lee",
+          "preferred": true,
+          "contact_type": "partnerships",
+          "verification_status": "unverified",
+          "source_url": "https://example.com/team",
+          "notes": "Fictional person and domain for format illustration."
+        }
+      ],
+      "locations": [
+        {
+          "location_type": "headquarters",
+          "country": "United States",
+          "iso_country_code": "USA",
+          "region": "Colorado",
+          "us_state_code": "CO",
+          "city": "Boulder",
+          "postal_code": null,
+          "source_url": "https://example.com/about",
+          "is_primary": true
+        }
+      ],
+      "vendor_sources": [
+        {
+          "url": "https://example.com/about",
+          "title": "About Example Robotics",
+          "publisher": "Example Robotics Ltd.",
+          "accessed_at": "2026-09-25T12:00:00Z",
+          "evidence_summary": "Fictional example source; it supports the vendor description and location.",
+          "supported_fields": ["description", "headquarters_city", "headquarters_region"],
+          "confidence": 1,
+          "is_official": true,
+          "citation_metadata": {}
+        }
+      ],
+      "robots": [
+        {
+          "name": "Rover One",
+          "product_url": "https://example.com/rover-one",
+          "description": "Fictional mobile demonstration robot.",
+          "development_status": "prototype",
+          "commercial_availability": "pilot",
+          "mobility": "Wheeled base; fictional example.",
+          "manipulation": "One lightweight arm; fictional example.",
+          "interaction_capabilities": "Voice interaction; fictional example.",
+          "demonstration_capabilities": "Can navigate an indoor course; fictional example.",
+          "image_urls": ["https://example.com/images/rover-one.jpg"],
+          "research_status": "partial",
+          "manual_notes": "All product details in this example are fictional.",
+          "sources": [
+            {
+              "url": "https://example.com/rover-one",
+              "title": "Rover One product page",
+              "publisher": "Example Robotics Ltd.",
+              "accessed_at": "2026-09-25T12:00:00Z",
+              "evidence_summary": "Fictional example source supporting the product description and capabilities.",
+              "supported_fields": ["description", "mobility", "interaction_capabilities"],
+              "confidence": 1,
+              "is_official": true,
+              "citation_metadata": {}
+            }
+          ],
+          "excitement": [
+            {
+              "criterion_key": "audience_appeal",
+              "ai_rating": 4,
+              "ai_rationale": "Fictional example rationale: visible movement may attract attention.",
+              "ai_confidence": 0.7,
+              "manual_rating": null,
+              "manual_rationale": null,
+              "needs_review": true,
+              "researched_at": "2026-09-25T12:00:00Z",
+              "source_urls": ["https://example.com/rover-one"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

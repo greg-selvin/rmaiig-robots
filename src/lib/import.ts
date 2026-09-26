@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { countryCode } from "./geo-codes";
+export { countryCode } from "./geo-codes";
 
 export const sourceRowSchema = z.object({
   source_row: z.number().int().positive(),
@@ -12,17 +14,6 @@ export type SourceRow = z.infer<typeof sourceRowSchema>;
 
 export const normalizeName = (value: string) =>
   value.normalize("NFKC").trim().toLocaleLowerCase("en").replace(/[^\p{L}\p{N}]+/gu, " ").trim();
-
-const countries: Record<string, string> = {
-  USA: "US", IND: "IN", KOR: "KR", TWN: "TW", CHN: "CN", GER: "DE",
-  CHE: "CH", JPN: "JP", TUR: "TR", AUS: "AU", DNK: "DK", RUS: "RU",
-  FRA: "FR", GR: "GR", UK: "GB", POL: "PL", ITA: "IT", CZE: "CZ",
-  AUT: "AT", CAN: "CA", ESP: "ES", UAE: "AE", SGP: "SG", ISR: "IL",
-  NOR: "NO", HUN: "HU", SAU: "SA", VNM: "VN",
-};
-export function countryCode(source: string): string | null {
-  return countries[source.trim().toUpperCase()] ?? null;
-}
 
 export function parseRobotNames(raw: string): { names: string[]; warning: string | null } {
   const text = raw.trim();

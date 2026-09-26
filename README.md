@@ -47,20 +47,20 @@ pnpm dev
 
 The migrations in `supabase/migrations/` create the schema, RLS policies, scoring models, Boulder Meetup, stages, and email templates. Link the Supabase CLI to the intended project, then run `supabase db push`. Regenerate database types after schema changes with `supabase gen types typescript --linked --schema public > src/lib/database.types.ts`. Never use `db reset` against production.
 
-An authenticated user needs a `workspace_members` row before they can see data. Users sign in with an email magic link or a passkey. First and last names are collected during account setup and saved to `profiles`; a user who signs in with a passkey before setting a name is prompted to complete the profile. Supabase Auth must have Passkeys enabled and configured for the production domain under Authentication → Passkeys. The first user can follow the magic link, then be provisioned by a database administrator using that user's `auth.users.id`:
+An authenticated user needs a `workspace_members` row before they can see data. Users sign in with an email magic link or a passkey. A signed-in account with no profile name is prompted for first and last name, then can wait for workspace approval. New nonmember requests appear in Administration, where an admin can approve them as members or deny them. Admins receive a notification email through the `notify-access-request` Supabase Edge Function when a request is first recorded. Configure `RESEND_API_KEY` and a verified `RESEND_FROM_EMAIL` sender as Supabase Edge Function secrets; email credentials do not belong in Vercel. Supabase Auth must have Passkeys enabled and configured for the production domain under Authentication → Passkeys. The first user can follow the magic link, then be provisioned by a database administrator using that user's `auth.users.id`:
 
 ```sql
 insert into public.workspace_members (workspace_id, user_id, role)
 values ('c02ee290-4f87-4d1f-98c1-24c502126086', '<auth-user-uuid>', 'admin');
 ```
 
-Membership rows, rather than editable user metadata, determine access. After the first admin is provisioned, that admin can add already registered users by email and name, change roles, and remove members in Administration. Owner and collaborator assignments display profile names. The database prevents removal of the last admin. Members edit operational records, and viewers read. RLS was transaction-tested for admin, member, viewer, and nonmember.
+Membership rows, rather than editable user metadata, determine access. After the first admin is provisioned, that admin can approve access requests, add already registered users by email and name, change roles, and remove members in Administration. Owner and collaborator assignments display profile names. The database prevents removal of the last admin. Members edit operational records, and viewers read. RLS was transaction-tested for admin, member, viewer, and nonmember.
 
 ## Source import
 
 The original values and row numbers from [2026 Robots from Technophilosoph](https://docs.google.com/spreadsheets/d/1O_XGuLpRxLJMRVMqZaH0PeMhXXtPDSAb7uRMZnYA-30/edit?usp=drivesdk) are saved in `data/technophilosoph-2026.json`. The live Supabase project contains 275 vendors and 345 robot records from 275 manufacturer rows. Four combined robot-name cells require manual parsing review; they were preserved without inventing model records. Empty robot-name cells still created vendors.
 
-Admins can preview and commit a later CSV or XLSX file on the Administration screen. Headers must match the original four columns exactly. The importer deduplicates normalized names, logs batches, queues new vendors, and creates opportunities for identifiable robots in existing Meetups. CLI dry run: `pnpm import data/technophilosoph-2026.json`; commit: add `--commit`. The CLI needs the server key in `.env.local`. Review warnings first. Import updates omit manually enriched fields.
+Admins can preview and commit a later CSV, XLSX, or versioned JSON file on the Administration screen. CSV/XLSX headers must match the original four columns exactly; these legacy imports omit manually enriched fields on updates. JSON can import vendor and robot research, contacts, locations, source evidence, and AI/manual rating values using the format in [docs/import-format.md](docs/import-format.md); the research prompt is in [docs/robot-vendor-research-import-prompt.md](docs/robot-vendor-research-import-prompt.md). JSON imports preserve omitted values and do not delete absent records. The importer deduplicates normalized names, logs committed batches, queues research for vendors, and creates opportunities for new robots in existing Meetups. CLI dry run: `pnpm import data/technophilosoph-2026.json`; commit: add `--commit`. The CLI also accepts the versioned JSON format. It needs the server key in `.env.local`. Review warnings first.
 
 ## Scoring and outreach
 
@@ -88,7 +88,7 @@ pnpm build
 git diff --check
 ```
 
-The connected Vercel project is `rmaiig-robots`; its intended production URL is [rmaiig-robots.vercel.app](https://rmaiig-robots.vercel.app/). Configure the variables from `.env.example` for production, especially the Supabase browser URL/key and server-only secret key. Research additionally needs `OPENAI_API_KEY` and `CRON_SECRET`. GitHub `main` is connected to the existing Vercel project. Push a verified commit to deploy; inspect build logs and load the production URL before considering it live. Add the production URL to Supabase Auth's redirect allow list.
+The connected Vercel project is `rmaiig-robots`; its intended production URL is [rmaiig-robots.vercel.app](https://rmaiig-robots.vercel.app/). Configure the variables from `.env.example` for production, especially the Supabase browser URL/key and server-only secret key. Research additionally needs `OPENAI_API_KEY` and `CRON_SECRET`. Configure `RESEND_API_KEY` and `RESEND_FROM_EMAIL` as Supabase Edge Function secrets for access notifications. GitHub `main` is connected to the existing Vercel project. Push a verified commit to deploy; inspect build logs and load the production URL before considering it live. Add the production URL to Supabase Auth's redirect allow list. Apply pending database migrations before deploying code that depends on their schema.
 
 ## Current limits
 
