@@ -28,11 +28,20 @@ export function priorityScore(excitement: ReturnType<typeof calculateScore>, par
     ? Math.round(excitement.score * participation.score) / 100
     : null;
 }
-export function topVendorOpportunity<T extends { vendor_id: string; priority_score: number | null }>(opportunities: T[]): T[] {
+export function topVendorOpportunity<T extends { vendor_id: string; priority_score: number | null; participation?: { score: number | null }; excitement?: { score: number | null } }>(opportunities: T[]): T[] {
+  const compare = (left: T, right: T) => {
+    const leftScores = [left.priority_score, left.participation?.score, left.excitement?.score];
+    const rightScores = [right.priority_score, right.participation?.score, right.excitement?.score];
+    for (let index = 0; index < leftScores.length; index++) {
+      const difference = (leftScores[index] ?? -1) - (rightScores[index] ?? -1);
+      if (difference) return difference;
+    }
+    return 0;
+  };
   const result = new Map<string, T>();
   for (const opportunity of opportunities) {
     const prior = result.get(opportunity.vendor_id);
-    if (!prior || (opportunity.priority_score ?? -1) > (prior.priority_score ?? -1)) result.set(opportunity.vendor_id, opportunity);
+    if (!prior || compare(opportunity, prior) > 0) result.set(opportunity.vendor_id, opportunity);
   }
-  return [...result.values()].sort((a,b) => (b.priority_score ?? -1) - (a.priority_score ?? -1));
+  return [...result.values()].sort((left, right) => compare(right, left));
 }
