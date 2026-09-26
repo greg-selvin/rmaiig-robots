@@ -5,11 +5,15 @@ const mocks = vi.hoisted(() => ({
   rowsFromUpload: vi.fn(),
   runImport: vi.fn(),
   runJsonImport: vi.fn(),
+  adminClient: vi.fn(),
+  download: vi.fn(),
+  remove: vi.fn(),
 }));
-vi.mock("@/lib/server", () => ({ authorizedRole: mocks.authorizedRole }));
+vi.mock("@/lib/server", () => ({ authorizedRole: mocks.authorizedRole, adminClient: mocks.adminClient }));
 vi.mock("@/lib/import-runner", () => ({ rowsFromUpload: mocks.rowsFromUpload, runImport: mocks.runImport, runJsonImport: mocks.runJsonImport }));
 
 import { POST } from "./route";
+import { MAX_IMPORT_FILE_BYTES } from "@/lib/import-upload";
 
 function upload(name: string, text: string) {
   const form = new FormData();
@@ -25,6 +29,9 @@ describe("import upload endpoint", () => {
     mocks.rowsFromUpload.mockResolvedValue([]);
     mocks.runImport.mockResolvedValue({ dryRun: true });
     mocks.runJsonImport.mockResolvedValue({ dryRun: true });
+    mocks.download.mockResolvedValue({ data: new Blob([JSON.stringify({ format: "rmaiig-robots-import/v1", vendors: [{ name: "Staged Example" }] })]), error: null });
+    mocks.remove.mockResolvedValue({ data: [], error: null });
+    mocks.adminClient.mockReturnValue({ storage: { from: () => ({ download: mocks.download, remove: mocks.remove }) } });
   });
 
   it("rejects non-admins before reading a file", async () => {
@@ -39,7 +46,7 @@ describe("import upload endpoint", () => {
     expect((await POST(upload("data.json", "{}"))).status).toBe(503);
     process.env.SUPABASE_SECRET_KEY = "test-key";
     const form = new FormData();
-    form.set("file", new File([new Uint8Array(5_000_001)], "large.json"));
+    form.set("file", new File([new Uint8Array(15_000_001)], "large.json"));
     expect((await POST(new Request("http://localhost/api/import", { method: "POST", body: form }))).status).toBe(413);
   });
 
@@ -59,6 +66,40 @@ describe("import upload endpoint", () => {
     expect(response.status).toBe(200);
     expect(mocks.rowsFromUpload).toHaveBeenCalledWith("vendors.csv", expect.any(Buffer));
     expect(mocks.runImport).toHaveBeenCalledWith([], "vendors.csv", false, "user-1");
+  });
+
+  it("downloads, imports, and removes staged files for 15 MB-safe uploads", async () => {
+    const response = await POST(new Request("http://localhost/api/import", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ path: "user-1/upload.json", filename: "robots.json", dry_run: true }),
+    }));
+    expect(response.status).toBe(200);
+    expect(mocks.download).toHaveBeenCalledWith("user-1/upload.json");
+    expect(mocks.runJsonImport).toHaveBeenCalledWith(expect.objectContaining({ vendors: [expect.objectContaining({ name: "Staged Example" })] }), "robots.json", true, "user-1");
+    expect(mocks.remove).toHaveBeenCalledWith(["user-1/upload.json"]);
+  });
+
+  it("rejects staged files that do not belong to the current admin", async () => {
+    const response = await POST(new Request("http://localhost/api/import", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ path: "another-user/upload.json", filename: "robots.json" }),
+    }));
+    expect(response.status).toBe(400);
+    expect(mocks.download).not.toHaveBeenCalled();
+  });
+
+  it("rejects staged objects that exceed 15 MB and still removes them", async () => {
+    mocks.download.mockResolvedValueOnce({ data: new Blob([new Uint8Array(MAX_IMPORT_FILE_BYTES + 1)]), error: null });
+    const response = await POST(new Request("http://localhost/api/import", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ path: "user-1/upload.json", filename: "robots.json" }),
+    }));
+    expect(response.status).toBe(413);
+    expect(mocks.remove).toHaveBeenCalledWith(["user-1/upload.json"]);
+    expect(mocks.runJsonImport).not.toHaveBeenCalled();
   });
 
   it("returns validation errors from invalid JSON uploads", async () => {

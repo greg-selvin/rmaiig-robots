@@ -9,6 +9,7 @@ describe("ImportControls file picker", () => {
     expect(html).toContain('<button class="button primary file-choose-button" type="button">Choose file</button>');
     expect(html).toContain('class="file-drop"');
     expect(html).toContain("Drag a file here");
+    expect(html).toContain("Up to 15 MB");
     expect(html).toContain('accept=".csv,.xlsx,.json"');
     expect(html).toContain('aria-label="Choose import file"');
   });
