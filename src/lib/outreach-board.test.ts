@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { groupVendorOutreach } from "./outreach-board";
+import { groupVendorOutreach, vendorDetailsSelection } from "./outreach-board";
 
 describe("groupVendorOutreach", () => {
   it("creates one vendor card with all robot opportunities and the most advanced stage", () => {
@@ -11,5 +11,13 @@ describe("groupVendorOutreach", () => {
 
     expect(cards).toHaveLength(2);
     expect(cards[0]).toMatchObject({ id: "vendor-1", stage: { id: "contacted" }, robots: [{ id: "opp-1" }, { id: "opp-2" }], notes: [{ follow_up_date: "2026-10-01" }] });
+  });
+
+  it("opens Vendor details using the grouped card ID", () => {
+    const [card] = groupVendorOutreach([
+      { id: "opp-1", vendor_id: "vendor-1", stage_id: "research", vendor: { name: "Robotics Co" } },
+    ], [{ id: "research", position: 1 }], []);
+
+    expect(vendorDetailsSelection(card)).toEqual({ kind: "vendor", id: "vendor-1" });
   });
 });

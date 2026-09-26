@@ -1,6 +1,10 @@
 export type OutreachStage = { id: string; position: number };
 export type OutreachNote = { vendor_id: string | null; follow_up_date: string | null };
 
+export function vendorDetailsSelection<T extends { id: string }>(card: T) {
+  return { kind: "vendor" as const, id: card.id };
+}
+
 export function groupVendorOutreach<T extends { id: string; vendor_id: string; stage_id: string | null; vendor: unknown }>(opportunities: T[], stages: OutreachStage[], notes: OutreachNote[]) {
   const groups = new Map<string, T[]>();
   for (const opportunity of opportunities) groups.set(opportunity.vendor_id, [...(groups.get(opportunity.vendor_id) || []), opportunity]);

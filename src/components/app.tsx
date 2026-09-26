@@ -14,7 +14,7 @@ import { meetupDeleteConfirmation, nextMeetupSelection, opportunitiesForMeetup }
 import { ScoreAccordion } from "@/components/score-accordion";
 import { resetRankingsFilters } from "@/lib/rankings-filters";
 import { sortDirectoryRows, type SortDirection } from "@/lib/directory-sort";
-import { groupVendorOutreach } from "@/lib/outreach-board";
+import { groupVendorOutreach, vendorDetailsSelection } from "@/lib/outreach-board";
 import { RecordNotes } from "@/components/record-notes";
 import { IMPORT_STAGING_BUCKET, importUploadError } from "@/lib/import-upload";
 import type { RecordNote } from "@/lib/record-notes";
@@ -201,7 +201,7 @@ function BoardCard({item,canEdit,data,canManageNote,onSaveNote,onDeleteNote,onSa
   return <article ref={setNodeRef} {...listeners} {...attributes} className="kanban-card" style={{transform:transform?"translate3d("+transform.x+"px, "+transform.y+"px, 0)":undefined,opacity:isDragging?0.5:1}}>
     <div className="board-card-heading">
       <button className="board-vendor-toggle" aria-expanded={expanded} onPointerDown={event=>event.stopPropagation()} onKeyDown={event=>event.stopPropagation()} onClick={()=>setExpanded(value=>!value)}><b>{item.vendor?.name||"Unknown vendor"}</b><span>{item.robots.length} {item.robots.length===1?"robot":"robots"}</span></button>
-      <button className="button board-detail-button" type="button" onPointerDown={event=>event.stopPropagation()} onKeyDown={event=>event.stopPropagation()} onClick={()=>showDetails({kind:"vendor",id:item.vendor_id})}>Vendor details</button>
+      <button className="button board-detail-button" type="button" onPointerDown={event=>event.stopPropagation()} onKeyDown={event=>event.stopPropagation()} onClick={()=>showDetails(vendorDetailsSelection(item))}>Vendor details</button>
     </div>
     {expanded&&<div className="board-vendor-details"><h3>Robots under consideration</h3>{item.robots.map((robot:Item)=><div className="board-robot-row" key={robot.id}><label className="board-robot-choice"><input type="checkbox" disabled={!canEdit} checked={Boolean(robot.under_consideration)} onChange={event=>onToggleRobot(robot.id,event.target.checked)}/>{robot.robot?.name||"Unnamed robot"}</label><button className="button board-detail-button" type="button" onPointerDown={event=>event.stopPropagation()} onKeyDown={event=>event.stopPropagation()} onClick={()=>showDetails({kind:"robot",id:robot.robot_id||robot.robot?.id})}>Robot details</button></div>)}<RecordNotes notes={item.notes} canEdit={canEdit} canManageNote={canManageNote} onAdd={note=>onSaveNote({workspace_id:workspaceId,vendor_id:item.id,...note})} onEdit={(noteId,note)=>onSaveNote({id:noteId,...note})} onDelete={onDeleteNote}/><ScoreAccordion title="Participation likelihood" summary={<><Score value={average}/><span>{item.robots.length} robot scores</span></>}>{item.robots.map((robot:Item)=><div className="card" key={robot.id}><h3>{robot.robot?.name||"Unnamed robot"}</h3><FacetEditor kind="participation" recordId={robot.id} data={data} canEdit={canEdit} onSave={onSaveScore}/></div>)}</ScoreAccordion></div>}
   </article>;
