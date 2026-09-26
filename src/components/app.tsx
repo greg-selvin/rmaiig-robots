@@ -185,7 +185,7 @@ function Board({data,ranked,meetupId,setMeetupId,canEdit,notes,canManageNote,onS
   const selectedVendor=detailSelection?.kind==="vendor"?data.vendors.find(item=>item.id===detailSelection.id):data.vendors.find(item=>item.id===data.robots.find(robot=>robot.id===detailSelection?.id)?.vendor_id);
   const selectedRobot=detailSelection?.kind==="robot"?data.robots.find(item=>item.id===detailSelection.id):undefined;
   function resizeDetailsPanel(event:React.PointerEvent<HTMLDivElement>){
-    if(event.type==="pointerdown")event.currentTarget.setPointerCapture(event.pointerId);
+    if(event.type==="pointerdown"){event.stopPropagation();event.currentTarget.setPointerCapture(event.pointerId);}
     if(event.type!=="pointermove"||!event.currentTarget.hasPointerCapture(event.pointerId))return;
     const layout=event.currentTarget.parentElement;
     if(layout)setDetailPanelWidth(clampOutreachPanelWidth(layout.getBoundingClientRect().right-event.clientX));
