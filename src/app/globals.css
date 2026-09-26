@@ -11,6 +11,7 @@
 @media(max-width:900px){.board-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.board-context-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.board-filter-grid{grid-template-columns:1fr}}
 .location-filter-panel{max-width:600px;margin-bottom:18px}.location-filter-panel h2{font-size:16px;margin:0}.location-filter-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:end}.location-filter-grid .field .select{width:100%}@media(max-width:560px){.location-filter-grid{grid-template-columns:1fr}}
+.vendor-location-fields{grid-template-columns:minmax(180px,260px) minmax(150px,210px) auto;align-items:end}.vendor-location-fields .select,.vendor-location-fields .input{width:100%;min-width:0}.vendor-location-fields>.button{justify-self:start;white-space:nowrap}@media(max-width:700px){.vendor-location-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.vendor-location-fields>.button{grid-column:1/-1}}
 .board-filter-panel{padding:14px}.board-filter-grid{grid-template-columns:minmax(140px,1.5fr) repeat(6,minmax(0,1fr));gap:8px}.board-filter-grid .field{min-width:0;font-size:12px}.board-filter-grid .field .input,.board-filter-grid .field .select{min-width:0;padding:7px 6px;font-size:12px}
 @media(max-width:1050px){.board-filter-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:760px){.board-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
