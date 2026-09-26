@@ -446,7 +446,7 @@ export type Database = {
           created_at: string
           id: string
           last_interaction_at: string | null
-          meetup_id: string
+          meetup_id: string | null
           next_action: string | null
           next_action_date: string | null
           outcome: string | null
@@ -466,7 +466,7 @@ export type Database = {
           created_at?: string
           id?: string
           last_interaction_at?: string | null
-          meetup_id: string
+          meetup_id?: string | null
           next_action?: string | null
           next_action_date?: string | null
           outcome?: string | null
@@ -486,7 +486,7 @@ export type Database = {
           created_at?: string
           id?: string
           last_interaction_at?: string | null
-          meetup_id?: string
+          meetup_id?: string | null
           next_action?: string | null
           next_action_date?: string | null
           outcome?: string | null
