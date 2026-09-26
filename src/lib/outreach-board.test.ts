@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { groupVendorOutreach, vendorDetailsSelection } from "./outreach-board";
+import { clampOutreachPanelWidth, groupVendorOutreach, vendorDetailsSelection } from "./outreach-board";
 
 describe("groupVendorOutreach", () => {
   it("creates one vendor card with all robot opportunities and the most advanced stage", () => {
@@ -19,5 +19,11 @@ describe("groupVendorOutreach", () => {
     ], [{ id: "research", position: 1 }], []);
 
     expect(vendorDetailsSelection(card)).toEqual({ kind: "vendor", id: "vendor-1" });
+  });
+
+  it("keeps the resizable panel within its supported width", () => {
+    expect(clampOutreachPanelWidth(200)).toBe(280);
+    expect(clampOutreachPanelWidth(420)).toBe(420);
+    expect(clampOutreachPanelWidth(800)).toBe(640);
   });
 });

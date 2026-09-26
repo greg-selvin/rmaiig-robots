@@ -1,6 +1,10 @@
 export type OutreachStage = { id: string; position: number };
 export type OutreachNote = { vendor_id: string | null; follow_up_date: string | null };
 
+export function clampOutreachPanelWidth(width: number) {
+  return Math.min(640, Math.max(280, width));
+}
+
 export function vendorDetailsSelection<T extends { id: string }>(card: T) {
   return { kind: "vendor" as const, id: card.id };
 }
