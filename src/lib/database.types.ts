@@ -913,6 +913,7 @@ export type Database = {
           id: string
           image_urls: string[] | null
           interaction_capabilities: string | null
+          is_flagship: boolean
           last_researched_at: string | null
           manipulation: string | null
           manual_notes: string | null
@@ -936,6 +937,7 @@ export type Database = {
           id?: string
           image_urls?: string[] | null
           interaction_capabilities?: string | null
+          is_flagship?: boolean
           last_researched_at?: string | null
           manipulation?: string | null
           manual_notes?: string | null
@@ -959,6 +961,7 @@ export type Database = {
           id?: string
           image_urls?: string[] | null
           interaction_capabilities?: string | null
+          is_flagship?: boolean
           last_researched_at?: string | null
           manipulation?: string | null
           manual_notes?: string | null
