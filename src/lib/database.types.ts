@@ -1343,6 +1343,7 @@ export type Database = {
       workspaces: {
         Row: {
           coverage_threshold: number
+          disqualification_guidelines: string
           created_at: string
           id: string
           name: string
@@ -1350,6 +1351,7 @@ export type Database = {
         }
         Insert: {
           coverage_threshold?: number
+          disqualification_guidelines?: string
           created_at?: string
           id?: string
           name: string
@@ -1357,6 +1359,7 @@ export type Database = {
         }
         Update: {
           coverage_threshold?: number
+          disqualification_guidelines?: string
           created_at?: string
           id?: string
           name?: string
