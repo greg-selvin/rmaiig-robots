@@ -94,7 +94,7 @@ export default function App() {
     const ratings=data.ratings.filter(r=>r.kind===kind&&(kind==="excitement"?r.robot_id:r.opportunity_id)===recordId);
     return calculateScore(criteria,ratings,Number(data.workspaces[0]?.coverage_threshold??60));
   };
-  const ranked: Item[]=opportunitiesForMeetup(data.opportunities,meetupId).map(o=>{
+  const ranked: Item[]=opportunitiesForMeetup(data.opportunities,meetupId).filter(o=>!robotById.get(o.robot_id)?.is_disqualified).map(o=>{
     const excitement=scoreFor("excitement",o.robot_id),participation=scoreFor("participation",o.id);
     return {...o,vendor:vendorById.get(o.vendor_id),robot:robotById.get(o.robot_id),excitement,participation,priority_score:priorityScore(excitement,participation)};
   });

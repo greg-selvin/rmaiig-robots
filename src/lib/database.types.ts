@@ -962,6 +962,7 @@ export type Database = {
           development_status?: string | null
           id?: string
           image_urls?: string[] | null
+          is_disqualified?: boolean
           interaction_capabilities?: string | null
           is_flagship?: boolean
           last_researched_at?: string | null
