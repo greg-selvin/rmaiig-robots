@@ -19,7 +19,7 @@ export function previewJsonImport(input: JsonImport, vendors: ExistingVendor[], 
     seenVendors.add(key);
     if (match) updatedVendors++;
     else insertedVendors++;
-    if (!countryCode(entry.country || " ") && !entry.iso_country_code) warnings.push(`${entry.name}: country is not mapped to an ISO code`);
+    if (!(entry.locations||[]).some(location=>location.iso_country_code)) warnings.push(`${entry.name}: no location has an ISO country code`);
     contacts += entry.contacts?.length || 0;
 
     const seenRobots = new Set<string>();

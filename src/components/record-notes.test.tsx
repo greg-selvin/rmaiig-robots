@@ -22,6 +22,7 @@ const note = (id: string, body: string, createdAt: string, author: string, inter
 describe("RecordNotes", () => {
   it("shows timestamped, attributed notes newest first with edit and delete controls", () => {
     const html = renderToStaticMarkup(createElement(RecordNotes, {
+      invitationEmail: "Subject: Invitation\n\nHello Ada",
       notes: [note("old", "Older note", "2026-01-01T10:00:00.000Z", "Ada Lovelace"), note("new", "Newest note", "2026-02-01T10:00:00.000Z", "Grace Hopper", "meeting", "2026-02-10")],
       canEdit: true,
       canManageNote: () => true,
@@ -34,6 +35,9 @@ describe("RecordNotes", () => {
     expect(html).toContain("Grace Hopper");
     expect(html).toContain('dateTime="2026-02-01T10:00:00.000Z"');
     expect(html).toContain("Interaction type");
+    expect(html.indexOf("Interaction type")).toBeLessThan(html.indexOf("Add a note"));
+    expect(html).toContain("Invitation Email");
+    expect(html).toContain("Copy note");
     expect(html).toContain("Follow-up date");
     expect(html).toContain("meeting");
     expect(html).toContain("Follow up 2026-02-10");

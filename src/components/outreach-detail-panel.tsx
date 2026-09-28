@@ -9,9 +9,6 @@ type Profile = {
   research_status?: string;
   description?: string | null;
   website_url?: string | null;
-  country?: string | null;
-  iso_country_code?: string | null;
-  us_state_code?: string | null;
   product_url?: string | null;
   mobility?: string | null;
   manipulation?: string | null;
@@ -47,13 +44,13 @@ export function OutreachDetailsPanel({ selection, vendor, robot, robots, contact
     <header className="outreach-detail-header">
       <div>
         <span className="eyebrow">{selection.kind === "vendor" ? "Vendor details" : "Robot details"}</span>
-        <h2 id="outreach-detail-title">{profile.name || (selection.kind === "vendor" ? "Unnamed vendor" : "Unnamed robot")}</h2>
+        <h2 id="outreach-detail-title">{profile.name || (selection.kind === "vendor" ? "Unnamed vendor" : "Unnamed robot")}{selection.kind === "vendor" && <a className="outreach-header-profile" href={`/?view=vendor&id=${encodeURIComponent(profile.id)}`} aria-label={`Open full vendor profile for ${profile.name || "Unnamed vendor"}`} title="Open full vendor profile">↗</a>}</h2>
       </div>
       <button className="button" type="button" aria-label="Close details panel" onClick={onClose}>Close</button>
     </header>
     <div className="stack outreach-detail-content">
       {selection.kind === "vendor" ? <>
-        <div className="record-note-meta"><span className="badge">{vendor?.research_status || "Research status unknown"}</span><span>{countryLabel(vendor?.iso_country_code) || vendor?.country || "Country unknown"}{vendor?.us_state_code ? ` · ${vendor.us_state_code}` : ""}</span></div>
+        <div className="record-note-meta"><span className="badge">{vendor?.research_status || "Research status unknown"}</span></div>
         <p>{vendor?.description || "No vendor description available."}</p>
         {vendor?.source_row && <p><b>Source row:</b> {vendor.source_row}</p>}
         {vendor?.original_robot_text && <p><b>Original robot text:</b> {vendor.original_robot_text}</p>}

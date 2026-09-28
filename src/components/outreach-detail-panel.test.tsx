@@ -9,7 +9,7 @@ describe("OutreachDetailsPanel", () => {
   it("shows vendor profile details and linked robots in the panel", () => {
     const html = renderToStaticMarkup(createElement(OutreachDetailsPanel, {
       selection: { kind: "vendor", id: "vendor-1" },
-      vendor: { id: "vendor-1", name: "Example Robotics", iso_country_code: "USA", us_state_code: "CO", description: "Vendor summary", research_status: "verified" },
+      vendor: { id: "vendor-1", name: "Example Robotics", description: "Vendor summary", research_status: "verified" },
       robots: [{ id: "robot-1", name: "Example Bot", vendor_id: "vendor-1" }],
       contacts: [{ id: "contact-1", name: "A. Contact", vendor_id: "vendor-1", business_email: "a@example.com" }],
       locations: [],
@@ -22,6 +22,8 @@ describe("OutreachDetailsPanel", () => {
     expect(html).toContain("Example Bot");
     expect(html).toContain("a@example.com");
     expect(html).toContain("Open full vendor profile");
+    expect(html).toContain("↗");
+    expect(html).toContain("/?view=vendor&amp;id=vendor-1");
   });
 
   it("shows robot details and its vendor", () => {

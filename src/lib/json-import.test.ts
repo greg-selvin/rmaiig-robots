@@ -12,9 +12,9 @@ describe("versioned JSON imports", () => {
     expect(parseJsonImport(minimal()).vendors[0].contacts).toBeUndefined();
   });
 
-  it("normalizes valid country codes and rejects unknown codes", () => {
-    expect(parseJsonImport(minimal({ iso_country_code: "US" })).vendors[0].iso_country_code).toBe("USA");
-    expect(() => parseJsonImport(minimal({ iso_country_code: "ZZZ" }))).toThrow(/known ISO/);
+  it("normalizes location country codes and rejects unknown codes", () => {
+    expect(parseJsonImport(minimal({ locations: [{ location_type: "headquarters", iso_country_code: "US" }] })).vendors[0].locations?.[0].iso_country_code).toBe("USA");
+    expect(() => parseJsonImport(minimal({ locations: [{ iso_country_code: "ZZZ" }] }))).toThrow(/known ISO/);
   });
 
   it("requires reachable contact details when contact records are supplied", () => {

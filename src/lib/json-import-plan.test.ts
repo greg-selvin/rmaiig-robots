@@ -27,9 +27,9 @@ describe("JSON import preview planning", () => {
   });
 
   it("reports unknown countries and robot IDs that need commit-time validation", () => {
-    const plan = previewJsonImport(input([{ name: "Vendor", country: "Atlantis", robots: [{ id: "00000000-0000-4000-8000-000000000002", name: "R1" }] }]), [], []);
+    const plan = previewJsonImport(input([{ name: "Vendor", locations: [{ location_type: "headquarters", country: "Atlantis" }], robots: [{ id: "00000000-0000-4000-8000-000000000002", name: "R1" }] }]), [], []);
     expect(plan.warnings).toEqual([
-      "Vendor: country is not mapped to an ISO code",
+      "Vendor: no location has an ISO country code",
       "Vendor/R1: robot id lookup requires commit-time validation",
     ]);
   });

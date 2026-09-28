@@ -43,7 +43,7 @@ Fields below mirror the current application data model. Except for the required 
 
 ### Vendor properties
 
-`id`, `name`, `original_source_name`, `source_row`, `source_rank`, `original_robot_text`, `original_import_data`, `country`, `iso_country_code`, `headquarters_city`, `headquarters_region`, `us_state_code`, `headquarters_postal_code`, `website_url`, `contact_url`, `product_urls`, `description`, `public_event_history`, `strategic_fit`, `research_status`, `last_researched_at`, `manual_notes`, `parsing_review_status`.
+`id`, `name`, `original_source_name`, `source_row`, `source_rank`, `original_robot_text`, `original_import_data`, `website_url`, `contact_url`, `product_urls`, `description`, `public_event_history`, `strategic_fit`, `total_funding`, `valuation`, `employees`, `units_shipped`, `funding_stage`, `market_leader`, `research_status`, `last_researched_at`, `parsing_review_status`. Notes are stored as record notes, separately from vendor profile fields. Funding and valuation are nonnegative numbers, employee and unit counts are nonnegative integers, and `market_leader` is a boolean that defaults to `false`.
 
 ### Contact properties
 
@@ -57,7 +57,7 @@ Fields below mirror the current application data model. Except for the required 
 
 ### Robot properties
 
-`id`, `name`, `original_imported_text`, `product_url`, `description`, `development_status`, `commercial_availability`, `mobility`, `manipulation`, `interaction_capabilities`, `demonstration_capabilities`, `image_urls`, `research_status`, `last_researched_at`, `manual_notes`, `parsing_review_status`.
+`id`, `name`, `is_flagship`, `original_imported_text`, `product_url`, `description`, `development_status`, `commercial_availability`, `mobility`, `manipulation`, `interaction_capabilities`, `demonstration_capabilities`, `image_urls`, `research_status`, `last_researched_at`, `parsing_review_status`. Notes are stored as record notes, separately from robot profile fields. `is_flagship` is a boolean and defaults to `false` when omitted. Existing sole robots are marked flagship during migration.
 
 ### Research source properties
 

@@ -43,7 +43,7 @@ Top level:
 Each vendor object:
 
 - Required: `name` (non-empty string), `contacts` (non-empty array with at least one usable contact method per contact object), and each included robot's `name` (non-empty string).
-- Optional vendor fields: `id`, `original_source_name`, `source_row`, `source_rank`, `original_robot_text`, `original_import_data`, `country`, `iso_country_code`, `headquarters_city`, `headquarters_region`, `us_state_code`, `headquarters_postal_code`, `website_url`, `contact_url`, `product_urls`, `description`, `public_event_history`, `strategic_fit`, `research_status`, `last_researched_at`, `manual_notes`, `parsing_review_status`, `locations`, `vendor_sources`, `robots`.
+- Optional vendor fields: `id`, `original_source_name`, `source_row`, `source_rank`, `original_robot_text`, `original_import_data`, `website_url`, `contact_url`, `product_urls`, `description`, `public_event_history`, `strategic_fit`, `research_status`, `last_researched_at`, `parsing_review_status`, `locations`, `vendor_sources`, `robots`.
 - `original_import_data` may preserve the relevant original roster values as a JSON object.
 
 Each contact in `contacts`:
@@ -59,7 +59,7 @@ Each location in `locations`:
 Each robot in `robots`:
 
 - Required: `name`.
-- Optional robot fields: `id`, `original_imported_text`, `product_url`, `description`, `development_status`, `commercial_availability`, `mobility`, `manipulation`, `interaction_capabilities`, `demonstration_capabilities`, `image_urls`, `research_status`, `last_researched_at`, `manual_notes`, `parsing_review_status`, `sources`, `excitement`, `participation`.
+- Optional robot fields: `id`, `original_imported_text`, `product_url`, `description`, `development_status`, `commercial_availability`, `mobility`, `manipulation`, `interaction_capabilities`, `demonstration_capabilities`, `image_urls`, `research_status`, `last_researched_at`, `parsing_review_status`, `sources`, `excitement`, `participation`.
 
 Each object in `vendor_sources` or a robot's `sources`:
 

@@ -917,7 +917,6 @@ export type Database = {
           is_flagship: boolean
           last_researched_at: string | null
           manipulation: string | null
-          manual_notes: string | null
           mobility: string | null
           name: string
           normalized_name: string
@@ -942,7 +941,6 @@ export type Database = {
           is_flagship?: boolean
           last_researched_at?: string | null
           manipulation?: string | null
-          manual_notes?: string | null
           mobility?: string | null
           name: string
           normalized_name: string
@@ -967,7 +965,6 @@ export type Database = {
           is_flagship?: boolean
           last_researched_at?: string | null
           manipulation?: string | null
-          manual_notes?: string | null
           mobility?: string | null
           name?: string
           normalized_name?: string
@@ -1219,16 +1216,13 @@ export type Database = {
       vendors: {
         Row: {
           contact_url: string | null
-          country: string | null
           created_at: string
           description: string | null
-          headquarters_city: string | null
-          headquarters_postal_code: string | null
-          headquarters_region: string | null
+          employees: number | null
+          funding_stage: string | null
           id: string
-          iso_country_code: string | null
           last_researched_at: string | null
-          manual_notes: string | null
+          market_leader: boolean
           name: string
           normalized_name: string
           original_import_data: Json | null
@@ -1241,23 +1235,22 @@ export type Database = {
           source_rank: number | null
           source_row: number | null
           strategic_fit: string | null
+          total_funding: number | null
+          units_shipped: number | null
           updated_at: string
-          us_state_code: string | null
+          valuation: number | null
           website_url: string | null
           workspace_id: string
         }
         Insert: {
           contact_url?: string | null
-          country?: string | null
           created_at?: string
           description?: string | null
-          headquarters_city?: string | null
-          headquarters_postal_code?: string | null
-          headquarters_region?: string | null
+          employees?: number | null
+          funding_stage?: string | null
           id?: string
-          iso_country_code?: string | null
           last_researched_at?: string | null
-          manual_notes?: string | null
+          market_leader?: boolean
           name: string
           normalized_name: string
           original_import_data?: Json | null
@@ -1270,23 +1263,22 @@ export type Database = {
           source_rank?: number | null
           source_row?: number | null
           strategic_fit?: string | null
+          total_funding?: number | null
+          units_shipped?: number | null
           updated_at?: string
-          us_state_code?: string | null
+          valuation?: number | null
           website_url?: string | null
           workspace_id: string
         }
         Update: {
           contact_url?: string | null
-          country?: string | null
           created_at?: string
           description?: string | null
-          headquarters_city?: string | null
-          headquarters_postal_code?: string | null
-          headquarters_region?: string | null
+          employees?: number | null
+          funding_stage?: string | null
           id?: string
-          iso_country_code?: string | null
           last_researched_at?: string | null
-          manual_notes?: string | null
+          market_leader?: boolean
           name?: string
           normalized_name?: string
           original_import_data?: Json | null
@@ -1299,8 +1291,10 @@ export type Database = {
           source_rank?: number | null
           source_row?: number | null
           strategic_fit?: string | null
+          total_funding?: number | null
+          units_shipped?: number | null
           updated_at?: string
-          us_state_code?: string | null
+          valuation?: number | null
           website_url?: string | null
           workspace_id?: string
         }
@@ -1349,24 +1343,24 @@ export type Database = {
       workspaces: {
         Row: {
           coverage_threshold: number
-          disqualification_guidelines: string
           created_at: string
+          disqualification_guidelines: string
           id: string
           name: string
           updated_at: string
         }
         Insert: {
           coverage_threshold?: number
-          disqualification_guidelines?: string
           created_at?: string
+          disqualification_guidelines?: string
           id?: string
           name: string
           updated_at?: string
         }
         Update: {
           coverage_threshold?: number
-          disqualification_guidelines?: string
           created_at?: string
+          disqualification_guidelines?: string
           id?: string
           name?: string
           updated_at?: string

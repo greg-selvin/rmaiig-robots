@@ -46,8 +46,8 @@ export async function runJsonImport(input:JsonImport,sourceName:string,dryRun:bo
     if(seenVendors.has(key))throw new Error(`Duplicate vendor in file: ${entry.name}`);
     seenVendors.add(key);
     if(match)updatedVendors++;else insertedVendors++;
-    if(!countryCode(entry.country||" ")&&!entry.iso_country_code)warnings.push(`${entry.name}: country is not mapped to an ISO code`);
     const {contacts:contactEntries=[],locations,vendor_sources:vendorSources,robots:robotEntries,...vendorFields}=entry;
+    if(!(locations||[]).some(location=>location.iso_country_code))warnings.push(`${entry.name}: no location has an ISO country code`);
     const vendorPayload={...defined(vendorFields as Record<string,unknown>),name:entry.name,normalized_name:normalizeName(entry.name),workspace_id:workspace};
     let vendorId=match?.id;
     if(match) {
@@ -215,10 +215,17 @@ export async function runImport(rows:SourceRow[],sourceName:string,dryRun:boolea
       workspace_id:workspaceId,name:row.company,normalized_name:vendorKey,
       original_source_name:row.company,source_row:row.source_row,source_rank:row.source_rank,
       original_robot_text:row.robots,original_import_data:row as never,
-      country:row.country,iso_country_code:countryCode(row.country),
       parsing_review_status:parsed.warning?"needs_review":"clear",
     },{onConflict:"workspace_id,normalized_name"}).select("id").single();
     if(error||!vendor)throw new Error(error?.message||"Vendor insert failed");
+    const iso=countryCode(row.country);
+    if(iso){
+      const {data:headquarters,error:lookupError}=await db.from("vendor_locations").select("id").eq("vendor_id",vendor.id).eq("location_type","headquarters").limit(1).maybeSingle();
+      if(lookupError)throw new Error(lookupError.message);
+      const locationPayload={workspace_id:workspaceId,vendor_id:vendor.id,location_type:"headquarters",country:row.country,iso_country_code:iso,is_primary:true};
+      const locationResult=headquarters?await db.from("vendor_locations").update(locationPayload).eq("id",headquarters.id):await db.from("vendor_locations").insert(locationPayload);
+      if(locationResult.error)throw new Error(locationResult.error.message);
+    }
     for(const name of parsed.names){
       const key=normalizeName(name);
       const {data:robot,error:robotError}=await db.from("robots").upsert({
