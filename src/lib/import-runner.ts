@@ -1,3 +1,4 @@
+import { initialPipelineStage } from "./pipeline-stages";
 import { parse } from "csv-parse/sync";
 import ExcelJS from "exceljs";
 import { adminClient } from "./server";
@@ -146,8 +147,9 @@ export async function runJsonImport(input:JsonImport,sourceName:string,dryRun:bo
     const robotId=robotWrite.data.id;
     if(!foundRobot) {
       const {data:meetups,error:meetupError}=await db.from("meetups").select("id").eq("workspace_id",workspace);
-      const {data:stage,error:stageError}=await db.from("pipeline_stages").select("id").eq("workspace_id",workspace).eq("name","Researching").single();
-      if(meetupError||stageError||!stage)throw new Error(meetupError?.message||stageError?.message||"Researching stage is missing");
+      const {data:stages,error:stageError}=await db.from("pipeline_stages").select("id,name,position,archived").eq("workspace_id",workspace);
+      const stage=initialPipelineStage(stages||[]);
+      if(meetupError||stageError||!stage)throw new Error(meetupError?.message||stageError?.message||"No active outreach stage is available");
       for(const meetup of meetups||[]) {
         const {error}=await db.from("opportunities").upsert({workspace_id:workspace,vendor_id:vendorId,robot_id:robotId,meetup_id:meetup.id,stage_id:stage.id},{onConflict:"robot_id,meetup_id",ignoreDuplicates:true});
         if(error)throw new Error(error.message);
@@ -203,8 +205,9 @@ export async function runImport(rows:SourceRow[],sourceName:string,dryRun:boolea
   const preview=previewImport(rows,names,robotNames);
   if(dryRun)return {dryRun:true,...preview};
   const {data:meetups,error:meetupError}=await db.from("meetups").select("id").eq("workspace_id",workspaceId);
-  const {data:initialStage,error:stageError}=await db.from("pipeline_stages").select("id").eq("workspace_id",workspaceId).eq("name","Researching").single();
-  if(meetupError||stageError||!initialStage)throw new Error(meetupError?.message||stageError?.message||"Researching stage is missing");
+  const {data:stages,error:stageError}=await db.from("pipeline_stages").select("id,name,position,archived").eq("workspace_id",workspaceId);
+  const initialStage=initialPipelineStage(stages||[]);
+  if(meetupError||stageError||!initialStage)throw new Error(meetupError?.message||stageError?.message||"No active outreach stage is available");
   for(const row of rows) {
     const parsed=parseRobotNames(row.robots);
     const vendorKey=normalizeName(row.company);

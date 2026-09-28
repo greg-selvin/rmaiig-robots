@@ -1087,27 +1087,33 @@ export type Database = {
           actor_id: string | null
           changed_at: string
           from_stage_id: string | null
+          from_stage_name: string | null
           id: string
           opportunity_id: string
           to_stage_id: string | null
+          to_stage_name: string | null
           workspace_id: string
         }
         Insert: {
           actor_id?: string | null
           changed_at?: string
           from_stage_id?: string | null
+          from_stage_name?: string | null
           id?: string
           opportunity_id: string
           to_stage_id?: string | null
+          to_stage_name?: string | null
           workspace_id: string
         }
         Update: {
           actor_id?: string | null
           changed_at?: string
           from_stage_id?: string | null
+          from_stage_name?: string | null
           id?: string
           opportunity_id?: string
           to_stage_id?: string | null
+          to_stage_name?: string | null
           workspace_id?: string
         }
         Relationships: [
