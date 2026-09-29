@@ -8,10 +8,15 @@ function eligible(control: Control) {
   return control instanceof HTMLTextAreaElement || control instanceof HTMLInputElement && !["file", "password", "hidden", "checkbox", "radio", "submit", "button"].includes(control.type);
 }
 
+function signature(control: Control) {
+  const label = control.closest("label")?.textContent?.trim() || control.labels?.[0]?.textContent?.trim() || "";
+  const heading = control.closest(".card, form, .section")?.querySelector("h2, h3")?.textContent?.trim() || "";
+  return `${heading}:${control.tagName}:${control.getAttribute("aria-label") || control.getAttribute("name") || control.id || control.getAttribute("placeholder") || label}`;
+}
+
 function draftId(root: HTMLElement, control: Control) {
-  const label = control.closest("label")?.textContent?.trim() || "";
-  const identity = `${control.tagName}:${control.getAttribute("aria-label") || control.getAttribute("name") || control.getAttribute("placeholder") || label}`;
-  const controls = Array.from(root.querySelectorAll<Control>("input, textarea")).filter(element => eligible(element) && `${element.tagName}:${element.getAttribute("aria-label") || element.getAttribute("name") || element.getAttribute("placeholder") || element.closest("label")?.textContent?.trim() || ""}` === identity);
+  const identity = signature(control);
+  const controls = Array.from(root.querySelectorAll<Control>("input, textarea")).filter(element => eligible(element) && signature(element) === identity);
   return `${identity}:${controls.indexOf(control)}`;
 }
 
