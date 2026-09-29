@@ -195,6 +195,264 @@ export type Database = {
           },
         ]
       }
+      distributor_interactions: {
+        Row: {
+          contact_id: string | null
+          created_at: string
+          direction: string | null
+          email_template_id: string | null
+          follow_up_date: string | null
+          full_notes: string | null
+          id: string
+          interaction_type: string
+          occurred_at: string
+          outcome: string | null
+          outreach_id: string
+          subject: string | null
+          summary: string | null
+          team_member_id: string | null
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          contact_id?: string | null
+          created_at?: string
+          direction?: string | null
+          email_template_id?: string | null
+          follow_up_date?: string | null
+          full_notes?: string | null
+          id?: string
+          interaction_type: string
+          occurred_at?: string
+          outcome?: string | null
+          outreach_id: string
+          subject?: string | null
+          summary?: string | null
+          team_member_id?: string | null
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          contact_id?: string | null
+          created_at?: string
+          direction?: string | null
+          email_template_id?: string | null
+          follow_up_date?: string | null
+          full_notes?: string | null
+          id?: string
+          interaction_type?: string
+          occurred_at?: string
+          outcome?: string | null
+          outreach_id?: string
+          subject?: string | null
+          summary?: string | null
+          team_member_id?: string | null
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "distributor_interactions_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "distributor_interactions_email_template_id_fkey"
+            columns: ["email_template_id"]
+            isOneToOne: false
+            referencedRelation: "email_templates"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "distributor_interactions_outreach_id_fkey"
+            columns: ["outreach_id"]
+            isOneToOne: false
+            referencedRelation: "distributor_outreach"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "distributor_interactions_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      distributor_outreach: {
+        Row: {
+          board_position: number
+          collaborator_ids: string[]
+          created_at: string
+          distributor_id: string
+          id: string
+          last_interaction_at: string | null
+          meetup_id: string | null
+          meetup_name_snapshot: string | null
+          next_action: string | null
+          next_action_date: string | null
+          outcome: string | null
+          outreach_summary: string | null
+          owner_id: string | null
+          stage_id: string | null
+          updated_at: string
+          workspace_id: string
+        }
+        Insert: {
+          board_position?: number
+          collaborator_ids?: string[]
+          created_at?: string
+          distributor_id: string
+          id?: string
+          last_interaction_at?: string | null
+          meetup_id?: string | null
+          meetup_name_snapshot?: string | null
+          next_action?: string | null
+          next_action_date?: string | null
+          outcome?: string | null
+          outreach_summary?: string | null
+          owner_id?: string | null
+          stage_id?: string | null
+          updated_at?: string
+          workspace_id: string
+        }
+        Update: {
+          board_position?: number
+          collaborator_ids?: string[]
+          created_at?: string
+          distributor_id?: string
+          id?: string
+          last_interaction_at?: string | null
+          meetup_id?: string | null
+          meetup_name_snapshot?: string | null
+          next_action?: string | null
+          next_action_date?: string | null
+          outcome?: string | null
+          outreach_summary?: string | null
+          owner_id?: string | null
+          stage_id?: string | null
+          updated_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "distributor_outreach_distributor_id_fkey"
+            columns: ["distributor_id"]
+            isOneToOne: false
+            referencedRelation: "vendors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "distributor_outreach_meetup_id_fkey"
+            columns: ["meetup_id"]
+            isOneToOne: false
+            referencedRelation: "meetups"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "distributor_outreach_stage_id_fkey"
+            columns: ["stage_id"]
+            isOneToOne: false
+            referencedRelation: "pipeline_stages"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "distributor_outreach_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      distributor_robot_selections: {
+        Row: {
+          outreach_id: string
+          robot_id: string
+          selected_at: string
+          workspace_id: string
+        }
+        Insert: {
+          outreach_id: string
+          robot_id: string
+          selected_at?: string
+          workspace_id: string
+        }
+        Update: {
+          outreach_id?: string
+          robot_id?: string
+          selected_at?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "distributor_robot_selections_outreach_id_fkey"
+            columns: ["outreach_id"]
+            isOneToOne: false
+            referencedRelation: "distributor_outreach"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "distributor_robot_selections_robot_id_fkey"
+            columns: ["robot_id"]
+            isOneToOne: false
+            referencedRelation: "robots"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "distributor_robot_selections_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      distributor_vendor_links: {
+        Row: {
+          created_at: string
+          distributor_id: string
+          vendor_id: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          distributor_id: string
+          vendor_id: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          distributor_id?: string
+          vendor_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "distributor_vendor_links_distributor_id_fkey"
+            columns: ["distributor_id"]
+            isOneToOne: false
+            referencedRelation: "vendors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "distributor_vendor_links_vendor_id_fkey"
+            columns: ["vendor_id"]
+            isOneToOne: false
+            referencedRelation: "vendors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "distributor_vendor_links_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       email_templates: {
         Row: {
           body: string
@@ -441,7 +699,6 @@ export type Database = {
       opportunities: {
         Row: {
           board_position: number
-          under_consideration: boolean
           collaborator_ids: string[]
           created_at: string
           id: string
@@ -455,13 +712,13 @@ export type Database = {
           priority_score: number | null
           robot_id: string
           stage_id: string | null
+          under_consideration: boolean
           updated_at: string
           vendor_id: string
           workspace_id: string
         }
         Insert: {
           board_position?: number
-          under_consideration?: boolean
           collaborator_ids?: string[]
           created_at?: string
           id?: string
@@ -475,13 +732,13 @@ export type Database = {
           priority_score?: number | null
           robot_id: string
           stage_id?: string | null
+          under_consideration?: boolean
           updated_at?: string
           vendor_id: string
           workspace_id: string
         }
         Update: {
           board_position?: number
-          under_consideration?: boolean
           collaborator_ids?: string[]
           created_at?: string
           id?: string
@@ -495,6 +752,7 @@ export type Database = {
           priority_score?: number | null
           robot_id?: string
           stage_id?: string | null
+          under_consideration?: boolean
           updated_at?: string
           vendor_id?: string
           workspace_id?: string
@@ -694,11 +952,11 @@ export type Database = {
         Row: {
           author_name: string
           body: string
-          interaction_type: string
-          follow_up_date: string | null
           created_at: string
           created_by: string | null
+          follow_up_date: string | null
           id: string
+          interaction_type: string
           is_legacy: boolean
           robot_id: string | null
           updated_at: string
@@ -706,13 +964,13 @@ export type Database = {
           workspace_id: string
         }
         Insert: {
-          author_name?: string
+          author_name: string
           body: string
-          interaction_type?: string
-          follow_up_date?: string | null
           created_at?: string
           created_by?: string | null
+          follow_up_date?: string | null
           id?: string
+          interaction_type?: string
           is_legacy?: boolean
           robot_id?: string | null
           updated_at?: string
@@ -722,11 +980,11 @@ export type Database = {
         Update: {
           author_name?: string
           body?: string
-          interaction_type?: string
-          follow_up_date?: string | null
           created_at?: string
           created_by?: string | null
+          follow_up_date?: string | null
           id?: string
+          interaction_type?: string
           is_legacy?: boolean
           robot_id?: string | null
           updated_at?: string
@@ -912,8 +1170,8 @@ export type Database = {
           development_status: string | null
           id: string
           image_urls: string[] | null
-          is_disqualified: boolean
           interaction_capabilities: string | null
+          is_disqualified: boolean
           is_flagship: boolean
           last_researched_at: string | null
           manipulation: string | null
@@ -936,8 +1194,8 @@ export type Database = {
           development_status?: string | null
           id?: string
           image_urls?: string[] | null
-          is_disqualified?: boolean
           interaction_capabilities?: string | null
+          is_disqualified?: boolean
           is_flagship?: boolean
           last_researched_at?: string | null
           manipulation?: string | null
@@ -960,8 +1218,8 @@ export type Database = {
           development_status?: string | null
           id?: string
           image_urls?: string[] | null
-          is_disqualified?: boolean
           interaction_capabilities?: string | null
+          is_disqualified?: boolean
           is_flagship?: boolean
           last_researched_at?: string | null
           manipulation?: string | null
@@ -1219,6 +1477,7 @@ export type Database = {
           created_at: string
           description: string | null
           employees: number | null
+          entity_type: string
           funding_stage: string | null
           id: string
           last_researched_at: string | null
@@ -1247,6 +1506,7 @@ export type Database = {
           created_at?: string
           description?: string | null
           employees?: number | null
+          entity_type?: string
           funding_stage?: string | null
           id?: string
           last_researched_at?: string | null
@@ -1275,6 +1535,7 @@ export type Database = {
           created_at?: string
           description?: string | null
           employees?: number | null
+          entity_type?: string
           funding_stage?: string | null
           id?: string
           last_researched_at?: string | null
@@ -1373,7 +1634,7 @@ export type Database = {
     }
     Functions: {
       move_pipeline_stage: {
-        Args: { p_stage_id: string; p_direction: number }
+        Args: { p_direction: number; p_stage_id: string }
         Returns: undefined
       }
       replace_scoring_model: {
