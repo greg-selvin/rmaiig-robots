@@ -47,19 +47,24 @@ export function VendorContacts({ contacts, canEdit, onSave, onDelete }: Props) {
     }
   }
 
-  return <section className="card stack" aria-label="Contacts">
+  return <section className="card contact-section" aria-label="Contacts">
     <div className="toolbar"><h2>Contacts</h2>{canEdit && <button className="button primary" disabled={busy} onClick={() => { setEditing("new"); setDeleting(null); setError(""); }}>Add contact</button>}</div>
     {error && <p className="notice error" role="alert">{error}</p>}
+    {editing === "new" && <ContactForm key="new" onSave={onSave} onClose={() => setEditing(null)} onBusy={setBusy}/>}
     {contacts.length ? <ul className="contact-list">{contacts.map(contact => <li key={contact.id} className="contact-card">
-      <button className="contact-card-toggle" type="button" aria-expanded={open === contact.id} onClick={() => setOpen(open === contact.id ? null : contact.id)}>
-        <span><strong>{contact.name || contact.department || contact.business_email || "General contact"}</strong><small>{[contact.contact_type, contact.job_title].filter(Boolean).join(" · ") || "Contact details"}</small></span><span aria-hidden="true">{open === contact.id ? "−" : "+"}</span>
-      </button>
+      <div className="contact-card-summary">
+        <button className="contact-card-toggle" type="button" aria-expanded={open === contact.id} onClick={() => setOpen(open === contact.id ? null : contact.id)}>
+          <span><strong>{contact.name || contact.department || contact.business_email || "General contact"}</strong><small>{[contact.contact_type, contact.job_title].filter(Boolean).join(" · ") || "Contact details"}</small></span><span aria-hidden="true">{open === contact.id ? "−" : "+"}</span>
+        </button>
+        {(contact.business_email || contact.business_phone || contact.contact_form_url || contact.profile_url) && <div className="contact-card-basics">
+          {contact.business_email && <a className="link" href={`mailto:${contact.business_email}`}>{contact.business_email}</a>}
+          {contact.business_phone && <a className="link" href={`tel:${contact.business_phone}`}>{contact.business_phone}</a>}
+          {contact.contact_form_url && <a className="link" href={contact.contact_form_url} target="_blank" rel="noreferrer">Contact form ↗</a>}
+          {contact.profile_url && <a className="link" href={contact.profile_url} target="_blank" rel="noreferrer">Profile ↗</a>}
+        </div>}
+      </div>
       {open === contact.id && <div className="contact-card-details">
         {contact.department && <p><b>Department:</b> {contact.department}</p>}
-        {contact.business_email && <p><b>Email:</b> <a className="link" href={`mailto:${contact.business_email}`}>{contact.business_email}</a></p>}
-        {contact.business_phone && <p><b>Phone:</b> <a className="link" href={`tel:${contact.business_phone}`}>{contact.business_phone}</a></p>}
-        {contact.contact_form_url && <p><a className="link" href={contact.contact_form_url} target="_blank" rel="noreferrer">Contact form ↗</a></p>}
-        {contact.profile_url && <p><a className="link" href={contact.profile_url} target="_blank" rel="noreferrer">Profile ↗</a></p>}
         {contact.location && <p><b>Location:</b> {contact.location}</p>}
         <div><b>Notes</b><p className="contact-notes">{contact.notes || "No notes yet."}</p></div>
         {canEdit && <div className="toolbar"><button className="button" disabled={busy} onClick={() => { setEditing(contact.id); setDeleting(null); }}>Edit contact or notes</button><button className="button danger" disabled={busy} onClick={() => { setDeleting(contact.id); setEditing(null); }}>Delete</button></div>}
@@ -67,7 +72,6 @@ export function VendorContacts({ contacts, canEdit, onSave, onDelete }: Props) {
         {editing === contact.id && <ContactForm key={contact.id} contact={contact} onSave={onSave} onClose={() => setEditing(null)} onBusy={setBusy}/>}
       </div>}
     </li>)}</ul> : <p className="muted">No contacts recorded yet.</p>}
-    {editing === "new" && <ContactForm key="new" onSave={onSave} onClose={() => setEditing(null)} onBusy={setBusy}/>}
   </section>;
 }
 
