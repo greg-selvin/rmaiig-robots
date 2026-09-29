@@ -297,6 +297,7 @@ export type Database = {
           outreach_summary: string | null
           owner_id: string | null
           stage_id: string | null
+          stage_name_snapshot: string | null
           updated_at: string
           workspace_id: string
         }
@@ -315,6 +316,7 @@ export type Database = {
           outreach_summary?: string | null
           owner_id?: string | null
           stage_id?: string | null
+          stage_name_snapshot?: string | null
           updated_at?: string
           workspace_id: string
         }
@@ -333,6 +335,7 @@ export type Database = {
           outreach_summary?: string | null
           owner_id?: string | null
           stage_id?: string | null
+          stage_name_snapshot?: string | null
           updated_at?: string
           workspace_id?: string
         }
