@@ -3,6 +3,15 @@
 import { useState, type FormEvent } from "react";
 import { newestFirstNotes, type RecordNote } from "@/lib/record-notes";
 
+function linkedNoteBody(body: string) {
+  return body.split(/(https?:\/\/[^\s<>]+)/g).flatMap((part, index) => {
+    if (!/^https?:\/\//i.test(part)) return part;
+    const url = part.replace(/[.,;:!?]+$/, "");
+    const trailing = part.slice(url.length);
+    return [<a key={index} href={url} target="_blank" rel="noopener noreferrer">{url}</a>, trailing];
+  });
+}
+
 export type NoteDraft = { body: string; interaction_type: RecordNote["interaction_type"]; follow_up_date: string | null };
 
 export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDelete, invitationEmail }: {
@@ -77,7 +86,7 @@ export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDe
           <label className="field">Follow-up date<input className="input" type="date" value={editFollowUpDate} onChange={event => setEditFollowUpDate(event.target.value)}/></label>
           <div className="toolbar"><button className="button primary" disabled={busy || !editBody.trim()} onClick={() => void editNote(note.id)}>Save note</button><button className="button" disabled={busy} onClick={() => setEditingId("")}>Cancel</button></div>
         </div> : <>
-          <p className="record-note-body">{note.body}</p>
+          <p className="record-note-body">{linkedNoteBody(note.body)}</p>
           {canManageNote(note) && <div className="toolbar"><button className="button" disabled={busy} onClick={() => { setEditingId(note.id); setEditBody(note.body); setEditInteractionType(note.interaction_type); setEditFollowUpDate(note.follow_up_date || ""); }}>Edit</button><button className="button danger" disabled={busy} onClick={() => void deleteNote(note.id)}>Delete</button></div>}
         </>}
       </li>)}

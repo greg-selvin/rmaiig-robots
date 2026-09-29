@@ -45,6 +45,20 @@ describe("RecordNotes", () => {
     expect(html).toContain("Delete");
   });
 
+  it("links URLs in displayed notes and leaves punctuation outside the link", () => {
+    const html = renderToStaticMarkup(createElement(RecordNotes, {
+      notes: [note("note-1", "Read https://example.com/path?x=1&y=2, then http://example.org.", "2026-02-01T10:00:00.000Z", "Grace Hopper")],
+      canEdit: false,
+      canManageNote: () => false,
+      onAdd: vi.fn(async () => true),
+      onEdit: vi.fn(async () => true),
+      onDelete: vi.fn(async () => true),
+    }));
+
+    expect(html).toContain('<a href="https://example.com/path?x=1&amp;y=2" target="_blank" rel="noopener noreferrer">https://example.com/path?x=1&amp;y=2</a>,');
+    expect(html).toContain('<a href="http://example.org" target="_blank" rel="noopener noreferrer">http://example.org</a>.');
+  });
+
   it("keeps note mutation controls hidden for notes the user cannot manage", () => {
     const html = renderToStaticMarkup(createElement(RecordNotes, {
       notes: [note("note-1", "Team note", "2026-02-01T10:00:00.000Z", "Grace Hopper")],
