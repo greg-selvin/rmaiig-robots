@@ -151,7 +151,7 @@ export async function runJsonImport(input:JsonImport,sourceName:string,dryRun:bo
       const stage=initialPipelineStage(stages||[]);
       if(meetupError||stageError||!stage)throw new Error(meetupError?.message||stageError?.message||"No active outreach stage is available");
       for(const meetup of meetups||[]) {
-        const {error}=await db.from("opportunities").upsert({workspace_id:workspace,vendor_id:vendorId,robot_id:robotId,meetup_id:meetup.id,stage_id:stage.id},{onConflict:"robot_id,meetup_id",ignoreDuplicates:true});
+        const {error}=await db.from("opportunities").upsert({workspace_id:workspace,vendor_id:vendorId,robot_id:robotId,meetup_id:meetup.id,stage_id:stage.id},{onConflict:"vendor_id,robot_id,meetup_id",ignoreDuplicates:true});
         if(error)throw new Error(error.message);
       }
     }
@@ -162,7 +162,7 @@ export async function runJsonImport(input:JsonImport,sourceName:string,dryRun:bo
       meetupQuery=rating.meetup_id?meetupQuery.eq("id",rating.meetup_id):meetupQuery.ilike("name",rating.meetup_name!);
       const {data:meetup,error}=await meetupQuery.limit(1).maybeSingle();
       if(error||!meetup)throw new Error(`${vendor.name}/${robot.name}: meetup not found (${rating.meetup_name||rating.meetup_id})`);
-      const {data:opportunity,error:opError}=await db.from("opportunities").select("id").eq("robot_id",robotId).eq("meetup_id",meetup.id).maybeSingle();
+      const {data:opportunity,error:opError}=await db.from("opportunities").select("id").eq("vendor_id",vendorId).eq("robot_id",robotId).eq("meetup_id",meetup.id).maybeSingle();
       if(opError||!opportunity)throw new Error(`${vendor.name}/${robot.name}: opportunity not found for meetup ${meetup.id}`);
       await saveRatings([rating],"participation",null,opportunity.id,vendorSourceIds,robotSourceIds);
     }
@@ -235,7 +235,7 @@ export async function runImport(rows:SourceRow[],sourceName:string,dryRun:boolea
       for(const meetup of meetups||[]) {
         const {error:opportunityError}=await db.from("opportunities").upsert({
           workspace_id:workspaceId,vendor_id:vendor.id,robot_id:robot.id,meetup_id:meetup.id,stage_id:initialStage.id,
-        },{onConflict:"robot_id,meetup_id",ignoreDuplicates:true});
+        },{onConflict:"vendor_id,robot_id,meetup_id",ignoreDuplicates:true});
         if(opportunityError)throw new Error(opportunityError.message);
       }
     }
