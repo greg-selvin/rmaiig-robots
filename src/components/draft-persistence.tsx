@@ -8,15 +8,16 @@ function eligible(control: Control) {
   return control instanceof HTMLTextAreaElement || control instanceof HTMLInputElement && !["file", "password", "hidden", "checkbox", "radio", "submit", "button"].includes(control.type);
 }
 
-function signature(control: Control) {
+function signature(control: Control, includeCard = true) {
   const label = control.closest("label")?.textContent?.trim() || control.labels?.[0]?.textContent?.trim() || "";
   const heading = control.closest(".card, form, .section")?.querySelector("h2, h3")?.textContent?.trim() || "";
-  return `${heading}:${control.tagName}:${control.getAttribute("aria-label") || control.getAttribute("name") || control.id || control.getAttribute("placeholder") || label}`;
+  const cardId = includeCard ? control.closest<HTMLElement>("[data-board-card]")?.dataset.boardCard : null;
+  return `${cardId ? `card:${cardId}:` : ""}${heading}:${control.tagName}:${control.getAttribute("aria-label") || control.getAttribute("name") || control.id || control.getAttribute("placeholder") || label}`;
 }
 
-function draftId(root: HTMLElement, control: Control) {
-  const identity = signature(control);
-  const controls = Array.from(root.querySelectorAll<Control>("input, textarea")).filter(element => eligible(element) && signature(element) === identity);
+function draftId(root: HTMLElement, control: Control, includeCard = true) {
+  const identity = signature(control, includeCard);
+  const controls = Array.from(root.querySelectorAll<Control>("input, textarea")).filter(element => eligible(element) && signature(element, includeCard) === identity);
   return `${identity}:${controls.indexOf(control)}`;
 }
 
@@ -72,6 +73,14 @@ export function DraftPersistence({ root, userId, pageKey, notice, error }: { roo
         if (restored.current.has(control)) return;
         restored.current.add(control);
         const id = draftId(element, control);
+        if (!Object.hasOwn(currentValues.current, id) && control.closest("[data-board-card]")) {
+          const oldId = draftId(element, control, false);
+          if (Object.hasOwn(currentValues.current, oldId)) {
+            currentValues.current[id] = currentValues.current[oldId];
+            delete currentValues.current[oldId];
+            try { localStorage.setItem(key, JSON.stringify(currentValues.current)); } catch {}
+          }
+        }
         if (Object.hasOwn(currentValues.current, id)) restoreValue(control, currentValues.current[id]);
       });
     };
