@@ -38,13 +38,14 @@ type Page = "dashboard" | "search" | "rankings" | "vendors" | "robots" | "board"
 type Data = { workspaces: Item[]; vendors: Item[]; robots: Item[]; opportunities: Item[]; meetups: Item[]; stages: Item[]; contacts: Item[]; interactions: Item[]; criteria: Item[]; models: Item[]; ratings: Item[]; sources: Item[]; jobs: Item[]; templates: Item[]; locations: Item[]; members: Item[]; accessRequests: Item[]; batches: Item[]; audit: Item[]; recordNotes: RecordNote[] };
 const emptyData: Data = { workspaces: [], vendors: [], robots: [], opportunities: [], meetups: [], stages: [], contacts: [], interactions: [], criteria: [], models: [], ratings: [], sources: [], jobs: [], templates: [], locations: [], members: [], accessRequests: [], batches: [], audit: [], recordNotes: [] };
 const nav: { key: Page; label: string }[] = [
-  { key: "dashboard", label: "Overview" }, { key: "board", label: "Outreach board" },
+  { key: "board", label: "Outreach board" },
   { key: "rankings", label: "Rankings" },
   { key: "vendors", label: "Vendors" }, { key: "robots", label: "Robots" },
   { key: "research", label: "Research queue" },
+  { key: "dashboard", label: "Dashboard" },
   { key: "settings", label: "Administration" },
 ];
-const title: Record<Page, string> = { dashboard: "Overview", search: "Search workspace", rankings: "Rankings", vendors: "Vendors", robots: "Robots", board: "Outreach board", research: "Research queue", settings: "Administration", vendor: "Vendor profile", robot: "Robot profile", opportunity: "Opportunity" };
+const title: Record<Page, string> = { dashboard: "Dashboard", search: "Search workspace", rankings: "Rankings", vendors: "Vendors", robots: "Robots", board: "Outreach board", research: "Research queue", settings: "Administration", vendor: "Vendor profile", robot: "Robot profile", opportunity: "Opportunity" };
 function fmtScore(value: number | null) { return value === null ? "—" : value.toFixed(1); }
 function countBy<T>(items: T[], key: (item: T) => string) { return items.reduce<Record<string,number>>((all,item) => { const k=key(item); all[k]=(all[k]||0)+1; return all; },{}); }
 function vendorLocation(locations:Item[],vendorId:string){const rows=locations.filter(location=>location.vendor_id===vendorId);return rows.find(location=>location.is_primary)||rows.find(location=>location.location_type==="headquarters")||rows[0];}
@@ -56,7 +57,7 @@ export default function App() {
   const changingPage=useRef(false);
   const [user,setUser]=useState<User|null>(null), [role,setRole]=useState(""), [loaded,setLoaded]=useState(false), [needsProfile,setNeedsProfile]=useState(false);
   const [requestStatus,setRequestStatus]=useState(""), [adminNotified,setAdminNotified]=useState<boolean|null>(null);
-  const [page,setPage]=useState<Page>("dashboard"), [id,setId]=useState(""), [data,setData]=useState<Data>(emptyData);
+  const [page,setPage]=useState<Page>("board"), [id,setId]=useState(""), [data,setData]=useState<Data>(emptyData);
   const [meetupId,setMeetupId]=useState(""), [search,setSearch]=useState(""), [globalQuery,setGlobalQuery]=useState(""), [country,setCountry]=useState(""), [state,setState]=useState("");
   const [notice,setNotice]=useState(""), [error,setError]=useState(""), [email,setEmail]=useState(""), [firstName,setFirstName]=useState(""), [lastName,setLastName]=useState(""), [authBusy,setAuthBusy]=useState(false);
   const [rankingTab,setRankingTab]=useState<"vendors"|"robots">("vendors"), [sort,setSort]=useState<RankingSortField>("priority"), [sortDirection,setSortDirection]=useState<SortDirection>("descending");
@@ -75,7 +76,7 @@ export default function App() {
   const canEdit=role==="admin"||role==="member", isAdmin=role==="admin";
   const route=useCallback((next:Page,nextId="") => { if(user)sessionStorage.setItem(`rmaiig-scroll:${user.id}:${page}:${id}`,String(scrollY));changingPage.current=true;setPage(next);setId(nextId);history.pushState(null,"",`/?view=${next}${nextId?"&id="+encodeURIComponent(nextId):""}`);scrollTo(0,0); },[user,page,id]);
   useEffect(()=>{if(!user||!role)return;const key=`rmaiig-scroll:${user.id}:${page}:${id}`;const saved=Number(sessionStorage.getItem(key)||0);let timer=0;let attempts=0;const restore=()=>{if(saved>0&&document.documentElement.scrollHeight<saved+innerHeight&&attempts++<30){timer=window.setTimeout(restore,100);return;}if(saved>0)scrollTo(0,saved);changingPage.current=false;};timer=window.setTimeout(restore,100);const remember=()=>{if(!changingPage.current)sessionStorage.setItem(key,String(scrollY));};addEventListener("scroll",remember,{passive:true});return()=>{clearTimeout(timer);removeEventListener("scroll",remember);};},[user,role,page,id]);
-  useEffect(()=>{ const read=()=>{const q=new URLSearchParams(location.search);const p=q.get("view") as Page;if(p&&title[p])setPage(p);setId(q.get("id")||"");setSearch(q.get("q")||"");setGlobalQuery(q.get("global_q")||(p==="search"?q.get("q"):"")||"");setCountry(q.get("country")||"");setState(q.get("state")||"");};read();addEventListener("popstate",read);return()=>removeEventListener("popstate",read);},[]);
+  useEffect(()=>{ const read=()=>{const q=new URLSearchParams(location.search);const p=q.get("view") as Page;setPage(p&&title[p]?p:"board");setId(q.get("id")||"");setSearch(q.get("q")||"");setGlobalQuery(q.get("global_q")||(p==="search"?q.get("q"):"")||"");setCountry(q.get("country")||"");setState(q.get("state")||"");};read();addEventListener("popstate",read);return()=>removeEventListener("popstate",read);},[]);
   useEffect(()=>{const q=new URLSearchParams(location.search);if(search)q.set("q",search);else q.delete("q");if(globalQuery)q.set("global_q",globalQuery);else q.delete("global_q");if(country)q.set("country",country);else q.delete("country");if(state)q.set("state",state);else q.delete("state");history.replaceState(null,"",`/?${q.toString()}`);},[search,globalQuery,country,state]);
   const load=useCallback(async()=> {
     if(!db)return;
