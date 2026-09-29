@@ -12,12 +12,16 @@ describe("countStageUsage", () => {
         { stage_id: "research", vendor_id: "vendor-2", meetup_id: "meetup-1" },
         { stage_id: null, vendor_id: "vendor-3", meetup_id: "meetup-1" },
       ],
+      [
+        { stage_id: "research", distributor_id: "di-1", meetup_id: "meetup-1" },
+        { stage_id: "contacted", distributor_id: "di-1", meetup_id: "meetup-2" },
+      ],
     );
 
     expect(usage).toEqual({
-      research: { cards: 2, opportunities: 3 },
-      contacted: { cards: 1, opportunities: 1 },
-      empty: { cards: 0, opportunities: 0 },
+      research: { cards: 3, opportunities: 3, distributors: 1 },
+      contacted: { cards: 2, opportunities: 1, distributors: 1 },
+      empty: { cards: 0, opportunities: 0, distributors: 0 },
     });
   });
 });
