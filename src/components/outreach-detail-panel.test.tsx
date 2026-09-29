@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import { OutreachDetailsPanel } from "./outreach-detail-panel";
 
-const actions = { onClose: vi.fn(), onSelect: vi.fn() };
+const actions = { notes: [], canEdit: true, canManageNote: vi.fn(() => true), onAddNote: vi.fn(), onEditNote: vi.fn(), onDeleteNote: vi.fn(), onClose: vi.fn(), onSelect: vi.fn() };
 
 describe("OutreachDetailsPanel", () => {
   it("shows vendor profile details and linked robots in the panel", () => {
@@ -19,6 +19,8 @@ describe("OutreachDetailsPanel", () => {
     expect(html).toContain('aria-labelledby="outreach-detail-title"');
     expect(html).toContain("Example Robotics");
     expect(html).toContain("Vendor summary");
+    expect(html).toContain("Vendor notes");
+    expect(html).toContain("Add a note");
     expect(html).toContain("Example Bot");
     expect(html).toContain("a@example.com");
     expect(html).toContain("Open full vendor profile");
