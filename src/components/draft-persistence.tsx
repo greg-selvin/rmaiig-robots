@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 type Control = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
 function eligible(control: Control) {
-  return control instanceof HTMLTextAreaElement || control instanceof HTMLInputElement && !["file", "password", "hidden", "checkbox", "radio", "submit", "button"].includes(control.type);
+  return !control.closest("[data-draft-ignore]") && (control instanceof HTMLTextAreaElement || control instanceof HTMLInputElement && !["file", "password", "hidden", "checkbox", "radio", "submit", "button", "search"].includes(control.type));
 }
 
 function signature(control: Control, includeCard = true) {
