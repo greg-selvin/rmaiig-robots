@@ -715,6 +715,7 @@ export type Database = {
           priority_score: number | null
           robot_id: string
           stage_id: string | null
+          stage_name_snapshot: string | null
           under_consideration: boolean
           updated_at: string
           vendor_id: string
@@ -735,6 +736,7 @@ export type Database = {
           priority_score?: number | null
           robot_id: string
           stage_id?: string | null
+          stage_name_snapshot?: string | null
           under_consideration?: boolean
           updated_at?: string
           vendor_id: string
@@ -755,6 +757,7 @@ export type Database = {
           priority_score?: number | null
           robot_id?: string
           stage_id?: string | null
+          stage_name_snapshot?: string | null
           under_consideration?: boolean
           updated_at?: string
           vendor_id?: string
@@ -1636,6 +1639,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      convert_vendor_to_distributor: {
+        Args: { p_company_id: string; p_destination_vendor_id?: string | null }
+        Returns: string
+      }
       move_pipeline_stage: {
         Args: { p_direction: number; p_stage_id: string }
         Returns: undefined
