@@ -44,3 +44,5 @@
 @media(max-width:900px){.shell-nav-collapsed{grid-template-columns:1fr}.shell-nav-collapsed .sidebar{padding:15px}.sidebar-header .brand{margin-bottom:12px}.shell-nav-collapsed .sidebar-header{justify-content:flex-end}}
 
 .outreach-detail-panel .record-notes{padding:16px}.outreach-detail-panel .record-notes .textarea{min-height:180px}
+
+.admin-section{border:1px solid #dce7e6;border-radius:12px;background:#fff;overflow:hidden}.admin-section>summary{display:flex;align-items:center;min-height:52px;padding:12px 16px;cursor:pointer;list-style-position:inside;background:#f7fbfa}.admin-section>summary::marker{color:#0d7565}.admin-section>summary h2{display:inline;margin:0;font-size:16px}.admin-section[open]>summary{border-bottom:1px solid #e7eded}.admin-section-body{padding:12px}.admin-section-body>.card{margin:0;border:0;box-shadow:none;padding:4px 2px}.admin-section-body>.card>h2:first-child{display:none}
