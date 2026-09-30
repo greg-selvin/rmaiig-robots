@@ -13,10 +13,11 @@ function linkedNoteBody(body: string) {
 }
 
 export type NoteDraft = { body: string; interaction_type: RecordNote["interaction_type"]; follow_up_date: string | null };
+export type NoteEmailTemplate = { id: string; name: string; text: string };
 
-export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDelete, invitationEmail }: {
+export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDelete, emailTemplates = [] }: {
   notes: RecordNote[];
-  invitationEmail?: string | null;
+  emailTemplates?: NoteEmailTemplate[];
   canEdit: boolean;
   canManageNote: (note: RecordNote) => boolean;
   onAdd: (note: NoteDraft) => Promise<boolean>;
@@ -32,7 +33,7 @@ export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDe
   const [editFollowUpDate, setEditFollowUpDate] = useState("");
   const [busy, setBusy] = useState(false);
   const [copyStatus, setCopyStatus] = useState("");
-  const [invitationSelected, setInvitationSelected] = useState(false);
+  const [selectedTemplateId, setSelectedTemplateId] = useState("");
   const orderedNotes = newestFirstNotes(notes);
 
   async function addNote(event: FormEvent<HTMLFormElement>) {
@@ -40,7 +41,7 @@ export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDe
     if (!body.trim() || busy) return;
     setBusy(true);
     try {
-      if (await onAdd({ body: body.trim(), interaction_type: interactionType, follow_up_date: followUpDate || null })) { setBody(""); setFollowUpDate(""); setInteractionType("note"); setInvitationSelected(false); }
+      if (await onAdd({ body: body.trim(), interaction_type: interactionType, follow_up_date: followUpDate || null })) { setBody(""); setFollowUpDate(""); setInteractionType("note"); setSelectedTemplateId(""); }
     } finally {
       setBusy(false);
     }
@@ -69,7 +70,8 @@ export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDe
   return <section className="card stack record-notes" aria-labelledby="record-notes-title">
     <h2 id="record-notes-title">Notes</h2>
     {canEdit && <form className="stack" onSubmit={addNote}>
-      <label className="field">Interaction type<select className="select" value={invitationSelected ? "invitation" : interactionType} onChange={event => { const selected = event.target.value; setInvitationSelected(selected === "invitation"); setInteractionType(selected === "invitation" ? "email" : selected as RecordNote["interaction_type"]); if (selected === "invitation" && invitationEmail) setBody(invitationEmail); }}><option value="note">Note</option><option value="email">Email</option><option value="invitation" disabled={!invitationEmail}>Invitation Email</option><option value="call">Call</option><option value="meeting">Meeting</option></select></label>
+      <label className="field">Interaction type<select className="select" value={interactionType} onChange={event => { const selected = event.target.value as RecordNote["interaction_type"]; setInteractionType(selected); if (selected !== "email") setSelectedTemplateId(""); }}><option value="note">Note</option><option value="email">Email</option><option value="call">Call</option><option value="meeting">Meeting</option></select></label>
+      {interactionType === "email" && <label className="field">Email template<select className="select" aria-label="Email template" value={selectedTemplateId} onChange={event => { const templateId = event.target.value; setSelectedTemplateId(templateId); const template = emailTemplates.find(item => item.id === templateId); if (template) setBody(template.text); }}><option value="">Choose email template</option>{emailTemplates.map(template => <option key={template.id} value={template.id}>{template.name}</option>)}</select></label>}
       <div className="record-note-compose-heading"><label className="field" htmlFor="new-record-note">Add a note</label><button className="button" type="button" disabled={!body} onClick={async () => { try { await navigator.clipboard.writeText(body); setCopyStatus("Note copied"); } catch { setCopyStatus("Could not copy note"); } }}>Copy note</button></div>
       <textarea id="new-record-note" className="textarea" value={body} onChange={event => setBody(event.target.value)} required/>
       {copyStatus && <span role="status" className="muted">{copyStatus}</span>}

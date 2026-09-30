@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it, vi } from "vitest";
 import { OutreachDetailsPanel } from "./outreach-detail-panel";
 
-const actions = { notes: [], canEdit: true, canManageNote: vi.fn(() => true), onAddNote: vi.fn(), onEditNote: vi.fn(), onDeleteNote: vi.fn(), onClose: vi.fn(), onSelect: vi.fn() };
+const actions = { notes: [], emailTemplates: [], canEdit: true, canManageNote: vi.fn(() => true), onAddNote: vi.fn(), onEditNote: vi.fn(), onDeleteNote: vi.fn(), onClose: vi.fn(), onSelect: vi.fn() };
 
 describe("OutreachDetailsPanel", () => {
   it("shows vendor profile details and linked robots in the panel", () => {

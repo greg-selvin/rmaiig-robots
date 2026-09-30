@@ -1,4 +1,4 @@
-import { RecordNotes, type NoteDraft } from "@/components/record-notes";
+import { RecordNotes, type NoteDraft, type NoteEmailTemplate } from "@/components/record-notes";
 import type { RecordNote } from "@/lib/record-notes";
 import { countryLabel } from "@/lib/geo-codes";
 
@@ -23,7 +23,7 @@ type Profile = {
 
 type RelatedRecord = { id: string; name?: string | null; vendor_id?: string; robot_id?: string; job_title?: string | null; business_email?: string | null; email_status?: string | null; city?: string | null; region?: string | null; iso_country_code?: string | null; evidence_summary?: string | null; title?: string | null; publisher?: string | null; url?: string | null };
 
-export function OutreachDetailsPanel({ selection, vendor, robot, robots, relatedVendorIds = [], contacts, locations, sources, notes, invitationEmail, canEdit, canManageNote, onAddNote, onEditNote, onDeleteNote, onClose, onSelect }: {
+export function OutreachDetailsPanel({ selection, vendor, robot, robots, relatedVendorIds = [], contacts, locations, sources, notes, emailTemplates, canEdit, canManageNote, onAddNote, onEditNote, onDeleteNote, onClose, onSelect }: {
   selection: OutreachDetailSelection;
   vendor?: Profile;
   robot?: Profile;
@@ -33,7 +33,7 @@ export function OutreachDetailsPanel({ selection, vendor, robot, robots, related
   locations: RelatedRecord[];
   sources: RelatedRecord[];
   notes: RecordNote[];
-  invitationEmail?: string | null;
+  emailTemplates: NoteEmailTemplate[];
   canEdit: boolean;
   canManageNote: (note: RecordNote) => boolean;
   onAddNote: (note: NoteDraft) => Promise<boolean>;
@@ -61,7 +61,7 @@ export function OutreachDetailsPanel({ selection, vendor, robot, robots, related
     </header>
     <div className="stack outreach-detail-content">
       {selection.kind === "vendor" ? <>
-        <RecordNotes key={profile.id} notes={notes} invitationEmail={invitationEmail} canEdit={canEdit} canManageNote={canManageNote} onAdd={onAddNote} onEdit={onEditNote} onDelete={onDeleteNote}/>
+        <RecordNotes key={profile.id} notes={notes} emailTemplates={emailTemplates} canEdit={canEdit} canManageNote={canManageNote} onAdd={onAddNote} onEdit={onEditNote} onDelete={onDeleteNote}/>
         <div className="record-note-meta"><span className="badge">{vendor?.research_status || "Research status unknown"}</span></div>
         <p>{vendor?.description || "No vendor description available."}</p>
         {vendor?.source_row && <p><b>Source row:</b> {vendor.source_row}</p>}
