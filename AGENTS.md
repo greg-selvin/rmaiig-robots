@@ -29,3 +29,11 @@
 - Never copy API keys, service-role keys, tokens, passwords, or other credentials into this file or other tracked files.
 - Read secrets only from approved environment or secret-management integrations, and never print them in command output.
 - Distinguish local source changes, committed changes, deployments, and verified production behavior in status reports.
+
+## Existing working-tree changes
+
+- Before editing, committing, or reviewing changes in this checkout, inspect `git status --short --branch` and compare the current branch and commit with the requested target (such as a reviewed commit or `origin/main`).
+- Preserve every pre-existing modified, staged, and untracked file. Do not reset, clean, stash, overwrite, or include it in a commit unless the user explicitly asks.
+- Treat existing uncommitted changes as unattributed unless repository evidence establishes their source. Do not call them user changes, agent changes, or unrelated work based only on their presence; describe the paths and actual overlap with the task instead.
+- If the checkout is dirty or diverged and the requested work can be isolated, use a separate worktree based on the exact requested commit or branch. If isolation is unavailable, make only narrowly scoped edits after inspecting the affected files and preserve all other changes.
+- In status reports, explain why a dirty or divergent checkout affects the requested work, and distinguish pre-existing changes from changes made during the current task.
