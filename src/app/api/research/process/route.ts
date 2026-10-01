@@ -61,7 +61,7 @@ async function processResearch(request:Request) {
         else await db.from("vendor_locations").insert(locationPayload);
       }
       if(parsed.country_code&&!parsed.locations.some(location=>location.type==="headquarters")){
-        const payload={workspace_id:workspaceId,vendor_id:vendor.id,location_type:"headquarters",country:countryName(parsed.country_code),iso_country_code:countryCode(parsed.country_code),us_state_code:isUsCountry(parsed.country_code)?stateCode(parsed.state_code):null,is_primary:true};
+        const payload={workspace_id:workspaceId,vendor_id:vendor.id,location_type:"headquarters",country:countryName(parsed.country_code),iso_country_code:countryCode(parsed.country_code),us_state_code:isUsCountry(parsed.country_code)?stateCode(parsed.locations.find(location=>location.state_code)?.state_code):null,is_primary:true};
         if(headquarters)await db.from("vendor_locations").update(payload).eq("id",headquarters.id);
         else await db.from("vendor_locations").insert(payload);
       }
