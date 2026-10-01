@@ -37,7 +37,7 @@ begin
   return new;
 end $$;
 
-create trigger seed_robot_company_link after insert on public.robots
+create trigger seed_robot_company_link after insert or update of vendor_id on public.robots
 for each row execute function private.seed_robot_vendor_link();
 
 drop trigger distributor_robot_reference on public.distributor_robot_selections;
