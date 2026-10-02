@@ -21,7 +21,7 @@ export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDe
   canEdit: boolean;
   canManageNote: (note: RecordNote) => boolean;
   onAdd: (note: NoteDraft) => Promise<boolean>;
-  onEdit: (noteId: string, note: NoteDraft) => Promise<boolean>;
+  onEdit: (noteId: string, note: Partial<NoteDraft>) => Promise<boolean>;
   onDelete: (noteId: string) => Promise<boolean>;
 }) {
   const [body, setBody] = useState("");
@@ -72,7 +72,7 @@ export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDe
     if (!note.follow_up_date || busy) return;
     setBusy(true);
     try {
-      await onEdit(note.id, { body: note.body, interaction_type: note.interaction_type, follow_up_date: note.follow_up_date, follow_up_completed: !note.follow_up_completed });
+      await onEdit(note.id, { follow_up_completed: !note.follow_up_completed });
     } finally {
       setBusy(false);
     }
