@@ -49,3 +49,4 @@
 
 .brand-logo{display:block;width:100%;max-width:190px;height:auto;object-fit:contain}
 .auth .brand-logo{max-width:240px}
+.record-note-follow-up-done{display:inline-flex;align-items:center;gap:5px;color:#315d56;cursor:pointer}.record-note-follow-up-done input{margin:0}.board-follow-up-count{align-self:center;white-space:nowrap}

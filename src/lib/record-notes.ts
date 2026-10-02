@@ -6,6 +6,7 @@ export type RecordNote = {
   body: string;
   interaction_type: "note" | "email" | "call" | "meeting";
   follow_up_date: string | null;
+  follow_up_completed?: boolean;
   created_by: string | null;
   author_name: string;
   created_at: string;
