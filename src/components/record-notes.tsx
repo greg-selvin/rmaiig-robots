@@ -27,6 +27,7 @@ export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDe
 }) {
   const [bodyDraft, setBodyDraft] = useState({ recordId, value: "" });
   const body = bodyDraft.recordId === recordId ? bodyDraft.value : "";
+  const noteInputId = recordId ? `new-record-note-${recordId}` : "new-record-note";
   const [interactionType, setInteractionType] = useState<RecordNote["interaction_type"]>("note");
   const [followUpDate, setFollowUpDate] = useState("");
   const [editingId, setEditingId] = useState("");
@@ -98,8 +99,8 @@ export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDe
     {canEdit && <form className="stack" onSubmit={addNote}>
       <label className="field">Interaction type<select className="select" value={interactionType} onChange={event => { const selected = event.target.value as RecordNote["interaction_type"]; setInteractionType(selected); if (selected !== "email") setSelectedTemplateId(""); }}><option value="note">Note</option><option value="email">Email</option><option value="call">Call</option><option value="meeting">Meeting</option></select></label>
       {interactionType === "email" && <label className="field">Email template<select className="select" aria-label="Email template" value={selectedTemplateId} onChange={event => { const templateId = event.target.value; setSelectedTemplateId(templateId); const template = emailTemplates.find(item => item.id === templateId); if (template) setBodyDraft({ recordId, value: template.text }); }}><option value="">Choose email template</option>{emailTemplates.map(template => <option key={template.id} value={template.id}>{template.name}</option>)}</select></label>}
-      <div className="record-note-compose-heading"><label className="field" htmlFor="new-record-note">Add a note</label><button className="button" type="button" disabled={!body} onClick={async () => { try { await navigator.clipboard.writeText(body); setCopyStatus("Note copied"); } catch { setCopyStatus("Could not copy note"); } }}>Copy note</button></div>
-      <textarea key={recordId} id="new-record-note" className="textarea" value={body} onChange={event => setBodyDraft({ recordId, value: event.target.value })} required/>
+      <div className="record-note-compose-heading"><label className="field" htmlFor={noteInputId}>Add a note</label><button className="button" type="button" disabled={!body} onClick={async () => { try { await navigator.clipboard.writeText(body); setCopyStatus("Note copied"); } catch { setCopyStatus("Could not copy note"); } }}>Copy note</button></div>
+      <textarea key={recordId} id={noteInputId} className="textarea" value={body} onChange={event => setBodyDraft({ recordId, value: event.target.value })} required/>
       {copyStatus && <span role="status" className="muted">{copyStatus}</span>}
       <label className="field">Follow-up date<input className="input" type="date" value={followUpDate} onChange={event => setFollowUpDate(event.target.value)}/></label>
       <button className="button primary" disabled={busy || !body.trim()}>Add note</button>
