@@ -1170,6 +1170,16 @@ export type Database = {
           },
         ]
       }
+      robot_company_links: {
+        Row: { created_at: string; robot_id: string; vendor_id: string; workspace_id: string }
+        Insert: { created_at?: string; robot_id: string; vendor_id: string; workspace_id: string }
+        Update: { created_at?: string; robot_id?: string; vendor_id?: string; workspace_id?: string }
+        Relationships: [
+          { foreignKeyName: "robot_company_links_robot_id_fkey"; columns: ["workspace_id", "robot_id"]; isOneToOne: false; referencedRelation: "robots"; referencedColumns: ["workspace_id", "id"] },
+          { foreignKeyName: "robot_company_links_vendor_id_fkey"; columns: ["workspace_id", "vendor_id"]; isOneToOne: false; referencedRelation: "vendors"; referencedColumns: ["workspace_id", "id"] },
+          { foreignKeyName: "robot_company_links_workspace_id_fkey"; columns: ["workspace_id"]; isOneToOne: false; referencedRelation: "workspaces"; referencedColumns: ["id"] },
+        ]
+      }
       robots: {
         Row: {
           commercial_availability: string | null
