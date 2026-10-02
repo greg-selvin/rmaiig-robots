@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { newestFirstNotes, type RecordNote } from "@/lib/record-notes";
 
 function linkedNoteBody(body: string) {
@@ -15,8 +15,9 @@ function linkedNoteBody(body: string) {
 export type NoteDraft = { body: string; interaction_type: RecordNote["interaction_type"]; follow_up_date: string | null; follow_up_completed: boolean };
 export type NoteEmailTemplate = { id: string; name: string; text: string };
 
-export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDelete, emailTemplates = [] }: {
+export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDelete, emailTemplates = [], recordId }: {
   notes: RecordNote[];
+  recordId?: string;
   emailTemplates?: NoteEmailTemplate[];
   canEdit: boolean;
   canManageNote: (note: RecordNote) => boolean;
@@ -36,6 +37,19 @@ export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDe
   const [copyStatus, setCopyStatus] = useState("");
   const [selectedTemplateId, setSelectedTemplateId] = useState("");
   const orderedNotes = newestFirstNotes(notes);
+
+  useEffect(() => {
+    setBody("");
+    setInteractionType("note");
+    setFollowUpDate("");
+    setEditingId("");
+    setEditBody("");
+    setEditInteractionType("note");
+    setEditFollowUpDate("");
+    setEditFollowUpCompleted(false);
+    setCopyStatus("");
+    setSelectedTemplateId("");
+  }, [recordId]);
 
   async function addNote(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
