@@ -61,7 +61,7 @@ export function OutreachDetailsPanel({ selection, vendor, robot, robots, related
     </header>
     <div className="stack outreach-detail-content">
       {selection.kind === "vendor" ? <>
-        <RecordNotes key={profile.id} notes={notes} emailTemplates={emailTemplates} canEdit={canEdit} canManageNote={canManageNote} onAdd={onAddNote} onEdit={onEditNote} onDelete={onDeleteNote}/>
+        <RecordNotes key={profile.id} recordId={profile.id} notes={notes} emailTemplates={emailTemplates} canEdit={canEdit} canManageNote={canManageNote} onAdd={onAddNote} onEdit={onEditNote} onDelete={onDeleteNote}/>
         <div className="record-note-meta"><span className="badge">{vendor?.research_status || "Research status unknown"}</span></div>
         <p>{vendor?.description || "No vendor description available."}</p>
         {vendor?.source_row && <p><b>Source row:</b> {vendor.source_row}</p>}
