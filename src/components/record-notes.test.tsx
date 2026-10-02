@@ -41,6 +41,7 @@ describe("RecordNotes", () => {
     expect(html).toContain("Follow-up date");
     expect(html).toContain("meeting");
     expect(html).toContain("Follow up 2026-02-10");
+    expect(html).toContain('type="checkbox" aria-label="Mark follow-up for 2026-02-10 done"');
     expect(html).toContain("Edit");
     expect(html).toContain("Delete");
   });
@@ -71,5 +72,20 @@ describe("RecordNotes", () => {
 
     expect(html).not.toContain("Edit</button>");
     expect(html).not.toContain("Delete</button>");
+  });
+
+  it("shows completed follow-ups without an editable checkbox when the user cannot save notes", () => {
+    const html = renderToStaticMarkup(createElement(RecordNotes, {
+      notes: [{ ...note("note-1", "Completed follow-up", "2026-02-01T10:00:00.000Z", "Grace Hopper", "note", "2026-02-10"), follow_up_completed: true }],
+      canEdit: false,
+      canManageNote: () => true,
+      onAdd: vi.fn(async () => true),
+      onEdit: vi.fn(async () => true),
+      onDelete: vi.fn(async () => true),
+    }));
+
+    expect(html).toContain("Follow up 2026-02-10");
+    expect(html).toContain("Done");
+    expect(html).not.toContain("type=\"checkbox\"");
   });
 });

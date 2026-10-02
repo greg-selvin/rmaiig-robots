@@ -960,6 +960,7 @@ export type Database = {
           body: string
           created_at: string
           created_by: string | null
+          follow_up_completed: boolean
           follow_up_date: string | null
           id: string
           interaction_type: string
@@ -974,6 +975,7 @@ export type Database = {
           body: string
           created_at?: string
           created_by?: string | null
+          follow_up_completed?: boolean
           follow_up_date?: string | null
           id?: string
           interaction_type?: string
@@ -988,6 +990,7 @@ export type Database = {
           body?: string
           created_at?: string
           created_by?: string | null
+          follow_up_completed?: boolean
           follow_up_date?: string | null
           id?: string
           interaction_type?: string

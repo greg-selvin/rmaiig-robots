@@ -37,7 +37,7 @@ export function OutreachDetailsPanel({ selection, vendor, robot, robots, related
   canEdit: boolean;
   canManageNote: (note: RecordNote) => boolean;
   onAddNote: (note: NoteDraft) => Promise<boolean>;
-  onEditNote: (noteId: string, note: NoteDraft) => Promise<boolean>;
+  onEditNote: (noteId: string, note: Partial<NoteDraft>) => Promise<boolean>;
   onDeleteNote: (noteId: string) => Promise<boolean>;
   onClose: () => void;
   onSelect: (selection: OutreachDetailSelection) => void;
