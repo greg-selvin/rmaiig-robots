@@ -60,3 +60,5 @@
 .kanban-card.selected{outline:3px solid #0d7565;outline-offset:2px;box-shadow:0 0 0 5px #0d75651f,0 8px 22px #183b4230;position:relative;z-index:1}
 
 .organization-directory-controls{align-items:flex-start}.organization-directory-controls>.field{gap:6px;line-height:17px}.organization-directory-controls .input,.organization-directory-controls .select{height:42px}.organization-directory-controls>.button{margin-top:23px;height:42px}.organization-role-badges{display:flex;flex-wrap:wrap;gap:6px}
+
+.sidebar-user-email{margin-top:8px;overflow-wrap:anywhere;color:#e4f0f0}
