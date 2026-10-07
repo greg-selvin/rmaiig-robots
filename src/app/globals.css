@@ -50,3 +50,5 @@
 .auth .brand-logo{max-width:240px}
 .record-note-follow-up-done{display:inline-flex;align-items:center;gap:5px;color:#315d56;cursor:pointer}.record-note-follow-up-done input{margin:0}.board-follow-up-count{align-self:center;white-space:nowrap}
 .kanban-card.selected{outline:3px solid #0d7565;outline-offset:2px;box-shadow:0 0 0 5px #0d75651f,0 8px 22px #183b4230;position:relative;z-index:1}
+
+.organization-directory-controls{align-items:flex-start}.organization-directory-controls>.field{gap:6px;line-height:17px}.organization-directory-controls .input,.organization-directory-controls .select{height:42px}.organization-directory-controls>.button{margin-top:23px;height:42px}.organization-role-badges{display:flex;flex-wrap:wrap;gap:6px}
