@@ -46,8 +46,15 @@ export async function runJsonImport(input:JsonImport,sourceName:string,dryRun:bo
     if(seenVendors.has(key))throw new Error(`Duplicate vendor in file: ${entry.name}`);
     seenVendors.add(key);
     if(match)updatedVendors++;else insertedVendors++;
-    const {contacts:contactEntries=[],locations,vendor_sources:vendorSources,robots:robotEntries,...vendorFields}=entry;
+    const {roles:organizationRoles,contacts:contactEntries=[],locations,vendor_sources:vendorSources,robots:robotEntries,...vendorFields}=entry;
     if(!(locations||[]).some(location=>location.iso_country_code))warnings.push(`${entry.name}: no location has an ISO country code`);
+    if(organizationRoles!==undefined){
+      const {data:catalog,error}=await db.from("ecosystem_roles").select("key");
+      if(error)throw error;
+      const keys=new Set((catalog||[]).map(role=>role.key));
+      if(organizationRoles.some(role=>!keys.has(role)))throw new Error(`${entry.name}: unknown ecosystem role`);
+      if((robotEntries?.length||0)>0&&!organizationRoles.includes("vendor"))throw new Error(`${entry.name}: robot imports require the Vendor role`);
+    }
     const vendorPayload={...defined(vendorFields as Record<string,unknown>),name:entry.name,normalized_name:normalizeName(entry.name),workspace_id:workspace};
     let vendorId=match?.id;
     if(match) {
@@ -59,6 +66,12 @@ export async function runJsonImport(input:JsonImport,sourceName:string,dryRun:bo
       vendorId=data.id;
     }
     if(!vendorId)throw new Error(`${entry.name}: vendor id was not resolved`);
+    if(organizationRoles!==undefined){
+      const {data:organization,error:readError}=await db.from("vendors").select("*").eq("id",vendorId).eq("workspace_id",workspace).single();
+      if(readError||!organization)throw new Error(`${entry.name}: organization not found`);
+      const {error}=await db.rpc("save_organization",{p_workspace_id:workspace,p_organization_id:vendorId,p_name:organization.name,p_normalized_name:organization.normalized_name,p_website_url:organization.website_url,p_description:organization.description,p_organization_type:organization.organization_type,p_roles:organizationRoles});
+      if(error)throw new Error(`${entry.name}: ${error.message}`);
+    }
     for(const contact of contactEntries) {
       contacts++;
       const {id:contactId,...fields}=contact;

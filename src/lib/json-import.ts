@@ -45,6 +45,8 @@ const robotSchema = z.object({
   excitement: z.array(ratingSchema).optional(), participation: z.array(participationSchema).optional(),
 });
 export const vendorImportSchema = z.object({
+  organization_type: z.string().regex(/^[a-z][a-z0-9_]*$/).optional(),
+  roles: z.array(z.string().regex(/^[a-z][a-z0-9_]*$/)).optional(),
   id: z.string().uuid().optional(), name: z.string().trim().min(1), original_source_name: nullableText,
   source_row: z.number().int().positive().nullable().optional(), source_rank: z.number().int().positive().nullable().optional(),
   original_robot_text: nullableText, original_import_data: z.unknown().nullable().optional(),

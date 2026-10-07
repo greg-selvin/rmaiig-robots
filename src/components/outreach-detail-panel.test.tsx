@@ -19,7 +19,7 @@ describe("OutreachDetailsPanel", () => {
     expect(html).toContain('aria-labelledby="outreach-detail-title"');
     expect(html).toContain("Example Robotics");
     expect(html).toContain("Vendor summary");
-    expect(html).toContain("Vendor notes");
+    expect(html).toContain("Organization notes");
     expect(html).toContain("Add a note");
     expect(html).toContain("Example Bot");
     expect(html).toContain("a@example.com");

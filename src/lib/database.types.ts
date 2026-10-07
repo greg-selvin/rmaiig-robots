@@ -456,6 +456,24 @@ export type Database = {
           },
         ]
       }
+      ecosystem_roles: {
+        Row: {
+          key: string
+          label: string
+          position: number
+        }
+        Insert: {
+          key: string
+          label: string
+          position?: number
+        }
+        Update: {
+          key?: string
+          label?: string
+          position?: number
+        }
+        Relationships: []
+      }
       email_templates: {
         Row: {
           body: string
@@ -800,6 +818,64 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      organization_roles: {
+        Row: {
+          organization_id: string
+          role_key: string
+          workspace_id: string
+        }
+        Insert: {
+          organization_id: string
+          role_key: string
+          workspace_id: string
+        }
+        Update: {
+          organization_id?: string
+          role_key?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "organization_roles_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "vendors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "organization_roles_role_key_fkey"
+            columns: ["role_key"]
+            isOneToOne: false
+            referencedRelation: "ecosystem_roles"
+            referencedColumns: ["key"]
+          },
+          {
+            foreignKeyName: "organization_roles_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      organization_types: {
+        Row: {
+          key: string
+          label: string
+          position: number
+        }
+        Insert: {
+          key: string
+          label: string
+          position?: number
+        }
+        Update: {
+          key?: string
+          label?: string
+          position?: number
+        }
+        Relationships: []
       }
       pipeline_stages: {
         Row: {
@@ -1171,13 +1247,46 @@ export type Database = {
         ]
       }
       robot_company_links: {
-        Row: { created_at: string; robot_id: string; vendor_id: string; workspace_id: string }
-        Insert: { created_at?: string; robot_id: string; vendor_id: string; workspace_id: string }
-        Update: { created_at?: string; robot_id?: string; vendor_id?: string; workspace_id?: string }
+        Row: {
+          created_at: string
+          robot_id: string
+          vendor_id: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          robot_id: string
+          vendor_id: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          robot_id?: string
+          vendor_id?: string
+          workspace_id?: string
+        }
         Relationships: [
-          { foreignKeyName: "robot_company_links_robot_id_fkey"; columns: ["workspace_id", "robot_id"]; isOneToOne: false; referencedRelation: "robots"; referencedColumns: ["workspace_id", "id"] },
-          { foreignKeyName: "robot_company_links_vendor_id_fkey"; columns: ["workspace_id", "vendor_id"]; isOneToOne: false; referencedRelation: "vendors"; referencedColumns: ["workspace_id", "id"] },
-          { foreignKeyName: "robot_company_links_workspace_id_fkey"; columns: ["workspace_id"]; isOneToOne: false; referencedRelation: "workspaces"; referencedColumns: ["id"] },
+          {
+            foreignKeyName: "robot_company_links_robot_id_fkey"
+            columns: ["workspace_id", "robot_id"]
+            isOneToOne: false
+            referencedRelation: "robots"
+            referencedColumns: ["workspace_id", "id"]
+          },
+          {
+            foreignKeyName: "robot_company_links_vendor_id_fkey"
+            columns: ["workspace_id", "vendor_id"]
+            isOneToOne: false
+            referencedRelation: "vendors"
+            referencedColumns: ["workspace_id", "id"]
+          },
+          {
+            foreignKeyName: "robot_company_links_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
         ]
       }
       robots: {
@@ -1503,6 +1612,7 @@ export type Database = {
           market_leader: boolean
           name: string
           normalized_name: string
+          organization_type: string
           original_import_data: Json | null
           original_robot_text: string | null
           original_source_name: string | null
@@ -1532,6 +1642,7 @@ export type Database = {
           market_leader?: boolean
           name: string
           normalized_name: string
+          organization_type?: string
           original_import_data?: Json | null
           original_robot_text?: string | null
           original_source_name?: string | null
@@ -1561,6 +1672,7 @@ export type Database = {
           market_leader?: boolean
           name?: string
           normalized_name?: string
+          organization_type?: string
           original_import_data?: Json | null
           original_robot_text?: string | null
           original_source_name?: string | null
@@ -1579,6 +1691,13 @@ export type Database = {
           workspace_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "vendors_organization_type_fkey"
+            columns: ["organization_type"]
+            isOneToOne: false
+            referencedRelation: "organization_types"
+            referencedColumns: ["key"]
+          },
           {
             foreignKeyName: "vendors_workspace_id_fkey"
             columns: ["workspace_id"]
@@ -1667,6 +1786,19 @@ export type Database = {
       review_access_request: {
         Args: { p_decision: string; p_request_id: string; p_reviewer: string }
         Returns: undefined
+      }
+      save_organization: {
+        Args: {
+          p_description: string | null
+          p_name: string
+          p_normalized_name: string
+          p_organization_id: string | null
+          p_organization_type: string
+          p_roles: string[]
+          p_website_url: string | null
+          p_workspace_id: string
+        }
+        Returns: string
       }
     }
     Enums: {

@@ -12,6 +12,13 @@ describe("versioned JSON imports", () => {
     expect(parseJsonImport(minimal()).vendors[0].contacts).toBeUndefined();
   });
 
+  it("accepts one organization type and multiple or zero roles", () => {
+    expect(parseJsonImport(minimal({organization_type:"university",roles:["research_partner","customer","sponsor"]})).vendors[0].roles).toHaveLength(3);
+    expect(parseJsonImport(minimal({roles:[]})).vendors[0].roles).toEqual([]);
+    expect(parseJsonImport(minimal()).vendors[0].roles).toBeUndefined();
+    expect(() => parseJsonImport(minimal({organization_type:["company","university"]}))).toThrow();
+  });
+
   it("normalizes location country codes and rejects unknown codes", () => {
     expect(parseJsonImport(minimal({ locations: [{ location_type: "headquarters", iso_country_code: "US" }] })).vendors[0].locations?.[0].iso_country_code).toBe("USA");
     expect(() => parseJsonImport(minimal({ locations: [{ iso_country_code: "ZZZ" }] }))).toThrow(/known ISO/);

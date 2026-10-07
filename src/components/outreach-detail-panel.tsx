@@ -1,3 +1,6 @@
+import { OrganizationBadges } from "@/components/organization-classification";
+import type { ClassificationOption } from "@/lib/organizations";
+import { usesDeploymentOutreach } from "@/lib/organizations";
 import { RecordNotes, type NoteDraft, type NoteEmailTemplate } from "@/components/record-notes";
 import type { RecordNote } from "@/lib/record-notes";
 import { countryLabel } from "@/lib/geo-codes";
@@ -8,7 +11,7 @@ type Profile = {
   id: string;
   name?: string;
   vendor_id?: string;
-  entity_type?: string;
+  roles?: string[]; organization_type?: string; entity_type?: string;
   research_status?: string;
   description?: string | null;
   website_url?: string | null;
@@ -23,7 +26,9 @@ type Profile = {
 
 type RelatedRecord = { id: string; name?: string | null; vendor_id?: string; robot_id?: string; job_title?: string | null; business_email?: string | null; email_status?: string | null; city?: string | null; region?: string | null; iso_country_code?: string | null; evidence_summary?: string | null; title?: string | null; publisher?: string | null; url?: string | null };
 
-export function OutreachDetailsPanel({ selection, vendor, robot, robots, relatedVendorIds = [], contacts, locations, sources, notes, emailTemplates, canEdit, canManageNote, onAddNote, onEditNote, onDeleteNote, onClose, onSelect }: {
+export function OutreachDetailsPanel({ organizationTypes = [], roleOptions = [], selection, vendor, robot, robots, relatedVendorIds = [], contacts, locations, sources, notes, emailTemplates, canEdit, canManageNote, onAddNote, onEditNote, onDeleteNote, onClose, onSelect }: {
+  organizationTypes?: ClassificationOption[];
+  roleOptions?: ClassificationOption[];
   selection: OutreachDetailSelection;
   vendor?: Profile;
   robot?: Profile;
@@ -54,13 +59,14 @@ export function OutreachDetailsPanel({ selection, vendor, robot, robots, related
   return <aside className="outreach-detail-panel" aria-labelledby="outreach-detail-title">
     <header className="outreach-detail-header">
       <div>
-        <span className="eyebrow">{selection.kind === "vendor" ? vendor?.entity_type === "distributor_integrator" ? "DI notes" : "Vendor notes" : "Robot details"}</span>
-        <h2 id="outreach-detail-title">{profile.name || (selection.kind === "vendor" ? "Unnamed company" : "Unnamed robot")}{selection.kind === "vendor" && <a className="outreach-header-profile" href={`/?view=${vendor?.entity_type === "distributor_integrator" ? "distributor" : "vendor"}&id=${encodeURIComponent(profile.id)}`} aria-label={`Open full profile for ${profile.name || "Unnamed company"}`} title="Open full profile">↗</a>}</h2>
+        <span className="eyebrow">{selection.kind === "vendor" ? usesDeploymentOutreach(vendor) ? "DI notes" : "Organization notes" : "Robot details"}</span>
+        <h2 id="outreach-detail-title">{profile.name || (selection.kind === "vendor" ? "Unnamed company" : "Unnamed robot")}{selection.kind === "vendor" && <a className="outreach-header-profile" href={`/?view=${usesDeploymentOutreach(vendor) ? "distributor" : "vendor"}&id=${encodeURIComponent(profile.id)}`} aria-label={`Open full profile for ${profile.name || "Unnamed company"}`} title="Open full profile">↗</a>}</h2>
       </div>
       <button className="button" type="button" aria-label="Close details panel" onClick={onClose}>Close</button>
     </header>
     <div className="stack outreach-detail-content">
       {selection.kind === "vendor" ? <>
+        <OrganizationBadges organization={profile} types={organizationTypes} roleOptions={roleOptions}/>
         <RecordNotes key={profile.id} recordId={profile.id} notes={notes} emailTemplates={emailTemplates} canEdit={canEdit} canManageNote={canManageNote} onAdd={onAddNote} onEdit={onEditNote} onDelete={onDeleteNote}/>
         <div className="record-note-meta"><span className="badge">{vendor?.research_status || "Research status unknown"}</span></div>
         <p>{vendor?.description || "No vendor description available."}</p>
@@ -80,7 +86,7 @@ export function OutreachDetailsPanel({ selection, vendor, robot, robots, related
       {relatedContacts.length > 0 && <section className="stack"><h3>Contacts</h3>{relatedContacts.map(item => <p key={item.id}><b>{item.name || "General contact"}</b>{item.job_title && <><br/>{item.job_title}</>}{item.business_email && <><br/><a className="link" href={`mailto:${item.business_email}`}>{item.business_email}</a></>}</p>)}</section>}
       {relatedSources.length > 0 && <section className="stack"><h3>Research sources</h3>{relatedSources.map(item => <p key={item.id}>{item.url ? <a className="link" href={item.url} target="_blank" rel="noreferrer">{item.title || item.publisher || item.url} ↗</a> : item.title || item.publisher}{item.evidence_summary && <><br/><span className="muted">{item.evidence_summary}</span></>}</p>)}</section>}
       {selection.kind === "robot" && relatedRobots.length > 1 && <section className="stack"><h3>Other robots from {vendorName}</h3>{relatedRobots.filter(item => item.id !== robot?.id).map(item => <button className="outreach-detail-link" type="button" key={item.id} onClick={() => onSelect({ kind: "robot", id: item.id })}>{item.name || "Unnamed robot"}</button>)}</section>}
-      <a className="button outreach-open-profile" href={`/?view=${selection.kind === "vendor" && vendor?.entity_type === "distributor_integrator" ? "distributor" : selection.kind}&id=${encodeURIComponent(profile.id)}`}>Open full {vendor?.entity_type === "distributor_integrator" && selection.kind === "vendor" ? "DI" : selection.kind} profile</a>
+      <a className="button outreach-open-profile" href={`/?view=${selection.kind === "vendor" && usesDeploymentOutreach(vendor) ? "distributor" : selection.kind}&id=${encodeURIComponent(profile.id)}`}>Open full {usesDeploymentOutreach(vendor) && selection.kind === "vendor" ? "DI" : selection.kind} profile</a>
     </div>
   </aside>;
 }
