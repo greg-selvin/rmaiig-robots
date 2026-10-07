@@ -49,7 +49,7 @@ const emptyData: Data = { organizationTypes: [], roleOptions: [], organizationRo
 const nav: { key: Page; label: string }[] = [
   { key: "board", label: "Outreach board" },
   { key: "rankings", label: "Rankings" },
-  { key: "vendors", label: "Organizations" }, { key: "distributors", label: "Distributors / Integrators" }, { key: "robots", label: "Robots" },
+  { key: "vendors", label: "Organizations" }, { key: "robots", label: "Robots" },
   { key: "research", label: "Research queue" },
   { key: "dashboard", label: "Dashboard" },
   { key: "settings", label: "Administration" },
