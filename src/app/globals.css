@@ -62,3 +62,5 @@
 .organization-directory-controls{align-items:flex-start}.organization-directory-controls>.field{gap:6px;line-height:17px}.organization-directory-controls .input,.organization-directory-controls .select{height:42px}.organization-directory-controls>.button{margin-top:23px;height:42px}.organization-role-badges{display:flex;flex-wrap:wrap;gap:6px}
 
 .sidebar-user-email{margin-top:8px;overflow-wrap:anywhere;color:#e4f0f0}
+
+.sidebar-foot>.button+.button{margin-left:8px}
