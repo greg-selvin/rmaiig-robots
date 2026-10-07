@@ -1,4 +1,4 @@
-import { hasOutreachFilters } from "./outreach-board";
+import { hasOutreachFilters, usesOrganizationOutreachRecord } from "./outreach-board";
 import { describe, expect, it } from "vitest";
 import { clampOutreachPanelWidth, groupVendorOutreach, vendorDetailsSelection } from "./outreach-board";
 
@@ -36,5 +36,18 @@ describe("active Outreach filters", () => {
   });
   it("does not treat sort order or cleared filters as active filters", () => {
     expect(hasOutreachFilters({board_organization_type:"",board_organization_role:"",board_sort:"manual"})).toBe(false);
+  });
+});
+
+describe("organization Outreach eligibility", () => {
+  it("retains Customer and role-free records after classification changes", () => {
+    expect(usesOrganizationOutreachRecord({organization_type:"government_agency",roles:["customer"]},true,false)).toBe(true);
+    expect(usesOrganizationOutreachRecord({roles:[]},true,false)).toBe(true);
+    expect(usesOrganizationOutreachRecord({roles:["customer"]},false,false)).toBe(false);
+  });
+  it("keeps Vendors with robot Outreach on their existing card path", () => {
+    expect(usesOrganizationOutreachRecord({roles:["vendor","integrator"]},true,true)).toBe(false);
+    expect(usesOrganizationOutreachRecord({roles:["vendor"]},true,false)).toBe(true);
+    expect(usesOrganizationOutreachRecord({roles:["integrator"]},true,false)).toBe(true);
   });
 });

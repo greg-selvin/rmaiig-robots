@@ -1,3 +1,4 @@
+import { hasOrganizationRole, type OrganizationClassification } from "./organizations";
 export type OutreachStage = { id: string; position: number };
 export type OutreachNote = { vendor_id: string | null; follow_up_date: string | null; follow_up_completed?: boolean };
 
@@ -23,4 +24,8 @@ export function groupVendorOutreach<T extends { id: string; vendor_id: string; s
 
 export function hasOutreachFilters(filters: Record<string, string>) {
   return Object.entries(filters).some(([key, value]) => key !== "board_sort" && Boolean(value));
+}
+
+export function usesOrganizationOutreachRecord(organization: OrganizationClassification | undefined, hasOrganizationRecord: boolean, hasRobotOutreach: boolean) {
+  return hasOrganizationRecord && (!hasOrganizationRole(organization, "vendor") || !hasRobotOutreach);
 }
