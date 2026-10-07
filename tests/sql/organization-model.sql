@@ -6,6 +6,8 @@ workspace uuid='c02ee290-4f87-4d1f-98c1-24c502126086';
 legacy_vendor uuid='00000000-0000-0000-0000-000000000010';
 legacy_di uuid='00000000-0000-0000-0000-000000000020';
 begin
+  if (select organization_type from public.vendors where id='00000000-0000-0000-0000-000000000040')<>'government_agency' then raise exception 'Government identity backfill failed'; end if;
+  if (select organization_type from public.vendors where id='00000000-0000-0000-0000-000000000050')<>'university' then raise exception 'University identity backfill failed'; end if;
   if (select organization_type from public.vendors where id=legacy_vendor)<>'company' then raise exception 'Vendor type backfill failed'; end if;
   if not exists(select 1 from public.organization_roles where organization_id=legacy_vendor and role_key='vendor') then raise exception 'Vendor role backfill failed'; end if;
   if (select count(*) from public.organization_roles where organization_id=legacy_di and role_key in ('distributor','integrator'))<>2 then raise exception 'Combined DI backfill failed'; end if;
