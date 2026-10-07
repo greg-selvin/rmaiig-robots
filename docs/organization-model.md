@@ -31,6 +31,7 @@ Run `pnpm test:organizations:db` with Docker available. This replays all migrati
 - `src/components/robot-profile-identity.tsx`: organization labels and role-based profile links.
 - `src/app/globals.css`: Outreach workflow color selectors and removal of obsolete exclusive-type styling.
 - `src/lib/organizations.ts` and `src/lib/organizations.test.ts`: classification domain helpers, legacy fallback, and identity/role filtering tests.
+- `src/lib/outreach-board.ts` and `src/lib/outreach-board.test.ts`: active-filter detection includes new organization type/role filters and excludes sort order.
 - `src/lib/database.types.ts`: regenerated table/relationship/RPC types, with nullable RPC inputs reflecting PostgreSQL behavior.
 - `src/lib/json-import.ts`, `src/lib/json-import.test.ts`, and `src/lib/import-runner.ts`: explicit identity and roles in JSON imports, validation, and role writes.
 - `src/app/api/research/process/route.ts`: research describes an organization rather than assuming every record is a manufacturer.

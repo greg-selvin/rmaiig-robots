@@ -20,3 +20,7 @@ export function groupVendorOutreach<T extends { id: string; vendor_id: string; s
     notes: notes.filter(note => note.vendor_id === vendorId),
   }));
 }
+
+export function hasOutreachFilters(filters: Record<string, string>) {
+  return Object.entries(filters).some(([key, value]) => key !== "board_sort" && Boolean(value));
+}

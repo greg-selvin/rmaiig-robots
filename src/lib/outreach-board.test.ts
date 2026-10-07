@@ -1,3 +1,4 @@
+import { hasOutreachFilters } from "./outreach-board";
 import { describe, expect, it } from "vitest";
 import { clampOutreachPanelWidth, groupVendorOutreach, vendorDetailsSelection } from "./outreach-board";
 
@@ -25,5 +26,15 @@ describe("groupVendorOutreach", () => {
     expect(clampOutreachPanelWidth(200)).toBe(280);
     expect(clampOutreachPanelWidth(420)).toBe(420);
     expect(clampOutreachPanelWidth(800)).toBe(640);
+  });
+});
+
+describe("active Outreach filters", () => {
+  it("enables clearing when only identity or role is selected", () => {
+    expect(hasOutreachFilters({board_organization_type:"university",board_sort:"priority"})).toBe(true);
+    expect(hasOutreachFilters({board_organization_role:"integrator",board_sort:"priority"})).toBe(true);
+  });
+  it("does not treat sort order or cleared filters as active filters", () => {
+    expect(hasOutreachFilters({board_organization_type:"",board_organization_role:"",board_sort:"manual"})).toBe(false);
   });
 });

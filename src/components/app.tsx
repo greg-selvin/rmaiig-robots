@@ -18,7 +18,7 @@ import { ScoreAccordion } from "@/components/score-accordion";
 import { resetRankingsFilters } from "@/lib/rankings-filters";
 import { sortDirectoryRows, type SortDirection } from "@/lib/directory-sort";
 import { sortRankedOpportunities, type RankingSortField } from "@/lib/rankings-sort";
-import { clampOutreachPanelWidth, groupVendorOutreach, vendorDetailsSelection } from "@/lib/outreach-board";
+import { clampOutreachPanelWidth, groupVendorOutreach, vendorDetailsSelection, hasOutreachFilters } from "@/lib/outreach-board";
 import { countStageUsage } from "@/lib/pipeline-stages";
 import { VendorLocations } from "@/components/vendor-locations";
 import { VendorContacts } from "@/components/vendor-contacts";
@@ -416,7 +416,7 @@ function Board({userId,data,ranked,meetupId,setMeetupId,boardFilters,setBoardFil
   function dragEnd(event:DragEndEvent){const target=dropTarget;setDropTarget(null);setDraggedId(null);if(!canEdit||!target)return;const vendorId=String(event.active.id);const order=vendorCards.filter(card=>card.stage?.id===target.stageId&&card.id!==vendorId).map(card=>card.id);order.splice(target.index,0,vendorId);const active=vendorCards.find(card=>card.id===vendorId);if(!active||active.stage?.id===target.stageId&&vendorCards.filter(card=>card.stage?.id===target.stageId).map(card=>card.id).join("|")===order.join("|"))return;updateBoardFilter("board_sort","manual");onMove(vendorId,target.stageId,order);}
   const countries=[...new Set(data.locations.map(l=>l.iso_country_code).filter(Boolean))].sort();
   const states=[...new Set(data.locations.filter(l=>l.iso_country_code==="USA").map(l=>l.us_state_code||"Unknown"))].sort();
-  const hasBoardFilters=Boolean(boardSearch||owner||vendor||companyType||minPriority||country||state||due||marketLeader||robotCount||eligibleRobot);
+  const hasBoardFilters=hasOutreachFilters(boardFilters);
   const robotCountOptions=[...new Set(data.vendors.map(item=>data.robots.filter(robot=>(robot.vendor_ids||[robot.vendor_id]).includes(item.id)).length).filter(count=>count>0&&count<6))].sort((a,b)=>a-b);
 
   const selectedVendor=detailSelection?.kind==="vendor"?data.vendors.find(item=>item.id===detailSelection.id):data.vendors.find(item=>item.id===data.robots.find(robot=>robot.id===detailSelection?.id)?.vendor_id);
