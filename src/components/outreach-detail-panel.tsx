@@ -69,11 +69,11 @@ export function OutreachDetailsPanel({ organizationTypes = [], roleOptions = [],
         <OrganizationBadges organization={profile} types={organizationTypes} roleOptions={roleOptions}/>
         <RecordNotes key={profile.id} recordId={profile.id} notes={notes} emailTemplates={emailTemplates} canEdit={canEdit} canManageNote={canManageNote} onAdd={onAddNote} onEdit={onEditNote} onDelete={onDeleteNote}/>
         <div className="record-note-meta"><span className="badge">{vendor?.research_status || "Research status unknown"}</span></div>
-        <p>{vendor?.description || "No vendor description available."}</p>
+        <p>{vendor?.description || "No organization description available."}</p>
         {vendor?.source_row && <p><b>Source row:</b> {vendor.source_row}</p>}
         {vendor?.original_robot_text && <p><b>Original robot text:</b> {vendor.original_robot_text}</p>}
         {vendor?.website_url && <a className="link" href={vendor.website_url} target="_blank" rel="noreferrer">Official website ↗</a>}
-        <section className="stack"><h3>Robots</h3>{relatedRobots.length ? relatedRobots.map(item => <button className="outreach-detail-link" type="button" key={item.id} onClick={() => onSelect({ kind: "robot", id: item.id })}>{item.name || "Unnamed robot"}</button>) : <p className="muted">No robots listed for this vendor.</p>}</section>
+        <section className="stack"><h3>Robots</h3>{relatedRobots.length ? relatedRobots.map(item => <button className="outreach-detail-link" type="button" key={item.id} onClick={() => onSelect({ kind: "robot", id: item.id })}>{item.name || "Unnamed robot"}</button>) : <p className="muted">No robots listed for this organization.</p>}</section>
       </> : <>
         <div className="record-note-meta"><span className="badge">{robot?.research_status || "Research status unknown"}</span><button className="outreach-detail-link" type="button" onClick={() => robot?.vendor_id && onSelect({ kind: "vendor", id: robot.vendor_id })}>{vendorName}</button></div>
         <p>{robot?.description || "No robot description available."}</p>
