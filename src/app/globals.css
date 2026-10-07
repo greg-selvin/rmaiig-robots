@@ -63,4 +63,4 @@
 
 .sidebar-user-email{margin-top:8px;overflow-wrap:anywhere;color:#e4f0f0}
 
-.sidebar-foot>.button+.button{margin-left:8px}
+.sidebar-foot>.button{padding-inline:9px}.sidebar-foot>.button+.button{margin-left:8px}
