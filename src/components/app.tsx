@@ -137,7 +137,7 @@ export default function App() {
   async function saveOrganization(companyId:string,values:Item):Promise<boolean>{
     if(!db||!canEdit)return false;
     setError("");
-    const {error}=await db.rpc("save_organization",{p_workspace_id:workspaceId,p_organization_id:companyId,p_name:values.name,p_normalized_name:normalizeName(values.name),p_website_url:values.website_url,p_description:values.description,p_organization_type:values.organization_type,p_roles:values.roles});
+    const {error}=await db.rpc("save_organization",{p_workspace_id:workspaceId,p_organization_id:companyId,p_linkedin_url:values.linkedin_url,p_name:values.name,p_normalized_name:normalizeName(values.name),p_website_url:values.website_url,p_description:values.description,p_organization_type:values.organization_type,p_roles:values.roles});
     if(error){setError(error.message);return false;}
     await load();setNotice("Organization saved");return true;
   }

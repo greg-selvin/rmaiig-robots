@@ -1627,6 +1627,7 @@ export type Database = {
           units_shipped: number | null
           updated_at: string
           valuation: number | null
+          linkedin_url: string | null
           website_url: string | null
           workspace_id: string
         }
@@ -1657,6 +1658,7 @@ export type Database = {
           units_shipped?: number | null
           updated_at?: string
           valuation?: number | null
+          linkedin_url?: string | null
           website_url?: string | null
           workspace_id: string
         }
@@ -1687,6 +1689,7 @@ export type Database = {
           units_shipped?: number | null
           updated_at?: string
           valuation?: number | null
+          linkedin_url?: string | null
           website_url?: string | null
           workspace_id?: string
         }
@@ -1795,6 +1798,7 @@ export type Database = {
           p_organization_id: string | null
           p_organization_type: string
           p_roles: string[]
+          p_linkedin_url?: string | null
           p_website_url: string | null
           p_workspace_id: string
         }

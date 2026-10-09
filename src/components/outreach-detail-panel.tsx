@@ -15,6 +15,7 @@ type Profile = {
   research_status?: string;
   description?: string | null;
   website_url?: string | null;
+  linkedin_url?: string | null;
   product_url?: string | null;
   mobility?: string | null;
   manipulation?: string | null;
@@ -73,6 +74,7 @@ export function OutreachDetailsPanel({ organizationTypes = [], roleOptions = [],
         {vendor?.source_row && <p><b>Source row:</b> {vendor.source_row}</p>}
         {vendor?.original_robot_text && <p><b>Original robot text:</b> {vendor.original_robot_text}</p>}
         {vendor?.website_url && <a className="link" href={vendor.website_url} target="_blank" rel="noreferrer">Official website ↗</a>}
+        {vendor?.linkedin_url && <a className="link" href={vendor.linkedin_url} target="_blank" rel="noreferrer">LinkedIn Page ↗</a>}
         <section className="stack"><h3>Robots</h3>{relatedRobots.length ? relatedRobots.map(item => <button className="outreach-detail-link" type="button" key={item.id} onClick={() => onSelect({ kind: "robot", id: item.id })}>{item.name || "Unnamed robot"}</button>) : <p className="muted">No robots listed for this organization.</p>}</section>
       </> : <>
         <div className="record-note-meta"><span className="badge">{robot?.research_status || "Research status unknown"}</span><button className="outreach-detail-link" type="button" onClick={() => robot?.vendor_id && onSelect({ kind: "vendor", id: robot.vendor_id })}>{vendorName}</button></div>
