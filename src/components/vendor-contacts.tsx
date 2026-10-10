@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 
 type Contact = {
   id: string;
+  preferred?: boolean;
   name: string | null;
   job_title: string | null;
   department: string | null;
@@ -32,6 +33,18 @@ export function VendorContacts({ contacts, canEdit, onSave, onDelete }: Props) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
+  async function designate(contact: Contact) {
+    setBusy(true);
+    setError("");
+    try {
+      await onSave({ id: contact.id, preferred: !contact.preferred });
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "Could not save primary contact");
+    } finally {
+      setBusy(false);
+    }
+  }
+
   async function remove(contactId: string) {
     setBusy(true);
     setError("");
@@ -53,6 +66,8 @@ export function VendorContacts({ contacts, canEdit, onSave, onDelete }: Props) {
     {editing === "new" && <ContactForm key="new" onSave={onSave} onClose={() => setEditing(null)} onBusy={setBusy}/>}
     {contacts.length ? <ul className="contact-list">{contacts.map(contact => <li key={contact.id} className="contact-card">
       <div className="contact-card-summary">
+        {contact.preferred && <span className="badge">Primary contact</span>}
+        {canEdit && <button className="button" disabled={busy} type="button" aria-label={`${contact.preferred ? "Clear primary contact" : "Make primary contact"}: ${contact.name || contact.business_email || "General contact"}`} onClick={() => void designate(contact)}>{contact.preferred ? "Clear primary contact" : "Make primary contact"}</button>}
         <button className="contact-card-toggle" type="button" aria-expanded={open === contact.id} onClick={() => setOpen(open === contact.id ? null : contact.id)}>
           <span><strong>{contact.name || contact.department || contact.business_email || "General contact"}</strong><small>{[contact.contact_type, contact.job_title].filter(Boolean).join(" · ") || "Contact details"}</small></span><span aria-hidden="true">{open === contact.id ? "−" : "+"}</span>
         </button>

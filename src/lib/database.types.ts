@@ -1774,6 +1774,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      set_primary_contact: {
+        Args: { p_vendor_id: string; p_contact_id: string | null }
+        Returns: undefined
+      }
       convert_vendor_to_distributor: {
         Args: { p_company_id: string; p_destination_vendor_id?: string | null }
         Returns: string

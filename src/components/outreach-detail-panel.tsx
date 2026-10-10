@@ -25,7 +25,7 @@ type Profile = {
   source_row?: string | null;
 };
 
-type RelatedRecord = { id: string; name?: string | null; vendor_id?: string; robot_id?: string; job_title?: string | null; business_email?: string | null; email_status?: string | null; city?: string | null; region?: string | null; iso_country_code?: string | null; evidence_summary?: string | null; title?: string | null; publisher?: string | null; url?: string | null };
+type RelatedRecord = { id: string; preferred?: boolean; name?: string | null; vendor_id?: string; robot_id?: string; job_title?: string | null; business_email?: string | null; email_status?: string | null; city?: string | null; region?: string | null; iso_country_code?: string | null; evidence_summary?: string | null; title?: string | null; publisher?: string | null; url?: string | null };
 
 export function OutreachDetailsPanel({ organizationTypes = [], roleOptions = [], selection, vendor, robot, robots, relatedVendorIds = [], contacts, locations, sources, notes, emailTemplates, canEdit, canManageNote, onAddNote, onEditNote, onDeleteNote, onClose, onSelect }: {
   organizationTypes?: ClassificationOption[];
@@ -54,6 +54,7 @@ export function OutreachDetailsPanel({ organizationTypes = [], roleOptions = [],
   const vendorId = selection.kind === "vendor" ? profile.id : robot?.vendor_id;
   const relatedRobots = robots.filter(item => item.vendor_id === vendorId || selection.kind === "vendor" && relatedVendorIds.includes(item.vendor_id || ""));
   const relatedContacts = contacts.filter(item => item.vendor_id === vendorId);
+  const primaryContact = relatedContacts.find(contact => contact.preferred);
   const relatedLocations = locations.filter(item => item.vendor_id === vendorId);
   const relatedSources = sources.filter(item => selection.kind === "vendor" ? item.vendor_id === profile.id : item.robot_id === robot?.id);
 
@@ -62,13 +63,14 @@ export function OutreachDetailsPanel({ organizationTypes = [], roleOptions = [],
       <div>
         <span className="eyebrow">{selection.kind === "vendor" ? usesDeploymentOutreach(vendor) ? "DI notes" : "Organization notes" : "Robot details"}</span>
         <h2 id="outreach-detail-title">{profile.name || (selection.kind === "vendor" ? "Unnamed company" : "Unnamed robot")}{selection.kind === "vendor" && <a className="outreach-header-profile" href={`/?view=${usesDeploymentOutreach(vendor) ? "distributor" : "vendor"}&id=${encodeURIComponent(profile.id)}`} aria-label={`Open full profile for ${profile.name || "Unnamed company"}`} title="Open full profile">↗</a>}</h2>
+        {selection.kind === "vendor" && <p className="muted">Primary contact: {primaryContact ? primaryContact.name || primaryContact.business_email || "General contact" : "Not designated"}{primaryContact?.name && primaryContact.business_email && <><br/>{primaryContact.business_email}</>}</p>}
       </div>
       <button className="button" type="button" aria-label="Close details panel" onClick={onClose}>Close</button>
     </header>
     <div className="stack outreach-detail-content">
       {selection.kind === "vendor" ? <>
         <OrganizationBadges organization={profile} types={organizationTypes} roleOptions={roleOptions}/>
-        <RecordNotes key={profile.id} recordId={profile.id} notes={notes} emailTemplates={emailTemplates} canEdit={canEdit} canManageNote={canManageNote} onAdd={onAddNote} onEdit={onEditNote} onDelete={onDeleteNote}/>
+        <RecordNotes key={profile.id} recordId={profile.id} primaryContact={primaryContact} notes={notes} emailTemplates={emailTemplates} canEdit={canEdit} canManageNote={canManageNote} onAdd={onAddNote} onEdit={onEditNote} onDelete={onDeleteNote}/>
         <div className="record-note-meta"><span className="badge">{vendor?.research_status || "Research status unknown"}</span></div>
         <p>{vendor?.description || "No organization description available."}</p>
         {vendor?.source_row && <p><b>Source row:</b> {vendor.source_row}</p>}

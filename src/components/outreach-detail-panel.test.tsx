@@ -28,6 +28,25 @@ describe("OutreachDetailsPanel", () => {
     expect(html).toContain("/?view=vendor&amp;id=vendor-1");
   });
 
+  it("places the designated contact beneath the organization name and ignores other organizations", () => {
+    const html = renderToStaticMarkup(createElement(OutreachDetailsPanel, {
+      selection: { kind: "vendor", id: "vendor-1" },
+      vendor: { id: "vendor-1", name: "Example Robotics" },
+      robots: [], locations: [], sources: [],
+      contacts: [
+        { id: "other", vendor_id: "vendor-2", preferred: true, name: "Other contact" },
+        { id: "secondary", vendor_id: "vendor-1", name: "Secondary contact" },
+        { id: "primary", vendor_id: "vendor-1", preferred: true, name: "Primary Person", business_email: "primary@example.com" },
+      ],
+      ...actions,
+    }));
+    const header = html.slice(html.indexOf("<header"), html.indexOf("</header>"));
+    expect(header).toContain("Primary contact: Primary Person");
+    expect(header).toContain("primary@example.com");
+    expect(header).not.toContain("Secondary contact");
+    expect(header).not.toContain("Other contact");
+  });
+
   it("shows robot details and its vendor", () => {
     const html = renderToStaticMarkup(createElement(OutreachDetailsPanel, {
       selection: { kind: "robot", id: "robot-1" },

@@ -15,8 +15,9 @@ function linkedNoteBody(body: string) {
 export type NoteDraft = { body: string; interaction_type: RecordNote["interaction_type"]; follow_up_date: string | null; follow_up_completed: boolean };
 export type NoteEmailTemplate = { id: string; name: string; text: string };
 
-export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDelete, emailTemplates = [], recordId }: {
+export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDelete, emailTemplates = [], recordId, primaryContact }: {
   notes: RecordNote[];
+  primaryContact?: { name?: string | null; business_email?: string | null };
   recordId?: string;
   emailTemplates?: NoteEmailTemplate[];
   canEdit: boolean;
@@ -28,6 +29,8 @@ export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDe
   const [bodyDraft, setBodyDraft] = useState({ recordId, value: "" });
   const body = bodyDraft.recordId === recordId ? bodyDraft.value : "";
   const noteInputId = recordId ? `new-record-note-${recordId}` : "new-record-note";
+  const [emailRecipients, setEmailRecipients] = useState<string[]>([]);
+  const noteBody = [body.trim(), emailRecipients.length ? `Email sent to: ${emailRecipients.join(", ")}` : ""].filter(Boolean).join("\n\n");
   const [interactionType, setInteractionType] = useState<RecordNote["interaction_type"]>("note");
   const [followUpDate, setFollowUpDate] = useState("");
   const [editingId, setEditingId] = useState("");
@@ -39,9 +42,11 @@ export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDe
   const [copyStatus, setCopyStatus] = useState("");
   const [selectedTemplateId, setSelectedTemplateId] = useState("");
   const orderedNotes = newestFirstNotes(notes);
+  const primaryEmail = primaryContact?.business_email?.trim();
 
   useEffect(() => {
     setBodyDraft({ recordId, value: "" });
+    setEmailRecipients([]);
     setInteractionType("note");
     setFollowUpDate("");
     setEditingId("");
@@ -55,10 +60,10 @@ export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDe
 
   async function addNote(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!body.trim() || busy) return;
+    if (!noteBody || busy) return;
     setBusy(true);
     try {
-      if (await onAdd({ body: body.trim(), interaction_type: interactionType, follow_up_date: followUpDate || null, follow_up_completed: false })) { setBodyDraft({ recordId, value: "" }); setFollowUpDate(""); setInteractionType("note"); setSelectedTemplateId(""); }
+      if (await onAdd({ body: noteBody, interaction_type: interactionType, follow_up_date: followUpDate || null, follow_up_completed: false })) { setBodyDraft({ recordId, value: "" }); setEmailRecipients([]); setFollowUpDate(""); setInteractionType("note"); setSelectedTemplateId(""); }
     } finally {
       setBusy(false);
     }
@@ -97,13 +102,14 @@ export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDe
   return <section className="card stack record-notes" aria-labelledby="record-notes-title">
     <h2 id="record-notes-title">Notes</h2>
     {canEdit && <form className="stack" onSubmit={addNote}>
-      <label className="field">Interaction type<select className="select" value={interactionType} onChange={event => { const selected = event.target.value as RecordNote["interaction_type"]; setInteractionType(selected); if (selected !== "email") setSelectedTemplateId(""); }}><option value="note">Note</option><option value="email">Email</option><option value="call">Call</option><option value="meeting">Meeting</option></select></label>
+      <label className="field">Interaction type<select className="select" value={interactionType} onChange={event => { const selected = event.target.value as RecordNote["interaction_type"]; setInteractionType(selected); if (selected !== "email") { setSelectedTemplateId(""); setEmailRecipients([]); } }}><option value="note">Note</option><option value="email">Email</option><option value="call">Call</option><option value="meeting">Meeting</option></select></label>
+      {interactionType === "email" && <div className="stack">{primaryEmail ? <a className="link" href={`mailto:${encodeURIComponent(primaryEmail)}`} onClick={() => setEmailRecipients(current => [...new Set([...current, primaryEmail])])}>Email primary contact: {primaryEmail}</a> : <p className="muted">{primaryContact ? "The primary contact has no email address." : "No primary contact designated. Choose one in the organization’s Contacts."}</p>}{emailRecipients.length > 0 && <><p role="status">Recipient captured: {emailRecipients.join(", ")}. Send the email in your mail app, then add the note to record it.</p><button className="button" type="button" onClick={() => setEmailRecipients([])}>Clear email recipient</button></>}</div>}
       {interactionType === "email" && <label className="field">Email template<select className="select" aria-label="Email template" value={selectedTemplateId} onChange={event => { const templateId = event.target.value; setSelectedTemplateId(templateId); const template = emailTemplates.find(item => item.id === templateId); if (template) setBodyDraft({ recordId, value: template.text }); }}><option value="">Choose email template</option>{emailTemplates.map(template => <option key={template.id} value={template.id}>{template.name}</option>)}</select></label>}
       <div className="record-note-compose-heading"><label className="field" htmlFor={noteInputId}>Add a note</label><button className="button" type="button" disabled={!body} onClick={async () => { try { await navigator.clipboard.writeText(body); setCopyStatus("Note copied"); } catch { setCopyStatus("Could not copy note"); } }}>Copy note</button></div>
-      <textarea key={recordId} id={noteInputId} className="textarea" value={body} onChange={event => setBodyDraft({ recordId, value: event.target.value })} required/>
+      <textarea key={recordId} id={noteInputId} className="textarea" value={body} onChange={event => setBodyDraft({ recordId, value: event.target.value })} required={!emailRecipients.length}/>
       {copyStatus && <span role="status" className="muted">{copyStatus}</span>}
       <label className="field">Follow-up date<input className="input" type="date" value={followUpDate} onChange={event => setFollowUpDate(event.target.value)}/></label>
-      <button className="button primary" disabled={busy || !body.trim()}>Add note</button>
+      <button className="button primary" disabled={busy || !noteBody}>Add note</button>
     </form>}
     {!orderedNotes.length ? <p className="muted">No notes yet.</p> : <ol className="record-note-list">
       {orderedNotes.map(note => <li key={note.id} className="record-note">
