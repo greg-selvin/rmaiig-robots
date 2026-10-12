@@ -58,12 +58,21 @@ export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDe
     setSelectedTemplateId("");
   }, [recordId]);
 
+  function resetNewNote() {
+    setEmailRecipients([]);
+    setBodyDraft({ recordId, value: "" });
+    setInteractionType("note");
+    setFollowUpDate("");
+    setSelectedTemplateId("");
+    setCopyStatus("");
+  }
+
   async function addNote(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!noteBody || busy) return;
     setBusy(true);
     try {
-      if (await onAdd({ body: noteBody, interaction_type: interactionType, follow_up_date: followUpDate || null, follow_up_completed: false })) { setBodyDraft({ recordId, value: "" }); setEmailRecipients([]); setFollowUpDate(""); setInteractionType("note"); setSelectedTemplateId(""); }
+      if (await onAdd({ body: noteBody, interaction_type: interactionType, follow_up_date: followUpDate || null, follow_up_completed: false })) resetNewNote();
     } finally {
       setBusy(false);
     }
@@ -109,7 +118,7 @@ export function RecordNotes({ notes, canEdit, canManageNote, onAdd, onEdit, onDe
       <textarea key={recordId} id={noteInputId} className="textarea" value={body} onChange={event => setBodyDraft({ recordId, value: event.target.value })} required={!emailRecipients.length}/>
       {copyStatus && <span role="status" className="muted">{copyStatus}</span>}
       <label className="field">Follow-up date<input className="input" type="date" value={followUpDate} onChange={event => setFollowUpDate(event.target.value)}/></label>
-      <button className="button primary" disabled={busy || !noteBody}>Add note</button>
+      <div className="toolbar"><button className="button primary" disabled={busy || !noteBody}>Add note</button><button className="button" type="button" disabled={busy} onClick={resetNewNote}>Cancel</button></div>
     </form>}
     {!orderedNotes.length ? <p className="muted">No notes yet.</p> : <ol className="record-note-list">
       {orderedNotes.map(note => <li key={note.id} className="record-note">
