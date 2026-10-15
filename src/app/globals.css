@@ -64,3 +64,5 @@
 .sidebar-user-email{margin-top:8px;overflow-wrap:anywhere;color:#e4f0f0}
 
 .sidebar-foot>.button{padding-inline:9px}.sidebar-foot>.button+.button{margin-left:8px}
+
+.robot-create-actions{margin-bottom:0}.robot-organization-picker{min-width:0;margin:0;padding:12px;border:1px solid #dce5e7;border-radius:8px;display:grid;gap:10px}.robot-organization-picker legend{font-size:13px;font-weight:650}.robot-organization-picker p{margin:0;font-size:12px}.robot-organization-list{max-height:240px;overflow:auto;overscroll-behavior:contain;display:grid;gap:4px}.robot-organization-choice{display:flex;align-items:center;justify-content:flex-start;gap:8px;min-height:36px;padding:6px 4px;font-size:13px;cursor:pointer}.robot-organization-choice input{flex:0 0 auto;margin:0;width:16px;height:16px}.robot-organization-choice span{overflow-wrap:anywhere}.robot-organization-list:focus-visible{outline:2px solid #46aa98;outline-offset:2px}
