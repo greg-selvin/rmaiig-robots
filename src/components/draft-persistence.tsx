@@ -93,7 +93,7 @@ export function DraftPersistence({ root, userId, pageKey, notice, error }: { roo
     };
     const prepareClear = (event: Event) => {
       const button = (event.target as Element).closest("button");
-      if (!button || !/^(Save|Log)\b/i.test(button.textContent?.trim() || "")) return;
+      if (!button || !button.hasAttribute("data-draft-save") && !/^(Save|Log)\b/i.test(button.textContent?.trim() || "")) return;
       const container = button.closest("form, .card, .section") || element;
       const ids = Array.from(container.querySelectorAll<Control>("input, textarea")).filter(eligible).map(control => draftId(element, control));
       pending.current = { key, ids };
