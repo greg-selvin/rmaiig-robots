@@ -61,7 +61,7 @@ export function VendorContacts({ contacts, canEdit, onSave, onDelete }: Props) {
   }
 
   return <section className="card contact-section" aria-label="Contacts">
-    <div className="toolbar"><h2>Contacts</h2>{canEdit && <button className="button primary" disabled={busy} onClick={() => { setEditing("new"); setDeleting(null); setError(""); }}>Add contact</button>}</div>
+    <div className="toolbar"><h2>Contacts</h2>{canEdit && editing === null && <button className="button primary" disabled={busy} onClick={() => { setEditing("new"); setDeleting(null); setError(""); }}>Add contact</button>}</div>
     {error && <p className="notice error" role="alert">{error}</p>}
     {editing === "new" && <ContactForm key="new" onSave={onSave} onClose={() => setEditing(null)} onBusy={setBusy}/>}
     {contacts.length ? <ul className="contact-list">{contacts.map(contact => <li key={contact.id} className="contact-card">
