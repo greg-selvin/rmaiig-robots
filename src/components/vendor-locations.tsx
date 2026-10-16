@@ -95,7 +95,7 @@ function LocationForm({ location, onSave, onClose, onBusy }: { location?: Locati
     }
   }
 
-  return <form className="stack" onSubmit={submit} aria-label={location ? "Edit location" : "Add location"}>
+  return <form autoComplete="off" className="stack" onSubmit={submit} aria-label={location ? "Edit location" : "Add location"}>
     <h3>{location ? "Edit location" : "Add location"}</h3>
     <fieldset disabled={busy} style={{ border: 0, padding: 0, margin: 0 }}><div className="form-grid">
       <label className="field">Location type<select className="select" value={kind} onChange={event => setKind(event.target.value)}>{[...new Set([...locationTypes, kind])].map(value => <option key={value} value={value}>{typeLabel(value)}</option>)}</select></label>

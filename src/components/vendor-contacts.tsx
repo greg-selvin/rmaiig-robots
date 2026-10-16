@@ -108,7 +108,7 @@ function ContactForm({ contact, onSave, onClose, onBusy }: { contact?: Contact; 
       setBusy(false);onBusy(false);
     }
   }
-  return <form className="stack contact-form" onSubmit={submit} aria-label={contact ? "Edit contact" : "Add contact"}>
+  return <form autoComplete="off" className="stack contact-form" onSubmit={submit} aria-label={contact ? "Edit contact" : "Add contact"}>
     <h3>{contact ? "Edit contact" : "Add contact"}</h3>
     <fieldset disabled={busy} className="contact-fieldset"><div className="form-grid">
       <label className="field">Name<input className="input" value={values.name} onChange={event => set("name",event.target.value)}/></label>
